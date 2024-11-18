@@ -1,0 +1,26 @@
+{
+  "where_to_go_today" : "¿A dónde quieres ir hoy?",
+  "places" : "Lugares",
+  "Explore" : "Explorar",
+  "Favorites" : "Favoritos",
+  "Trips" : "Viajes",
+  "Profile" : "Perfil",
+  "login_view_favorites" : "Inicia sesión para ver tus favoritos",
+  "login_view_favorites_place" : "Aún no has agregado ningún lugar a tus favoritos. ¡Explora y añade tus lugares preferidos!",
+  "login_for_create_favorites" : "Puedes crear, consultar o editar tus lugares favoritos una vez que hayas iniciado sesión.",
+  "log_out" : "Cerrar sesión",
+  "languages": "Idiomas",
+  "select_languages": "Seleccionar idioma",
+  "update_information_user": "Actualización de información",
+  "settings" : "Configuración",
+  "event" : "Eventos",
+  "login_view_profile" : "Inicia sesión para ver tu perfil",
+  "login_view_detail_profile" : "Inicia sesión para ver tu información y tus ajustes"
+
+
+
+
+
+
+
+}

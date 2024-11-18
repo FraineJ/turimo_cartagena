@@ -1,0 +1,19 @@
+{
+  "where_to_go_today" : "where to go today",
+  "places" : "Places",
+  "Explore" : "Explore",
+  "Favorites" : "Favorites",
+  "Trips" : "Trips",
+  "Profile" : "Profile",
+  "login_view_favorites" : "Log in to see your favorites",
+  "login_view_favorites_place" : "You haven't added any places to your favorites yet. Explore and add your favorite places!",
+  "login_for_create_favorites" : "You can create, view, or edit your favorite places once you have logged in.",
+  "log_out" : "Log out",
+  "languages": "Languages",
+  "select_languages": "Select language",
+  "update_information_user": "Update information",
+  "settings" : "Settings",
+  "event" : "Events",
+  "login_view_profile" : "Sign in to view your profile",
+  "login_view_detail_profile" : "Sign in to view your information and settings"
+}
