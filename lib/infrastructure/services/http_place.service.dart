@@ -8,7 +8,7 @@ import 'dart:convert';
 class HttpPlaceService extends PlaceRepository {
 
   @override
-  Future getPlaceByCategory(int id) async {
+  Future getPlaceByCategory(String id) async {
     final environment = await Environment.forEnvironment('environment-dev');
     String apiUrl  = "${environment.baseUrl}/lugar/list/$id";
 

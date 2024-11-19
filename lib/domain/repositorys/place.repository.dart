@@ -1,6 +1,6 @@
 abstract class PlaceRepository {
 
-  Future getPlaceByCategory(int id);
+  Future getPlaceByCategory(String id);
 
   Future addPlaceFavorite(int id);
 

@@ -5,7 +5,7 @@ CategoryModel categoryModelFromJson(String str) => CategoryModel.fromJson(json.d
 String categoryModelToJson(CategoryModel data) => json.encode(data.toJson());
 
 class CategoryModel {
-  final int id;
+  final String id;
   final String name;
   final String code;
   String? image;
@@ -18,14 +18,14 @@ class CategoryModel {
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
-    id: json["id"],
+    id: json["_id"],
     name: json["name"],
     code: json["code"],
     image: json["imagen"],
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
+    "_id": id,
     "name": name,
     "code": code,
     "image": image,

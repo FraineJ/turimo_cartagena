@@ -1,3 +1,4 @@
+import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -129,5 +130,39 @@ class Utils {
     final NumberFormat numFormat = NumberFormat('###,##0.00', 'en_US');
     return numFormat.format(value);
 
+  }
+
+  static Future<Position?> getPositionCurrent() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? positionString = prefs.getString('position');
+
+    if (positionString != null) {
+      List<String> parts = positionString.split(',');
+      double latitude = double.parse(parts[0]);
+      double longitude = double.parse(parts[1]);
+
+      return Position(
+          latitude: latitude,
+          longitude: longitude,
+          timestamp: DateTime.now(), // Puedes poner la fecha actual o un valor específico
+          accuracy: 0.0,
+          altitude: 0.0,
+          heading: 0.0,
+          speed: 0.0,
+          speedAccuracy: 0.0,
+          altitudeAccuracy: 0,
+          headingAccuracy: 0
+      );
+    }
+
+    return null; // Si no hay ninguna posición guardada
+  }
+
+  static String truncateText(String text, int maxLength) {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    } else {
+      return text;
+    }
   }
 }

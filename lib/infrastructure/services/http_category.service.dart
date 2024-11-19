@@ -9,21 +9,19 @@ import 'package:turismo_cartagena/presentation/global/environments/environment.d
 class HttpCategoryService extends CategoryRepository {
   @override
   Future getAllCategory() async {
-    print("response init");
+
 
     final environment = await Environment.forEnvironment('environment-dev');
-    String apiUrl  = "${environment.baseUrl}/categorias/list";
-    print("response");
+    String apiUrl  = "${environment.baseUrl}/categories/listar";
 
 
     try {
       final response = await http.get(
           Uri.parse(apiUrl)
       ).timeout(Duration(seconds: 5));
-      print("response $response");
 
       final body = jsonDecode(response.body);
-      final List<dynamic> jsonDataList = body as List<dynamic>;
+      final List<dynamic> jsonDataList = body["data"] as List<dynamic>;
       final List<CategoryModel> category = jsonDataList.map((jsonData) => CategoryModel.fromJson(jsonData)).toList();
 
       if(response.statusCode == 200) {

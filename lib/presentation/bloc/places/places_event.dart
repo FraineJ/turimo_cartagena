@@ -9,7 +9,7 @@ class InitialPlaceEvent extends PlacesEvent{}
 
 
 class GetPlaceByCategoryEvent extends PlacesEvent{
-  final int id;
+  final String id;
   const GetPlaceByCategoryEvent({required this.id}): super();
 }
 

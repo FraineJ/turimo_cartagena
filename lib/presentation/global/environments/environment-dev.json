@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://18.117.85.88:8080/api",
+  "baseUrl": "http://192.168.1.3:3000/api",
   "apiKey": "dev_api_key"
 }
 
