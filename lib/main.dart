@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,8 +8,12 @@ import 'package:turismo_cartagena/presentation/bloc/preference-bloc/preference_u
 import 'package:turismo_cartagena/presentation/modules/layuot.dart';
 import 'generated/l10n.dart';
 
-void main() {
+void main() async{
   initArticlesInjections();
+  WidgetsFlutterBinding.ensureInitialized(); // Asegúrate de inicializar los bindings
+  await Firebase.initializeApp(
+
+  );
   runApp(const MyApp());
 }
 

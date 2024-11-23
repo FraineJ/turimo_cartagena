@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:turismo_cartagena/domain/models/rate.model.dart';
 import 'package:turismo_cartagena/domain/models/service.model.dart';
+import 'package:turismo_cartagena/presentation/modules/partner/widgets/card-reviews.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/widgets/card-services.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/widgets/spaces-header-appbar.dart';
 
@@ -99,21 +100,165 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 16,),
-                  Text(partners.description),
+                  const SizedBox(height: 16,),
+                  Text(
+                      partners.address,
+                      style:const TextStyle(
+                        color: Colors.black87
+                      ),
+                  ),
+                  const SizedBox(height: 16,),
+                  const Text("Descripción",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold
+                    ),
+
+                  ),
+                  Text(partners.description,
+                    style: const TextStyle(
+                      fontSize: 16,
+
+                    ),
+
+                  ),
+                  const SizedBox(height: 16,),
+                  const Text("Reseñas",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold
+                    ),
+
+                  ),
+                  const SizedBox(height: 16,),
+                  const ReviewCard(
+                    userName: "Frainer Simarra",
+                    userRole: "reol",
+                    reviewText: "Eclente lugar cuenta con un luhar muy hermoso estoy segura que volveria a visitarlo",
+                    userImageUrl: "https://fotografias.antena3.com/clipping/cmsimages01/2021/05/02/26E03450-C5FB-4D16-BC9B-B282AE784352/57.jpg",
+                    rating: 2
+
+                  ),
+                  const SizedBox(height: 16,),
+                  const Text("Servicios",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold
+                    ),
+
+                  ),
+                  const SizedBox(height: 16,),
                 ],
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                  (context, index) => CardServicesPartner(
-                services: fakeService,
-                isDollar: isDollar,
-                exchangeRate: tasaDeCambio,
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 370, // Altura fija para la lista horizontal
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal, // Dirección horizontal
+                itemCount: 6,
+                itemBuilder: (context, index) => CardServicesPartner(
+                  services: fakeService,
+                  isDollar: isDollar,
+                  exchangeRate: tasaDeCambio,
+                ),
               ),
-              childCount: 6,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 16,),
+                  const Text("Contacto",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold
+                    ),
+
+                  ),
+                  const SizedBox(height: 8,),
+                  const Text("Pulsa en cualquiera de los iconos para comunicarte.",
+                    style: TextStyle(
+                        fontSize: 15,
+                    ),
+
+                  ),
+                  const SizedBox(height: 16,),
+                  Container(
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(32.0),
+                            color: Colors.blueAccent,
+
+                          ),
+                          child: Center(
+                            child: IconButton(
+                              onPressed: (){},
+                              icon: const Icon(
+                                Icons.phone,
+                                color: Colors.white,
+                              ),
+
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 16,),
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(32.0),
+                            color: Colors.blueAccent,
+
+                          ),
+                          child: Center(
+                            child: IconButton(
+                              onPressed: (){},
+                              icon: const Icon(
+                                Icons.near_me,
+                                color: Colors.white,
+                              ),
+
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 16,),
+
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(32.0),
+                            color: Colors.blueAccent,
+
+                          ),
+                          child: Center(
+                            child: IconButton(
+                              onPressed: (){},
+                              icon: const Icon(
+                                Icons.language,
+                                color: Colors.white,
+                              ),
+
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 16,),
+                ],
+              ),
             ),
           ),
         ],
@@ -154,9 +299,14 @@ class _HeaderSliver extends SliverPersistentHeaderDelegate {
                       AnimatedOpacity(
                         opacity: percent > 0.1 ? 1 : 0,
                         duration: const Duration(milliseconds: 300),
-                        child: const Icon(
-                          Icons.arrow_back_ios_new_rounded,
-                          color: Colors.white,
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.pop(context);
+                          },
+                          child: const Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -166,7 +316,7 @@ class _HeaderSliver extends SliverPersistentHeaderDelegate {
                           offset: Offset(percent < 0.1 ? -0.10 : 0.1, 0),
                           curve: Curves.easeIn,
                           child:  Text(partner.name,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -186,7 +336,6 @@ class _HeaderSliver extends SliverPersistentHeaderDelegate {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
@@ -202,8 +351,10 @@ class _HeaderSliver extends SliverPersistentHeaderDelegate {
                             ),
                           ],
                         ),
+
                         Row(
                           children: [
+                            SizedBox(width: 28),
                             Icon(Icons.location_on, color: Colors.white, size: 16),
                             SizedBox(width: 8),
                             Text(
@@ -216,14 +367,7 @@ class _HeaderSliver extends SliverPersistentHeaderDelegate {
                             ),
                           ],
                         ),
-                        Text(
-                          '\$120/night',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
+
                       ],
                     ),
                   ),

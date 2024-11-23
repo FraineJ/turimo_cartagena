@@ -45,7 +45,7 @@ class _PartnerViewState extends State<PartnerView> {
                   itemBuilder: (context, index) {
                     final partner = partners[index];
 
-                    return PropertyCard(partner: partner);
+                    return PropertyCard(partner: partner, autoPlay: true,);
                   },
                 );
               }

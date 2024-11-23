@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:turismo_cartagena/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/partner.model.dart';
+import 'package:turismo_cartagena/presentation/bloc/partner/partner_bloc.dart';
 import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED ;
 import 'package:turismo_cartagena/presentation/modules/partner/partner-detail.dart';
-import 'package:turismo_cartagena/presentation/modules/partner/widgets/card-partner-map.dart';
+
 
 class PropertyCard extends StatelessWidget {
+  final PartnersModel partner;
+  final bool autoPlay;
+  bool isFavorite = false;
+  PropertyCard({super.key, required this.partner, required this.autoPlay});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (context) => PartnerBloc(sl()),
+        child: PropertyCardState(partner: partner)
+    );
+  }
+}
+
+class PropertyCardState extends StatelessWidget {
   final double? height; // Parámetro para definir la altura
   final PartnersModel partner;
-  const PropertyCard({Key? key, this.height, required this.partner}) : super(key: key);
+  const PropertyCardState({Key? key, this.height, required this.partner}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,14 +85,20 @@ class PropertyCard extends StatelessWidget {
                 ),
               ),
             ),
-            const Positioned(
+            Positioned(
               top: 10,
               right: 10,
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.favorite_border,
-                  color: Colors.black,
+              child: GestureDetector(
+                  onTap: (){
+                    final event = AddPartnerFavoriteEvent(id: partner.id);
+                    context.read<PartnerBloc>().add(event);
+                  },
+                child: const CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Icon(
+                    Icons.favorite_border,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
@@ -112,27 +136,30 @@ class PropertyCard extends StatelessWidget {
                         Row(
                           children: [
                             Icon(Icons.star, color: Colors.orange, size: 16),
-                            SizedBox(width: 5),
+                            SizedBox(width: 8),
                             Text(
                               '4.5 Rating',
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            SizedBox(width: 10),
-                            Icon(Icons.location_on, color: Colors.grey, size: 16),
-                            SizedBox(width: 5),
-                            Text(
-                              '1 Km',
-                              style: TextStyle(fontSize: 14),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ],
                         ),
-                        Text(
-                          '\$120/night',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        Row(
+                          children: [
+                            Icon(Icons.location_on, color: Colors.white, size: 16),
+                            SizedBox(width: 8),
+                            Text(
+                              '1 Km de Distancia',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
+
                       ],
                     ),
                   ],

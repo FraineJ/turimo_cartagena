@@ -46,7 +46,7 @@ class ProfileView extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 30, right: 30),
+                        padding: const EdgeInsets.only(left: 16, right: 16),
                         child: Row(
                           children: [
                             const CircleAvatar(
@@ -212,7 +212,7 @@ class ProfileView extends StatelessWidget {
                       Widgets.AppBarCustom(
                           textTitle: S.current.Profile, botonVolver: false),
                       Widgets.RequestLogin(
-                        title: S.current.login_view_favorites,
+                        title: S.current.login_view_profile,
                         description: S.current.login_view_detail_profile,
                       ),
                     ],

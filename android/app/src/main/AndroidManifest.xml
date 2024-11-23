@@ -7,7 +7,7 @@
         android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="turismo_cartagena"
+        android:label="Gooway"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

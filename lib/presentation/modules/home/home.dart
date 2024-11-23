@@ -159,7 +159,7 @@ class _HomeViewState extends State<Home> with SingleTickerProviderStateMixin, Au
                       //controller: _searchController,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                        hintText: S.current.settings,
+                        hintText: S.current.where_to_go_today,
                         prefixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0),
