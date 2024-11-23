@@ -6,15 +6,15 @@ class PartnerCaseUse {
   final PartnerRepository _partnerRepository;
   PartnerCaseUse(this._partnerRepository);
 
-  Future getPlaceByCategory(String id) async{
+  Future getPartnerByCategory(String id) async{
     return await _partnerRepository.getPartnerByCategory(id);
   }
 
-  Future addPlaceFavorite(int id) async{
+  Future addPartnerFavorite(String id) async{
     return await _partnerRepository.addPartnerFavorite(id);
   }
 
-  Future getPlaceFavoriteByUser() async{
-    return await _partnerRepository.addPartnerFavoriteByUser();
+  Future getPartnerFavoriteByUser() async{
+    return await _partnerRepository.getPartnerFavoriteByUser();
   }
 }

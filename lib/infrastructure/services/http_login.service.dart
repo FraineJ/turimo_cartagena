@@ -20,13 +20,15 @@ class HttpLoginService extends AbstractAuthRepository {
           'Content-Type': 'application/json', // Establecer el tipo de contenido
         },
         body: jsonEncode({
-          'usernameOrEmail': username,
+          'email': username,
           'password': password,
         }),
       );
 
-      if (response.statusCode == 200) {
-        final body = jsonDecode(response.body);
+      final body = jsonDecode(response.body);
+
+      if (body["status"] == 200) {
+
         print("envia al bock $body");
         return body;
       } else {
@@ -34,7 +36,7 @@ class HttpLoginService extends AbstractAuthRepository {
       }
 
     } catch (error) {
-      print("envia al bock $error");
+      print("envia al bock error $error");
       return error;
     }
   }
@@ -43,16 +45,23 @@ class HttpLoginService extends AbstractAuthRepository {
   Future register(UserModel user) async {
 
     final environment = await Environment.forEnvironment('environment-dev');
-    String apiUrl  = "${environment.baseUrl}/auth/register";
+    String apiUrl  = "${environment.baseUrl}/users/insertar";
+    print("datos a enviar ${user.toJson()}");
 
     try {
       final response = await http.post(Uri.parse(apiUrl),
-          body: {user});
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: jsonEncode(user.toJson())
+      );
 
       final body = jsonDecode(response.body);
+      print("response ${body}");
 
       return body;
     } catch (error) {
+      print("error ${error}");
       return error;
     }
   }

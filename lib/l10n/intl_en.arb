@@ -15,5 +15,17 @@
   "settings" : "Settings",
   "event" : "Events",
   "login_view_profile" : "Sign in to view your profile",
-  "login_view_detail_profile" : "Sign in to view your information and settings"
+  "login_view_detail_profile" : "Sign in to view your information and settings",
+  "nameRegister": "Name",
+  "lastNameRegister": "Last Name",
+  "emailRegister": "Email",
+  "passwordRegister": "Enter your password",
+  "confirmPasswordRegister": "Confirm password",
+  "messagePolity": "By clicking 'Sign Up', you agree to our Terms and Privacy Policy",
+  "hintTextName": "Enter your name",
+  "hintTextLastName": "Enter your last name",
+  "hintTextEmail": "Enter an email",
+  "hintTexPassword": "Password"
+
+
 }

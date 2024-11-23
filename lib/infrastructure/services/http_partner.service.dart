@@ -39,25 +39,28 @@ class HttpPartnerService extends PartnerRepository {
 
 
   @override
-  Future addPartnerFavorite(int id) async {
+  Future addPartnerFavorite(String id) async {
 
     final environment = await Environment.forEnvironment('environment-dev');
-    String apiUrl  = "${environment.baseUrl}/lugar/add-favorite/$id";
+    String apiUrl  = "${environment.baseUrl}/favorite/add";
 
     Map<String, String> userDetails = await Global.Utils.getUserDetails();
-    String token = userDetails['token']!;
+    String userId = userDetails['id']!;
+
 
     try {
-      final response = await http.get(Uri.parse(
-        apiUrl),
+      final response = await http.post(Uri.parse(apiUrl),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token',
         },
+        body: jsonEncode({
+          "partnerId": id,
+          "userId": userId
+        })
       );
 
       final body = jsonDecode(response.body);
-      print("response $body");
+
 
       if(response.statusCode == 200) {
         return body;
@@ -72,36 +75,38 @@ class HttpPartnerService extends PartnerRepository {
   }
 
   @override
-  Future addPartnerFavoriteByUser() async {
+  Future getPartnerFavoriteByUser() async {
     final environment = await Environment.forEnvironment('environment-dev');
-    String apiUrl  = "${environment.baseUrl}/lugar/favorites-by-user";
+    String apiUrl = "${environment.baseUrl}/favorite/lista";
 
     Map<String, String> userDetails = await Global.Utils.getUserDetails();
-    String token = userDetails['token']!;
+    String userId = userDetails['id']!;
 
     try {
-      final response = await http.get(
+      final response = await http.post(
         Uri.parse(apiUrl),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token',
         },
+        body: jsonEncode({
+          "userId": userId,
+        }),
       );
 
       final body = jsonDecode(response.body);
+      print("response ${body}");
 
-      final List<dynamic> jsonDataList = body as List<dynamic>;
-      final List<PartnersModel> place = jsonDataList.map((jsonData) => PartnersModel.fromJson(jsonData)).toList();
-
-      if(response.statusCode == 200) {
-        return place;
+      if (body["status"] == 200) {
+        // Trabaja directamente con el cuerpo de la respuesta como una lista de mapas
+        final List<Map<String, dynamic>> jsonDataList = List<Map<String, dynamic>>.from(body["data"]);
+        return jsonDataList;
       }
 
       return [];
-
     } catch (error) {
-      print("error $error" );
-      return error;
+      print("error $error");
+      return {"error": error.toString()};
     }
   }
+
 }

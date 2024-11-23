@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
 import 'package:turismo_cartagena/presentation/modules/auth/login/login.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
@@ -17,14 +18,25 @@ class Register extends StatelessWidget {
 
 class CustomerForm extends StatelessWidget {
   final TextEditingController name = TextEditingController();
-  final TextEditingController username = TextEditingController();
-  final TextEditingController address = TextEditingController();
-  final TextEditingController phone = TextEditingController();
+  final TextEditingController lastName = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
   final TextEditingController passwordConfirm = TextEditingController();
-  final TextEditingController nacionalidad = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final List<Map<String, String>> countries = [
+    {"name": "United States", "flag": "🇺🇸"},
+    {"name": "Canada", "flag": "🇨🇦"},
+    {"name": "Germany", "flag": "🇩🇪"},
+    {"name": "France", "flag": "🇫🇷"},
+    {"name": "Brazil", "flag": "🇧🇷"},
+    {"name": "Argentina", "flag": "🇦🇷"},
+    {"name": "United Kingdom", "flag": "🇬🇧"},
+    {"name": "Italy", "flag": "🇮🇹"},
+    {"name": "Mexico", "flag": "🇲🇽"},
+    {"name": "Spain", "flag": "🇪🇸"},
+  ];
+  String? selectedCountry;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +89,7 @@ class CustomerForm extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 16),
-                    const W.AppBarCustom(textTitle: "Registrarte"),
+                    const W.AppBarCustom(textTitle: "Registrarte", botonVolver: true,),
                     const SizedBox(height: 8),
                     const Text(
                       "Por favor rellenar todos los campos",
@@ -86,7 +98,7 @@ class CustomerForm extends StatelessWidget {
                     const SizedBox(height: 16),
                     W.InputTextCustom(
                       hintText: 'Ingrese su nombre',
-                      labelText: 'Nombres',
+                      labelText: S.current.nameRegister,
                       controller: name,
                       prefixIcon: Icons.person_2_rounded,
                       isRequired: true,
@@ -94,26 +106,55 @@ class CustomerForm extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     W.InputTextCustom(
-                      hintText: 'Ingrese el apellido',
-                      labelText: 'Apellidos',
-                      controller: username,
+                      hintText: 'Ingrese sus apellidos',
+                      labelText:  S.current.lastNameRegister,
+                      controller: lastName,
                       isRequired: true,
                       keyboardType: TextInputType.text,
                     ),
                     const SizedBox(height: 16),
                     W.InputTextCustom(
                       hintText: 'Ingrese un correo electrónico',
-                      labelText: 'Correo electrónico',
+                      labelText:  S.current.emailRegister,
                       controller: email,
                       prefixIcon: Icons.email,
                       isRequired: true,
                       keyboardType: TextInputType.emailAddress,
                     ),
                     const SizedBox(height: 16),
+                    DropdownButtonFormField<String>(
+                      value: selectedCountry,
+                      items: countries.map((country) {
+                        return DropdownMenuItem<String>(
+                          value: country['name'],
+                          child: Text(
+                            "${country['flag']} ${country['name']}",
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        selectedCountry = value!;
+                      },
+                      hint: const Text("Seleccione su país de origen"), // Placeholder
+
+                      decoration:  InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor seleccione un país';
+                        }
+                        return null;
+                      },
+                    ),
                     const SizedBox(height: 16),
+
                     W.InputTextCustom(
                       hintText: 'Contraseña',
-                      labelText: 'Ingrese su contraseña',
+                      labelText: S.current.passwordRegister,
                       prefixIcon: Icons.lock,
                       suffixIcon: Icons.visibility_off,
                       controller: password,
@@ -124,8 +165,8 @@ class CustomerForm extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     W.InputTextCustom(
-                      hintText: 'Confirmar contraseña',
-                      labelText: 'Confirmar contraseña',
+                      hintText: S.current.confirmPasswordRegister,
+                      labelText: S.current.confirmPasswordRegister,
                       prefixIcon: Icons.lock,
                       suffixIcon: Icons.visibility_off,
                       controller: passwordConfirm,
@@ -135,9 +176,8 @@ class CustomerForm extends StatelessWidget {
                       keyboardType: TextInputType.visiblePassword,
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'Al hacer clic en "Registrarte", aceptas nuestras Condiciones y Política de privacidad.',
-                      style: TextStyle(fontSize: 16, color: Color(0xFFFF6969)),
+                    Text(S.current.messagePolity,
+                      style: const TextStyle(fontSize: 16, color: Color(0xFFFF6969)),
                     ),
                     const SizedBox(height: 16),
                     W.ButtonPrimaryCustom(
@@ -180,12 +220,11 @@ class CustomerForm extends StatelessWidget {
       }
 
       final event = RegisterEvent(
-        name.text,
-        username.text,
-        email.text,
-        password.text,
-        phone.text,
-        nacionalidad.text
+        name:  name.text,
+        lastName:  lastName.text,
+        email:  email.text,
+        password:  password.text,
+        nationality:  selectedCountry ?? ""
       );
       context.read<AuthBloc>().add(event);
     }
@@ -194,9 +233,7 @@ class CustomerForm extends StatelessWidget {
   @override
   void dispose() {
     name.dispose();
-    username.dispose();
-    address.dispose();
-    phone.dispose();
+    lastName.dispose();
     email.dispose();
     password.dispose();
     passwordConfirm.dispose();

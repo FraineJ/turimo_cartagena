@@ -26,8 +26,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "Favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "Profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "Trips": MessageLookupByLibrary.simpleMessage("Trips"),
+        "confirmPasswordRegister":
+            MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "emailRegister": MessageLookupByLibrary.simpleMessage("Email"),
         "event": MessageLookupByLibrary.simpleMessage("Events"),
+        "hintTexPassword": MessageLookupByLibrary.simpleMessage("Password"),
+        "hintTextEmail": MessageLookupByLibrary.simpleMessage("Enter an email"),
+        "hintTextLastName":
+            MessageLookupByLibrary.simpleMessage("Enter your last name"),
+        "hintTextName": MessageLookupByLibrary.simpleMessage("Enter your name"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
+        "lastNameRegister": MessageLookupByLibrary.simpleMessage("Last Name"),
         "log_out": MessageLookupByLibrary.simpleMessage("Log out"),
         "login_for_create_favorites": MessageLookupByLibrary.simpleMessage(
             "You can create, view, or edit your favorite places once you have logged in."),
@@ -39,6 +48,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "You haven\'t added any places to your favorites yet. Explore and add your favorite places!"),
         "login_view_profile": MessageLookupByLibrary.simpleMessage(
             "Sign in to view your profile"),
+        "messagePolity": MessageLookupByLibrary.simpleMessage(
+            "By clicking \'Sign Up\', you agree to our Terms and Privacy Policy"),
+        "nameRegister": MessageLookupByLibrary.simpleMessage("Name"),
+        "passwordRegister":
+            MessageLookupByLibrary.simpleMessage("Enter your password"),
         "places": MessageLookupByLibrary.simpleMessage("Places"),
         "select_languages":
             MessageLookupByLibrary.simpleMessage("Select language"),

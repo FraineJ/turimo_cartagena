@@ -21,8 +21,7 @@ class PartnerBloc extends Bloc<PartnerEvent, PartnersState> {
     emit(LoadingGetPartnerByCategory());
 
     try {
-      final List<PartnersModel> response = await partnerCaseUse.getPlaceByCategory(event.id);
-      print("list Partner ${response}");
+      final List<PartnersModel> response = await partnerCaseUse.getPartnerByCategory(event.id);
       if (response.isNotEmpty) {
         emit(SuccessGetPartnerByCategory(partnerModel: response));
       } else {
@@ -35,9 +34,9 @@ class PartnerBloc extends Bloc<PartnerEvent, PartnersState> {
 
   Future _addPartnerFavorite(AddPartnerFavoriteEvent event, Emitter<PartnersState> emit) async {
     emit(LoadingAddPartnerFavorite());
-
+    print("(event.id ${event.id}");
     try {
-      final bool response = await partnerCaseUse.addPlaceFavorite(event.id);
+      final response = await partnerCaseUse.addPartnerFavorite(event.id);
 
       if (response) {
         emit(SuccessAddPartnerFavorite(response: response));
@@ -52,11 +51,12 @@ class PartnerBloc extends Bloc<PartnerEvent, PartnersState> {
   Future _getPartnerFavoriteByUser(GetPartnerFavoriteByUserEvent event, Emitter<PartnersState> emit) async {
     emit(LoadingGetPartnerFavoriteByUser());
 
-    final List<PartnersModel> response = await partnerCaseUse.getPlaceFavoriteByUser();
+    final  response = await partnerCaseUse.getPartnerFavoriteByUser();
+    print("partner response ${response}");
 
     if (response.isNotEmpty) {
 
-      emit(SuccessGetPartnerFavoriteByUser(PartnerModel: response));
+      emit(SuccessGetPartnerFavoriteByUser(partnerResponse: response));
     } else {
       emit(ErrorGetPartnerFavoriteByUser());
     }

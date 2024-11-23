@@ -29,17 +29,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
       final  response = await authCaseUse.login(user, pass);
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      LoginResponse loginResponse = LoginResponse(
-          tokenType: response['tokenType'],
-          tokenAcces: response['tokenAcces'],
-          name: response['userDTO']['name'],
-          ok: response['ok']
-      );
+      List userDta = response["data"];
 
-      String userJson = jsonEncode(loginResponse);
+      if (userDta.isNotEmpty) {
 
-      if (loginResponse.ok) {
+
+        String userJson = jsonEncode({
+          "tokenAcces": response["data"][0]['token'],
+          "name": response["data"][0]['name'],
+          "email": response["data"][0]['email'],
+          "id": response["data"][0]['id'],
+        });
+
+
         prefs.setString('user_login', userJson);
+
 
         emit(SuccessAuthenticationState());
       } else{
@@ -54,26 +58,36 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
 
   Future _register(RegisterEvent event, Emitter<AuthBlocState> emit) async {
 
-    final UserModel user = UserModel(
-        username: event.username,
-        name: event.name,
-        email: event.email,
-        numberPhone: event.numberPhone,
-        password: event.password,
-        nacionalidad: event.nacionalidad
-    );
+    try {
+      final UserModel user = UserModel(
+          lastName: event.lastName,
+          name: event.name,
+          email: event.email,
+          password: event.password,
+          nationality: event.nationality,
+          status: ""
+      );
 
-    emit(LoadingRRegisterState());
+      print("block enviar response ${user}");
 
-    final  response = await authCaseUse.register(user);
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final dataResponse = UserModel.fromJson(response);
+      emit(LoadingRRegisterState());
 
-    if (dataResponse.hashCode == 200) {
-      final data = jsonEncode(dataResponse);
-      prefs.setString('user_login', data);
-      emit(SuccessRegisterState());
-    } else{
+      final  response = await authCaseUse.register(user);
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      print("response ${response}");
+      final dataResponse = UserModel.fromJson(response["data"]);
+
+      if (response["status"] == 200) {
+        final data = jsonEncode(dataResponse);
+
+        prefs.setString('user_login', data);
+        emit(SuccessRegisterState());
+      } else{
+        emit(ErrorRegisterState());
+      }
+    } catch (error) {
+      print("error ${error}");
       emit(ErrorRegisterState());
     }
   }

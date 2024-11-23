@@ -62,19 +62,29 @@ class Utils {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     String user = prefs.getString('user_login') ?? '';
-    print("store user ${user}");
+    print("store user $user");
 
     if (user.isEmpty) {
       return {'token': ''};
     }
 
-    Map<String, dynamic> userMap = json.decode(user);
-    print("store ${userMap}");
+    try {
+      // Decodifica el JSON correctamente
+      Map<String, dynamic> userMap = jsonDecode(user);
+      print("store userMap: $userMap");
 
-    String token = userMap['tokenAcces'] ?? '';
+      // Extrae el token o devuelve vacío si no existe
+      String token = userMap['tokenAcces'] ?? '';
+      String id = userMap['id'] ?? '';
 
-    return {'token': token,};
+      return {'token': token, 'id': id};
+    } catch (e) {
+      // Si ocurre un error, devuelve un token vacío
+      print("Error decoding user: $e");
+      return {'token': ''};
+    }
   }
+
 
   static String formatDate(DateTime date) {
     final DateFormat formatter = DateFormat('d MMM y');

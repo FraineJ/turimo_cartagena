@@ -15,7 +15,20 @@
   "settings" : "Configuración",
   "event" : "Eventos",
   "login_view_profile" : "Inicia sesión para ver tu perfil",
-  "login_view_detail_profile" : "Inicia sesión para ver tu información y tus ajustes"
+  "login_view_detail_profile" : "Inicia sesión para ver tu información y tus ajustes",
+  "nameRegister" : "Nombre",
+  "lastNameRegister" : "Apellidos",
+  "emailRegister" : "Correo electrónico",
+  "passwordRegister" : "Ingrese su contraseña",
+  "confirmPasswordRegister" : "Confirmar contraseña",
+  "messagePolity" : "Al hacer clic en 'Registrarse', aceptas nuestras Condiciones y Politicas de privacidad",
+  "hintTextName" : "Ingrese su nombre",
+  "hintTextLastName" : "Ingrese sus apellidos",
+  "hintTextEmail" : "Ingrese un correo electrónico",
+  "hintTexPassword" : "Contraseña"
+
+
+
 
 
 

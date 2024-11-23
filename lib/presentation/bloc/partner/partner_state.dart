@@ -41,11 +41,11 @@ class ErrorServeAddPartnerFavorite extends PartnersState {
 class LoadingGetPartnerFavoriteByUser extends PartnersState {}
 
 class SuccessGetPartnerFavoriteByUser extends PartnersState {
-  final List<PartnersModel> PartnerModel;
-  SuccessGetPartnerFavoriteByUser({required this.PartnerModel} );
+  final List partnerResponse;
+  SuccessGetPartnerFavoriteByUser({required this.partnerResponse} );
 
   @override
-  List<Object> get props => [PartnerModel];
+  List<Object> get props => [partnerResponse];
 }
 
 class ErrorGetPartnerFavoriteByUser extends PartnersState {

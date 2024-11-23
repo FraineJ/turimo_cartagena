@@ -26,8 +26,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "Favorites": MessageLookupByLibrary.simpleMessage("Favoritos"),
         "Profile": MessageLookupByLibrary.simpleMessage("Perfil"),
         "Trips": MessageLookupByLibrary.simpleMessage("Viajes"),
+        "confirmPasswordRegister":
+            MessageLookupByLibrary.simpleMessage("Confirmar contraseña"),
+        "emailRegister":
+            MessageLookupByLibrary.simpleMessage("Correo electrónico"),
         "event": MessageLookupByLibrary.simpleMessage("Eventos"),
+        "hintTexPassword": MessageLookupByLibrary.simpleMessage("Contraseña"),
+        "hintTextEmail": MessageLookupByLibrary.simpleMessage(
+            "Ingrese un correo electrónico"),
+        "hintTextLastName":
+            MessageLookupByLibrary.simpleMessage("Ingrese sus apellidos"),
+        "hintTextName":
+            MessageLookupByLibrary.simpleMessage("Ingrese su nombre"),
         "languages": MessageLookupByLibrary.simpleMessage("Idiomas"),
+        "lastNameRegister": MessageLookupByLibrary.simpleMessage("Apellidos"),
         "log_out": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
         "login_for_create_favorites": MessageLookupByLibrary.simpleMessage(
             "Puedes crear, consultar o editar tus lugares favoritos una vez que hayas iniciado sesión."),
@@ -39,6 +51,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Aún no has agregado ningún lugar a tus favoritos. ¡Explora y añade tus lugares preferidos!"),
         "login_view_profile": MessageLookupByLibrary.simpleMessage(
             "Inicia sesión para ver tu perfil"),
+        "messagePolity": MessageLookupByLibrary.simpleMessage(
+            "Al hacer clic en \'Registrarse\', aceptas nuestras Condiciones y Politicas de privacidad"),
+        "nameRegister": MessageLookupByLibrary.simpleMessage("Nombre"),
+        "passwordRegister":
+            MessageLookupByLibrary.simpleMessage("Ingrese su contraseña"),
         "places": MessageLookupByLibrary.simpleMessage("Lugares"),
         "select_languages":
             MessageLookupByLibrary.simpleMessage("Seleccionar idioma"),

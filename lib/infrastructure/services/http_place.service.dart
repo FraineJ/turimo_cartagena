@@ -71,7 +71,7 @@ class HttpPlaceService extends PlaceRepository {
   }
 
   @override
-  Future addPlaceFavoriteByUser() async {
+  Future<List<PlaceModel>> addPlaceFavoriteByUser() async {
     final environment = await Environment.forEnvironment('environment-dev');
     String apiUrl  = "${environment.baseUrl}/lugar/favorites-by-user";
 
@@ -101,7 +101,7 @@ class HttpPlaceService extends PlaceRepository {
 
     } catch (error) {
       print("error $error" );
-      return error;
+      return [];
     }
   }
 }

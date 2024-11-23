@@ -2,8 +2,8 @@ abstract class PartnerRepository {
 
   Future getPartnerByCategory(String id);
 
-  Future addPartnerFavorite(int id);
+  Future addPartnerFavorite(String id);
 
-  Future addPartnerFavoriteByUser();
+  Future getPartnerFavoriteByUser();
 
 }

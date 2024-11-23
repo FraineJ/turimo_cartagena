@@ -219,6 +219,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Nombre`
+  String get nameRegister {
+    return Intl.message(
+      'Nombre',
+      name: 'nameRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apellidos`
+  String get lastNameRegister {
+    return Intl.message(
+      'Apellidos',
+      name: 'lastNameRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Correo electrónico`
+  String get emailRegister {
+    return Intl.message(
+      'Correo electrónico',
+      name: 'emailRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ingrese su contraseña`
+  String get passwordRegister {
+    return Intl.message(
+      'Ingrese su contraseña',
+      name: 'passwordRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmar contraseña`
+  String get confirmPasswordRegister {
+    return Intl.message(
+      'Confirmar contraseña',
+      name: 'confirmPasswordRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Al hacer clic en 'Registrarse', aceptas nuestras Condiciones y Politicas de privacidad`
+  String get messagePolity {
+    return Intl.message(
+      'Al hacer clic en \'Registrarse\', aceptas nuestras Condiciones y Politicas de privacidad',
+      name: 'messagePolity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ingrese su nombre`
+  String get hintTextName {
+    return Intl.message(
+      'Ingrese su nombre',
+      name: 'hintTextName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ingrese sus apellidos`
+  String get hintTextLastName {
+    return Intl.message(
+      'Ingrese sus apellidos',
+      name: 'hintTextLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ingrese un correo electrónico`
+  String get hintTextEmail {
+    return Intl.message(
+      'Ingrese un correo electrónico',
+      name: 'hintTextEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contraseña`
+  String get hintTexPassword {
+    return Intl.message(
+      'Contraseña',
+      name: 'hintTexPassword',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

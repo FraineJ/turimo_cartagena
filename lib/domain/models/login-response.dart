@@ -1,31 +1,31 @@
 class LoginResponse {
-  final String tokenType;
   final String tokenAcces;
   final String name;
-  final bool ok;
+  final String email;
+  final String id;
 
   LoginResponse({
-    required this.tokenType,
     required this.tokenAcces,
     required this.name,
-    required this.ok,
+    required this.email,
+    required this.id,
   });
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
-      tokenType: json['tokenType'],
       tokenAcces: json['tokenAcces'],
       name: json['name'],
-      ok: json['ok'],
+      email: json['email'],
+      id: json['_id'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'tokenType': tokenType,
       'tokenAcces': tokenAcces,
       'name': name,
-      'ok': ok,
+      'email': email,
+      '_id': id,
     };
   }
 }

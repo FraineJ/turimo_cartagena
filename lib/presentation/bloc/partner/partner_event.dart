@@ -15,7 +15,7 @@ class GetPartnerByCategoryEvent extends PartnerEvent{
 
 //EVENT ADD Partner TO FAVORITE
 class AddPartnerFavoriteEvent extends PartnerEvent{
-  final int id;
+  final String id;
   const AddPartnerFavoriteEvent({required this.id}): super();
 }
 

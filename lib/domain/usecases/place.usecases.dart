@@ -1,4 +1,5 @@
 
+import 'package:turismo_cartagena/domain/models/place.model.dart';
 import 'package:turismo_cartagena/domain/repositorys/place.repository.dart';
 
 class PlaceCaseUse {
@@ -14,7 +15,7 @@ class PlaceCaseUse {
     return await _placeRepository.addPlaceFavorite(id);
   }
 
-  Future getPlaceFavoriteByUser() async{
+  Future<List<PlaceModel>> getPlaceFavoriteByUser() async{
     return await _placeRepository.addPlaceFavoriteByUser();
   }
 }
