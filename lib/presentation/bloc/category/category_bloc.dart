@@ -14,11 +14,9 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
   Future _getAllCategory(GetCategoryEvent event, Emitter<CategoryState> emit) async {
     emit(LoadingGetCategory());
-    print("Bloc htt");
 
     try {
       final List<CategoryModel> response = await categoryCaseUse.getAllCategory();
-      print("response init");
 
       if (response.isNotEmpty) {
         emit(SuccessGetCategory(categoryModel: response));
@@ -26,8 +24,6 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         emit(ErrorGetCategory());
       }
     } catch (error) {
-      print("response error $error");
-
       emit(ErrorGetCategory());
     }
   }

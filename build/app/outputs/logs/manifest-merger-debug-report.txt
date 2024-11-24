@@ -1,0 +1,326 @@
+-- Merging decision tree log ---
+application
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:9:5-40:19
+MERGED from [:geolocator_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
+MERGED from [:geolocator_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:19
+MERGED from [:url_launcher_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-14:19
+MERGED from [:url_launcher_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-14:19
+MERGED from [com.google.android.gms:play-services-location:21.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/f7c969ed4213c0e870ffebc93698bbfd/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:21.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/f7c969ed4213c0e870ffebc93698bbfd/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:7:5-20
+MERGED from [androidx.window:window:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/83fcb6292cbb238bfe76d7705fd34bf4/transformed/jetified-window-1.2.0/AndroidManifest.xml:22:5-29:19
+MERGED from [androidx.window:window:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/83fcb6292cbb238bfe76d7705fd34bf4/transformed/jetified-window-1.2.0/AndroidManifest.xml:22:5-29:19
+MERGED from [com.google.android.gms:play-services-base:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-base:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/frainersimarra/.gradle/caches/transforms-3/892c3df3fc26d8224371a72ee4d0a362/transformed/jetified-play-services-tasks-18.1.0/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/frainersimarra/.gradle/caches/transforms-3/892c3df3fc26d8224371a72ee4d0a362/transformed/jetified-play-services-tasks-18.1.0/AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:20:5-24:19
+MERGED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/fbe346173f87df827a5acebd096f4906/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/fbe346173f87df827a5acebd096f4906/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/cebed91f9ab2e70c83d8a1a780263089/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/cebed91f9ab2e70c83d8a1a780263089/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+	android:name
+		INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml
+manifest
+ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:1:1-52:12
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:1:1-52:12
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:1:1-52:12
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:1:1-52:12
+MERGED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:1:1-52:12
+MERGED from [:geolocator_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-17:12
+MERGED from [:permission_handler_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/permission_handler_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:shared_preferences_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:url_launcher_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-16:12
+MERGED from [com.google.android.gms:play-services-location:21.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/f7c969ed4213c0e870ffebc93698bbfd/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.browser:browser:1.8.0] /Users/frainersimarra/.gradle/caches/transforms-3/b26845e112e320af395db0c3837853fc/transformed/browser-1.8.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.window:window:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/83fcb6292cbb238bfe76d7705fd34bf4/transformed/jetified-window-1.2.0/AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.window:window-java:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/a069857077b99260ed65e2b460151eaa/transformed/jetified-window-java-1.2.0/AndroidManifest.xml:17:1-21:12
+MERGED from [com.google.android.gms:play-services-base:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:16:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/frainersimarra/.gradle/caches/transforms-3/892c3df3fc26d8224371a72ee4d0a362/transformed/jetified-play-services-tasks-18.1.0/AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:16:1-26:12
+MERGED from [androidx.fragment:fragment:1.7.1] /Users/frainersimarra/.gradle/caches/transforms-3/ed1ee29c965e16226302402d6db82539/transformed/fragment-1.7.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity:1.8.1] /Users/frainersimarra/.gradle/caches/transforms-3/29edd023de23e8a638c024d2bd92e220/transformed/jetified-activity-1.8.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/79b8b4f316fc9a3113e459dc0ba30044/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/5a2f6a44e0cfa935082a8e6bce5f4dce/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/2fbad733317418619245e2256f1b70ea/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/7b2834a622eb46854badee35e9bd4edd/transformed/lifecycle-livedata-2.7.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/ff7b16abd80eee586bd50ff0bdffd312/transformed/lifecycle-viewmodel-2.7.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/fb9f3c058bd4c874757210c94179cd79/transformed/lifecycle-livedata-core-2.7.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/8526837edeecf2fbe6fa7687487ad3eb/transformed/jetified-lifecycle-viewmodel-savedstate-2.7.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/08381e3321f8769c1d7ba3f6d322de35/transformed/jetified-core-ktx-1.13.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/3ca3037cc2c72637e81edfa0ac7dbf66/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/c9be93e0357147c8f72fbefdd6c6bb14/transformed/lifecycle-runtime-2.7.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/frainersimarra/.gradle/caches/transforms-3/75eafa1269b51352d8d12788161d4244/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/e1d9f2310ab76cab9b97ae94ab3b38e6/transformed/jetified-datastore-preferences-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.datastore:datastore:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/63eb45192cc46c2bd0b23548f67d3fbc/transformed/jetified-datastore-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /Users/frainersimarra/.gradle/caches/transforms-3/4dd17b42e26c34875f1376a97525bf51/transformed/jetified-annotation-experimental-1.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/fbe346173f87df827a5acebd096f4906/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/ab9e5127621e4d1c13162fc99c27493a/transformed/jetified-tracing-1.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/735b1c10079ba09225d5fc8b4c512034/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/cebed91f9ab2e70c83d8a1a780263089/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/57deeaf4aaa01de6f596f8c8817136b1/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.window.extensions.core:core:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/60417b9bb9a139a1de174145e4a3a3c1/transformed/jetified-core-1.0.0/AndroidManifest.xml:2:1-7:12
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+	package
+		INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:1:1-52:12
+		INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/debug/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:1:1-52:12
+		INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/debug/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:1:1-52:12
+		INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/debug/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:2:5-3:65
+	android:name
+		ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:3:9-63
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:4:5-5:67
+	android:name
+		ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:5:9-65
+uses-permission#android.permission.INTERNET
+ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:6:5-7:53
+MERGED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:6:5-7:53
+MERGED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:6:5-7:53
+	android:name
+		ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:7:9-51
+queries
+ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:46:5-51:15
+intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
+ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:47:9-50:18
+action#android.intent.action.PROCESS_TEXT
+ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:48:13-72
+	android:name
+		ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:48:21-70
+data
+ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:49:13-50
+	android:mimeType
+		ADDED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml:49:19-48
+uses-sdk
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml
+MERGED from [:geolocator_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:geolocator_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:permission_handler_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/permission_handler_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:permission_handler_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/permission_handler_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:shared_preferences_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:shared_preferences_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/shared_preferences_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:url_launcher_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:url_launcher_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.gms:play-services-location:21.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/f7c969ed4213c0e870ffebc93698bbfd/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:21.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/f7c969ed4213c0e870ffebc93698bbfd/transformed/jetified-play-services-location-21.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.browser:browser:1.8.0] /Users/frainersimarra/.gradle/caches/transforms-3/b26845e112e320af395db0c3837853fc/transformed/browser-1.8.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.browser:browser:1.8.0] /Users/frainersimarra/.gradle/caches/transforms-3/b26845e112e320af395db0c3837853fc/transformed/browser-1.8.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window:window:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/83fcb6292cbb238bfe76d7705fd34bf4/transformed/jetified-window-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.window:window:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/83fcb6292cbb238bfe76d7705fd34bf4/transformed/jetified-window-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.window:window-java:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/a069857077b99260ed65e2b460151eaa/transformed/jetified-window-java-1.2.0/AndroidManifest.xml:19:5-44
+MERGED from [androidx.window:window-java:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/a069857077b99260ed65e2b460151eaa/transformed/jetified-window-java-1.2.0/AndroidManifest.xml:19:5-44
+MERGED from [com.google.android.gms:play-services-base:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-base:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/frainersimarra/.gradle/caches/transforms-3/892c3df3fc26d8224371a72ee4d0a362/transformed/jetified-play-services-tasks-18.1.0/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] /Users/frainersimarra/.gradle/caches/transforms-3/892c3df3fc26d8224371a72ee4d0a362/transformed/jetified-play-services-tasks-18.1.0/AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:18:5-43
+MERGED from [androidx.fragment:fragment:1.7.1] /Users/frainersimarra/.gradle/caches/transforms-3/ed1ee29c965e16226302402d6db82539/transformed/fragment-1.7.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment:1.7.1] /Users/frainersimarra/.gradle/caches/transforms-3/ed1ee29c965e16226302402d6db82539/transformed/fragment-1.7.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity:1.8.1] /Users/frainersimarra/.gradle/caches/transforms-3/29edd023de23e8a638c024d2bd92e220/transformed/jetified-activity-1.8.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.1] /Users/frainersimarra/.gradle/caches/transforms-3/29edd023de23e8a638c024d2bd92e220/transformed/jetified-activity-1.8.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/79b8b4f316fc9a3113e459dc0ba30044/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/79b8b4f316fc9a3113e459dc0ba30044/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/5a2f6a44e0cfa935082a8e6bce5f4dce/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/5a2f6a44e0cfa935082a8e6bce5f4dce/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/2fbad733317418619245e2256f1b70ea/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/2fbad733317418619245e2256f1b70ea/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/7b2834a622eb46854badee35e9bd4edd/transformed/lifecycle-livedata-2.7.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/7b2834a622eb46854badee35e9bd4edd/transformed/lifecycle-livedata-2.7.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/ff7b16abd80eee586bd50ff0bdffd312/transformed/lifecycle-viewmodel-2.7.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/ff7b16abd80eee586bd50ff0bdffd312/transformed/lifecycle-viewmodel-2.7.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/fb9f3c058bd4c874757210c94179cd79/transformed/lifecycle-livedata-core-2.7.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/fb9f3c058bd4c874757210c94179cd79/transformed/lifecycle-livedata-core-2.7.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/8526837edeecf2fbe6fa7687487ad3eb/transformed/jetified-lifecycle-viewmodel-savedstate-2.7.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/8526837edeecf2fbe6fa7687487ad3eb/transformed/jetified-lifecycle-viewmodel-savedstate-2.7.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/08381e3321f8769c1d7ba3f6d322de35/transformed/jetified-core-ktx-1.13.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/08381e3321f8769c1d7ba3f6d322de35/transformed/jetified-core-ktx-1.13.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/3ca3037cc2c72637e81edfa0ac7dbf66/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/3ca3037cc2c72637e81edfa0ac7dbf66/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/c9be93e0357147c8f72fbefdd6c6bb14/transformed/lifecycle-runtime-2.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/c9be93e0357147c8f72fbefdd6c6bb14/transformed/lifecycle-runtime-2.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/frainersimarra/.gradle/caches/transforms-3/75eafa1269b51352d8d12788161d4244/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/frainersimarra/.gradle/caches/transforms-3/75eafa1269b51352d8d12788161d4244/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/e1d9f2310ab76cab9b97ae94ab3b38e6/transformed/jetified-datastore-preferences-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/e1d9f2310ab76cab9b97ae94ab3b38e6/transformed/jetified-datastore-preferences-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/63eb45192cc46c2bd0b23548f67d3fbc/transformed/jetified-datastore-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/63eb45192cc46c2bd0b23548f67d3fbc/transformed/jetified-datastore-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /Users/frainersimarra/.gradle/caches/transforms-3/4dd17b42e26c34875f1376a97525bf51/transformed/jetified-annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /Users/frainersimarra/.gradle/caches/transforms-3/4dd17b42e26c34875f1376a97525bf51/transformed/jetified-annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/fbe346173f87df827a5acebd096f4906/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/fbe346173f87df827a5acebd096f4906/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/ab9e5127621e4d1c13162fc99c27493a/transformed/jetified-tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/ab9e5127621e4d1c13162fc99c27493a/transformed/jetified-tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/735b1c10079ba09225d5fc8b4c512034/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/735b1c10079ba09225d5fc8b4c512034/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/cebed91f9ab2e70c83d8a1a780263089/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/cebed91f9ab2e70c83d8a1a780263089/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/57deeaf4aaa01de6f596f8c8817136b1/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/57deeaf4aaa01de6f596f8c8817136b1/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.window.extensions.core:core:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/60417b9bb9a139a1de174145e4a3a3c1/transformed/jetified-core-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window.extensions.core:core:1.0.0] /Users/frainersimarra/.gradle/caches/transforms-3/60417b9bb9a139a1de174145e4a3a3c1/transformed/jetified-core-1.0.0/AndroidManifest.xml:5:5-44
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/debug/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/frainersimarra/Downloads/turimo_cartagena/android/app/src/debug/AndroidManifest.xml
+service#com.baseflow.geolocator.GeolocatorLocationService
+ADDED from [:geolocator_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:56
+	android:enabled
+		ADDED from [:geolocator_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-35
+	android:exported
+		ADDED from [:geolocator_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+	android:foregroundServiceType
+		ADDED from [:geolocator_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-53
+	android:name
+		ADDED from [:geolocator_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-77
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-13:74
+	android:exported
+		ADDED from [:url_launcher_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-37
+	android:theme
+		ADDED from [:url_launcher_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-71
+	android:name
+		ADDED from [:url_launcher_android] /Users/frainersimarra/Downloads/turimo_cartagena/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/83fcb6292cbb238bfe76d7705fd34bf4/transformed/jetified-window-1.2.0/AndroidManifest.xml:23:9-25:40
+	android:required
+		ADDED from [androidx.window:window:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/83fcb6292cbb238bfe76d7705fd34bf4/transformed/jetified-window-1.2.0/AndroidManifest.xml:25:13-37
+	android:name
+		ADDED from [androidx.window:window:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/83fcb6292cbb238bfe76d7705fd34bf4/transformed/jetified-window-1.2.0/AndroidManifest.xml:24:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/83fcb6292cbb238bfe76d7705fd34bf4/transformed/jetified-window-1.2.0/AndroidManifest.xml:26:9-28:40
+	android:required
+		ADDED from [androidx.window:window:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/83fcb6292cbb238bfe76d7705fd34bf4/transformed/jetified-window-1.2.0/AndroidManifest.xml:28:13-37
+	android:name
+		ADDED from [androidx.window:window:1.2.0] /Users/frainersimarra/.gradle/caches/transforms-3/83fcb6292cbb238bfe76d7705fd34bf4/transformed/jetified-window-1.2.0/AndroidManifest.xml:27:13-51
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:20:9-22:45
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:22:19-43
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:21:19-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:20:19-85
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:18.3.0] /Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+permission#com.simasoft_turismo_cartagena.turismo_cartagena.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+uses-permission#com.simasoft_turismo_cartagena.turismo_cartagena.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/fbe346173f87df827a5acebd096f4906/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/frainersimarra/.gradle/caches/transforms-3/fbe346173f87df827a5acebd096f4906/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] /Users/frainersimarra/.gradle/caches/transforms-3/779979198c5a1ea409a2a4c8deef916e/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.1] /Users/frainersimarra/.gradle/caches/transforms-3/e01edf4d6da0e71a1359e79341fcddf4/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92

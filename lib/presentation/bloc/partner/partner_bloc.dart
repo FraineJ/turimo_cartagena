@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:turismo_cartagena/domain/models/respose.model.dart';
 import 'package:turismo_cartagena/domain/usecases/partner.usecases.dart';
 
 import '../../../domain/models/partner.model.dart';
@@ -34,16 +35,18 @@ class PartnerBloc extends Bloc<PartnerEvent, PartnersState> {
 
   Future _addPartnerFavorite(AddPartnerFavoriteEvent event, Emitter<PartnersState> emit) async {
     emit(LoadingAddPartnerFavorite());
-    print("(event.id ${event.id}");
-    try {
-      final response = await partnerCaseUse.addPartnerFavorite(event.id);
 
-      if (response) {
+    try {
+      final ResponsePages response = await partnerCaseUse.addPartnerFavorite(event.id);
+
+
+      if (response.status == 200) {
         emit(SuccessAddPartnerFavorite(response: response));
       } else {
         emit(ErrorAddPartnerFavorite(response: response));
       }
     } catch (error) {
+      print("error favorite ${error}");
       emit(ErrorServeAddPartnerFavorite(message: error.toString()));
     }
   }

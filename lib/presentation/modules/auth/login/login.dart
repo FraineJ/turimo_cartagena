@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turismo_cartagena/article_injection.dart';
 import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
+import 'package:turismo_cartagena/presentation/modules/auth/register/register.dart';
 import 'package:turismo_cartagena/presentation/modules/layuot.dart';
 
 
@@ -39,14 +40,14 @@ class Authentication extends StatelessWidget {
         if (state is ErrorAuthenticationState) {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Ha ocurrido un error inesperado")));
+              const SnackBar(content: Text("Ha ocurrido un error inesperado")));
         }
 
         if (state is SuccessAuthenticationState) {
           Navigator.pop(context);
           Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => Layout()), (route) => false
+              context,
+              MaterialPageRoute(builder: (context) => Layout()), (route) => false
           );
         }
       },
@@ -67,7 +68,7 @@ class Authentication extends StatelessWidget {
                   key: _formKey,
                   child: Center(
                     child: Container(
-                
+
                       height: MediaQuery.of(context).size.height,
                       margin: const EdgeInsets.only(right: 20, left: 20),
                       child: Center(
@@ -94,27 +95,27 @@ class Authentication extends StatelessWidget {
                             ),
                             const SizedBox(height: 16),
                             W.InputTextCustom(
-                              hintText: 'Ingrese su contraseña',
-                              labelText: 'Contraseña',
-                              prefixIcon: Icons.lock,
-                              suffixIcon: Icons.visibility_off,
-                              controller: password,
-                              isPassword: true,
-                              isRequired: true,
+                                hintText: 'Ingrese su contraseña',
+                                labelText: 'Contraseña',
+                                prefixIcon: Icons.lock,
+                                suffixIcon: Icons.visibility_off,
+                                controller: password,
+                                isPassword: true,
+                                isRequired: true,
                                 minLength: 5
                             ),
                             const SizedBox(height: 16),
                             W.ButtonPrimaryCustom(
                               color: const Color(0xFF22014D),
                               text: 'Iniciar sesión',
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    if (username.text.isNotEmpty &&
-                                        password.text.isNotEmpty) {
-                                      final event = LoginEvent(username.text, password.text);
-                                      context.read<AuthBloc>().add(event);
-                                    }
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  if (username.text.isNotEmpty &&
+                                      password.text.isNotEmpty) {
+                                    final event = LoginEvent(username.text, password.text);
+                                    context.read<AuthBloc>().add(event);
                                   }
+                                }
                               },
                             ),
                             const SizedBox(height: 24),
@@ -122,7 +123,7 @@ class Authentication extends StatelessWidget {
                               onTap: (){
                                 Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => Login())
+                                    MaterialPageRoute(builder: (context) => Register())
                                 );
                               },
                               child: RichText(
@@ -138,7 +139,7 @@ class Authentication extends StatelessWidget {
                                     TextSpan(
                                       text: '¿No tienes una cuenta? ',
                                       style: TextStyle(
-                                        fontSize: 16
+                                          fontSize: 16
                                       ),
                                     ),
                                     TextSpan(
@@ -153,7 +154,7 @@ class Authentication extends StatelessWidget {
 
                               ),
                             ),
-                
+
                           ],
                         ),
                       ),

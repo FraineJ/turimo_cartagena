@@ -23,12 +23,12 @@ class ErrorGetPartnerByCategory extends PartnersState {}
 class LoadingAddPartnerFavorite extends PartnersState {}
 
 class SuccessAddPartnerFavorite extends PartnersState {
-  final bool response;
+  final ResponsePages response;
   SuccessAddPartnerFavorite({required this.response} );
 }
 
 class ErrorAddPartnerFavorite extends PartnersState {
-  final bool response;
+  final ResponsePages response;
   ErrorAddPartnerFavorite({required this.response} );
 }
 

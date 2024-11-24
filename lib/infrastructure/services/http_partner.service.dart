@@ -1,4 +1,5 @@
 import 'package:turismo_cartagena/domain/models/partner.model.dart';
+import 'package:turismo_cartagena/domain/models/respose.model.dart';
 import 'package:turismo_cartagena/domain/repositorys/partner.repository.dart';
 import 'package:turismo_cartagena/presentation/global/environments/environment.dart';
 import 'package:turismo_cartagena/presentation/global/utils/all.dart' as Global;
@@ -9,7 +10,6 @@ class HttpPartnerService extends PartnerRepository {
 
   @override
   Future getPartnerByCategory(String id) async {
-    print("llego el id ${id}");
     final environment = await Environment.forEnvironment('environment-dev');
     String apiUrl  = "${environment.baseUrl}/partners/getPartnerByCategory/$id";
 
@@ -39,7 +39,7 @@ class HttpPartnerService extends PartnerRepository {
 
 
   @override
-  Future addPartnerFavorite(String id) async {
+  Future<ResponsePages> addPartnerFavorite(String id) async {
 
     final environment = await Environment.forEnvironment('environment-dev');
     String apiUrl  = "${environment.baseUrl}/favorite/add";
@@ -47,31 +47,25 @@ class HttpPartnerService extends PartnerRepository {
     Map<String, String> userDetails = await Global.Utils.getUserDetails();
     String userId = userDetails['id']!;
 
+    final response = await http.post(Uri.parse(apiUrl),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        "partnerId": id,
+        "userId": userId
+      })
+    );
 
-    try {
-      final response = await http.post(Uri.parse(apiUrl),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          "partnerId": id,
-          "userId": userId
-        })
-      );
+    final  body = jsonDecode(response.body);
+    final ResponsePages dataResponse =  ResponsePages.fromJson(body);
 
-      final body = jsonDecode(response.body);
-
-
-      if(response.statusCode == 200) {
-        return body;
-      }
-
-      return [];
-
-    } catch (error) {
-      print("error $error" );
-      return error;
+    if(dataResponse.status == 200) {
+      return dataResponse;
     }
+
+    return dataResponse;
+
   }
 
   @override

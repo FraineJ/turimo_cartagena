@@ -22,18 +22,34 @@ class CardServicesPartner extends StatelessWidget {
         : services.tarifa!.precio!; // Mantiene en COP
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.9, // Reduce el ancho para centrarlo
+        width: MediaQuery.of(context).size.width * 0.9 - 100, // Reduce el ancho para centrarlo
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           color: Colors.white,
+          border: Border.all(
+            color: Colors.grey.withOpacity(0.2), // Borde sutil y suave
+            width: 1.0, // Grosor del borde
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1), // Sombra suave
+              blurRadius: 8, // Radio de difuminado de la sombra
+              offset: Offset(0, 4), // Dirección de la sombra
+            ),
+          ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(8.0),
+                topLeft: Radius.circular(8.0),
+                bottomRight: Radius.circular(0.0),
+                bottomLeft: Radius.circular(0.0),
+              ),
               child: services.imagenes!.isNotEmpty
                   ? Image.network(
                 services.imagenes![0]['url'] ??
