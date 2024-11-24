@@ -40,10 +40,13 @@ class PartnerBloc extends Bloc<PartnerEvent, PartnersState> {
       final ResponsePages response = await partnerCaseUse.addPartnerFavorite(event.id);
 
 
-      if (response.status == 200) {
+      if (response.status == 200 && response.data.isNotEmpty) {
         emit(SuccessAddPartnerFavorite(response: response));
+        emit(FavoritesUpdated(message: "Favorito actualizado correctamente"));
       } else {
         emit(ErrorAddPartnerFavorite(response: response));
+        emit(FavoritesUpdated(message: "Favorito actualizado correctamente"));
+
       }
     } catch (error) {
       print("error favorite ${error}");
@@ -55,7 +58,6 @@ class PartnerBloc extends Bloc<PartnerEvent, PartnersState> {
     emit(LoadingGetPartnerFavoriteByUser());
 
     final  response = await partnerCaseUse.getPartnerFavoriteByUser();
-    print("partner response ${response}");
 
     if (response.isNotEmpty) {
 

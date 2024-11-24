@@ -5,103 +5,139 @@ import 'package:turismo_cartagena/domain/models/partner.model.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/initial-bloc/initial_bloc.dart';
 import 'package:turismo_cartagena/presentation/bloc/partner/partner_bloc.dart';
-import 'package:turismo_cartagena/presentation/bloc/places/places_bloc.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as Widgets;
 import 'package:turismo_cartagena/presentation/modules/partner/widgets/card-partner.dart';
-import 'package:turismo_cartagena/presentation/modules/places/widgets/card-places.dart';
 
-class FavoriteView extends StatelessWidget {
+class FavoriteView extends StatefulWidget {
   const FavoriteView({super.key});
 
+  @override
+  State<FavoriteView> createState() => _FavoriteViewState();
+}
+
+class _FavoriteViewState extends State<FavoriteView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          child: MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (context) => InitialBloc(sl())..add(AppInitialEvent()),
-              ),
-              BlocProvider(
-                create: (context) => PartnerBloc(sl()),
-              ),
-            ],
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => InitialBloc(sl())..add(AppInitialEvent()),
+            ),
+            BlocProvider(
+              create: (context) => PartnerBloc(sl()),
+            ),
+          ],
+          child: BlocListener<PartnerBloc, PartnersState>(
+            listener: (context, state) {
+              if (state is FavoritesUpdated) {
+                setState(() {});
+                context.read<PartnerBloc>().add(GetPartnerFavoriteByUserEvent());
+              }
+            },
             child: BlocBuilder<InitialBloc, InitialState>(
               builder: (context, state) {
                 if (state is IsAuthenticatedSuccess) {
-                  // Si el usuario está autenticado, solicitamos los lugares favoritos.
+                  // Llamar al evento para obtener favoritos inicialmente
                   context.read<PartnerBloc>().add(GetPartnerFavoriteByUserEvent());
 
                   return BlocBuilder<PartnerBloc, PartnersState>(
-                    builder: (context, state) {
-
-
-                      if(state is LoadingGetPartnerFavoriteByUser) {
+                    builder: (context, partnerState) {
+                      if (partnerState is LoadingGetPartnerFavoriteByUser) {
                         return const Center(child: CircularProgressIndicator());
-                      }
-                      if (state is SuccessGetPartnerFavoriteByUser) {
-                        if (state.partnerResponse.isNotEmpty) {
-                          return Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 20),
-                                child: Widgets.AppBarCustom(textTitle: S.current.Favorites, botonVolver: false),
-                              ),
-                              Expanded(
-                                child: ListView.builder(
-                                  itemCount: state.partnerResponse.length,
-                                  itemBuilder: (context, index) {
-                                    final PartnersModel partner = PartnersModel.fromJson(state.partnerResponse[index]["partner"]);
-                                    return PropertyCard(partner: partner ,autoPlay: false,);
-                                  },
-                                ),
-                              ),
-                            ],
-                          );
-                        }
-                      } else if (state is ErrorGetPartnerFavoriteByUser) {
-                        return  Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            children: [
-                              Widgets.AppBarCustom(textTitle: S.current.Favorites, botonVolver: false),
-                              Widgets.NoDataWidget(
-                                icon: Icons.favorite,
-                                title: S.current.Favorites,
-                                description: S.current.login_view_favorites_place,
-                              ),
-                            ],
-                          ),
+                      } else if (partnerState is SuccessGetPartnerFavoriteByUser) {
+                        return _buildFavoriteList(partnerState.partnerResponse);
+                      } else if (partnerState is ErrorGetPartnerFavoriteByUser) {
+                        return _buildErrorOrEmptyView(
+                          title: S.current.Favorites,
+                          description: S.current.login_view_favorites_place,
+                          icon: Icons.favorite,
                         );
                       }
                       return const Center(child: CircularProgressIndicator());
                     },
                   );
                 } else if (state is IsAuthenticatedFailure) {
-                  return  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        Widgets.AppBarCustom(textTitle: S.current.Favorites, botonVolver: false),
-                        Widgets.RequestLogin(
-                          title: S.current.login_view_favorites,
-                          description: S.current.login_for_create_favorites,
-                        ),
-                      ],
+                  return _buildErrorOrEmptyView(
+                    title: S.current.Favorites,
+                    description: S.current.login_for_create_favorites,
+                    icon: Icons.lock,
+                    customWidget: Widgets.RequestLogin(
+                      title: S.current.login_view_favorites,
+                      description: S.current.login_for_create_favorites,
                     ),
                   );
                 } else {
-                  return const Scaffold(
-                    body: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
+                  return const Center(child: CircularProgressIndicator());
                 }
               },
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  /// Construye la lista de favoritos
+  Widget _buildFavoriteList(List<dynamic> partnerResponse) {
+    if (partnerResponse.isEmpty) {
+      return _buildErrorOrEmptyView(
+        title: S.current.Favorites,
+        description: S.current.login_view_favorites_place,
+        icon: Icons.favorite,
+      );
+    }
+
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Widgets.AppBarCustom(
+            textTitle: S.current.Favorites,
+            botonVolver: false,
+          ),
+        ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: partnerResponse.length,
+            itemBuilder: (context, index) {
+              final PartnersModel partner = PartnersModel.fromJson(
+                partnerResponse[index]["partner"],
+              );
+              return PropertyCard(
+                partner: partner,
+                autoPlay: false,
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Construye una vista para errores o listas vacías
+  Widget _buildErrorOrEmptyView({
+    required String title,
+    required String description,
+    required IconData icon,
+    Widget? customWidget,
+  }) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          Widgets.AppBarCustom(
+            textTitle: title,
+            botonVolver: false,
+          ),
+          customWidget ??
+              Widgets.NoDataWidget(
+                icon: icon,
+                title: title,
+                description: description,
+              ),
+        ],
       ),
     );
   }

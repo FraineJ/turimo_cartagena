@@ -28,7 +28,7 @@ class _PartnerViewState extends State<PartnerView> {
           child: BlocBuilder<PartnerBloc, PartnersState>(
             builder: (context, state) {
               if (state is LoadingGetPartnerByCategory) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }
@@ -60,15 +60,16 @@ class _PartnerViewState extends State<PartnerView> {
               modeView = !modeView;
             });
           },
-          label: const Text(
-            'Mapa',
-            style: TextStyle(
+          label:  Text(modeView ?
+            'Vista' : 'Mapa',
+            style: const TextStyle(
                 fontSize: 16,
               color: Colors.white
             ),
           ),
-          icon: const Icon(
-              Icons.map, size: 24,
+          icon:  Icon(
+              modeView ? Icons.list_alt : Icons.map,
+              size: 24,
               color: Colors.white
           ),
           backgroundColor: Colors.black,

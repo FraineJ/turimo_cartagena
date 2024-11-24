@@ -29,7 +29,6 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: BlocProvider(
             create: (context) => InitialBloc(sl())..add(AppInitialEvent()),
             child: BlocBuilder<InitialBloc, InitialState>(

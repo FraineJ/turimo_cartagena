@@ -50,3 +50,10 @@ class SuccessGetPartnerFavoriteByUser extends PartnersState {
 
 class ErrorGetPartnerFavoriteByUser extends PartnersState {
 }
+
+
+class FavoritesUpdated extends PartnersState {
+  final String message;
+
+  FavoritesUpdated({required this.message});
+}

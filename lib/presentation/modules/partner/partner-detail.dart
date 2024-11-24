@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:turismo_cartagena/domain/models/rate.model.dart';
@@ -6,8 +7,8 @@ import 'package:turismo_cartagena/domain/models/service.model.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/widgets/card-reviews.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/widgets/card-services.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/widgets/spaces-header-appbar.dart';
-
 import '../../../domain/models/partner.model.dart';
+import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
 
 class PartnerDetailScreen extends StatefulWidget {
   final PartnersModel partners;
@@ -26,6 +27,27 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
   _PartnerDetailScreenState({required this.partners});
   bool isDollar = false;
   double tasaDeCambio = 1.0;
+  Position? originLatLng;
+
+  Future<Position?> _getCurrentLocation() async {
+    Position? currentLocation = await SHARED.Utils.getPositionCurrent();
+    if (currentLocation != null) {
+      originLatLng = Position(
+        latitude: currentLocation.latitude,
+        longitude: currentLocation.longitude,
+        timestamp: DateTime.now(),
+        accuracy: 0.0,
+        altitude: 0.0,
+        heading: 0.0,
+        speed: 0.0,
+        speedAccuracy: 0.0,
+        altitudeAccuracy: 0,
+        headingAccuracy: 0,
+      );
+    }
+    return originLatLng;
+  }
+
 
   final Servicio fakeService = Servicio(
     id: 1,
@@ -66,7 +88,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
   }
 
   @override
-  void initState() {
+  void initState()  {
     super.initState();
     _scrollController.addListener(_handleScroll);
   }
@@ -88,180 +110,199 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          SpacesHeaderAppBar(imagenes: partners.imagesUrl,),
-          SliverPersistentHeader(
-            pinned: true,
-            delegate: _HeaderSliver(partner : partners ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 16,),
-                  Text(
-                    partners.address,
-                    style:const TextStyle(
-                        color: Colors.black87
+      body: FutureBuilder<Position?>(
+        future: _getCurrentLocation(),
+        builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text("Error al obtener la ubicación"),
+              );
+            } else {
+              return CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  SpacesHeaderAppBar(imagenes: partners.imagesUrl,),
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: _HeaderSliver(
+                        partner: partners, originLatLng: snapshot.data),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 16,),
+                          Text(
+                            partners.address,
+                            style: const TextStyle(
+                                color: Colors.black87
+                            ),
+                          ),
+                          const SizedBox(height: 16,),
+                          const Text("Descripción",
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold
+                            ),
+
+                          ),
+                          Text(partners.description,
+                            style: const TextStyle(
+                              fontSize: 16,
+
+                            ),
+
+                          ),
+                          const SizedBox(height: 16,),
+                          const Text("Reseñas",
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold
+                            ),
+
+                          ),
+                          const SizedBox(height: 16,),
+                          const ReviewCard(
+                              userName: "Frainer Simarra",
+                              userRole: "Cartagena, Colombia",
+                              reviewText: "Eclente lugar cuenta con un luhar muy hermoso estoy segura que volveria a visitarlo",
+                              userImageUrl: "https://fotografias.antena3.com/clipping/cmsimages01/2021/05/02/26E03450-C5FB-4D16-BC9B-B282AE784352/57.jpg",
+                              rating: 2
+
+                          ),
+                          const SizedBox(height: 16,),
+                          const Text("Servicios",
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold
+                            ),
+
+                          ),
+                          const SizedBox(height: 16,),
+                        ],
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 16,),
-                  const Text("Descripción",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 370, // Altura fija para la lista horizontal
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        // Dirección horizontal
+                        itemCount: 6,
+                        itemBuilder: (context, index) =>
+                            CardServicesPartner(
+                              services: fakeService,
+                              isDollar: isDollar,
+                              exchangeRate: tasaDeCambio,
+                            ),
+                      ),
                     ),
-
                   ),
-                  Text(partners.description,
-                    style: const TextStyle(
-                      fontSize: 16,
+                  SliverToBoxAdapter(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 16,),
+                          const Text("Contacto",
+                            style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold
+                            ),
 
+                          ),
+                          const SizedBox(height: 8,),
+                          const Text(
+                            "Pulsa en cualquiera de los iconos para comunicarte.",
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+
+                          ),
+                          const SizedBox(height: 16,),
+                          Container(
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 60,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(32.0),
+                                    color: Colors.blueAccent,
+
+                                  ),
+                                  child: Center(
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        Icons.phone,
+                                        color: Colors.white,
+                                      ),
+
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 16,),
+                                Container(
+                                  width: 60,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(32.0),
+                                    color: Colors.blueAccent,
+
+                                  ),
+                                  child: Center(
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        Icons.near_me,
+                                        color: Colors.white,
+                                      ),
+
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 16,),
+
+                                Container(
+                                  width: 60,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(32.0),
+                                    color: Colors.blueAccent,
+
+                                  ),
+                                  child: Center(
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        Icons.language,
+                                        color: Colors.white,
+                                      ),
+
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 16,),
+                        ],
+                      ),
                     ),
-
                   ),
-                  const SizedBox(height: 16,),
-                  const Text("Reseñas",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold
-                    ),
-
-                  ),
-                  const SizedBox(height: 16,),
-                  const ReviewCard(
-                      userName: "Frainer Simarra",
-                      userRole: "reol",
-                      reviewText: "Eclente lugar cuenta con un luhar muy hermoso estoy segura que volveria a visitarlo",
-                      userImageUrl: "https://fotografias.antena3.com/clipping/cmsimages01/2021/05/02/26E03450-C5FB-4D16-BC9B-B282AE784352/57.jpg",
-                      rating: 2
-
-                  ),
-                  const SizedBox(height: 16,),
-                  const Text("Servicios",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold
-                    ),
-
-                  ),
-                  const SizedBox(height: 16,),
                 ],
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 370, // Altura fija para la lista horizontal
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal, // Dirección horizontal
-                itemCount: 6,
-                itemBuilder: (context, index) => CardServicesPartner(
-                  services: fakeService,
-                  isDollar: isDollar,
-                  exchangeRate: tasaDeCambio,
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 16,),
-                  const Text("Contacto",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold
-                    ),
+              );
 
-                  ),
-                  const SizedBox(height: 8,),
-                  const Text("Pulsa en cualquiera de los iconos para comunicarte.",
-                    style: TextStyle(
-                      fontSize: 15,
-                    ),
+            }
 
-                  ),
-                  const SizedBox(height: 16,),
-                  Container(
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(32.0),
-                            color: Colors.blueAccent,
-
-                          ),
-                          child: Center(
-                            child: IconButton(
-                              onPressed: (){},
-                              icon: const Icon(
-                                Icons.phone,
-                                color: Colors.white,
-                              ),
-
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 16,),
-                        Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(32.0),
-                            color: Colors.blueAccent,
-
-                          ),
-                          child: Center(
-                            child: IconButton(
-                              onPressed: (){},
-                              icon: const Icon(
-                                Icons.near_me,
-                                color: Colors.white,
-                              ),
-
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 16,),
-
-                        Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(32.0),
-                            color: Colors.blueAccent,
-
-                          ),
-                          child: Center(
-                            child: IconButton(
-                              onPressed: (){},
-                              icon: const Icon(
-                                Icons.language,
-                                color: Colors.white,
-                              ),
-
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16,),
-                ],
-              ),
-            ),
-          ),
-        ],
+        }
       ),
     );
   }
@@ -272,13 +313,14 @@ const maxHeaderExtent = 100.0;
 class _HeaderSliver extends SliverPersistentHeaderDelegate {
 
   final PartnersModel partner;
-
-  _HeaderSliver({required this.partner});
+  final Position? originLatLng;
+  _HeaderSliver({required this.partner, required this.originLatLng});
 
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     final percent = shrinkOffset / maxHeaderExtent;
+    print("latitud ${originLatLng?.latitude}");
     return Stack(
       children: [
         Positioned(
@@ -331,13 +373,13 @@ class _HeaderSliver extends SliverPersistentHeaderDelegate {
                   ),
                 ),
                 const SizedBox(height: 10),
-                const AnimatedSwitcher(
+                AnimatedSwitcher(
                   duration: Duration(milliseconds: 400),
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
                       children: [
-                        Row(
+                        const Row(
                           children: [
                             Icon(Icons.star, color: Colors.orange, size: 16),
                             SizedBox(width: 8),
@@ -354,12 +396,15 @@ class _HeaderSliver extends SliverPersistentHeaderDelegate {
 
                         Row(
                           children: [
-                            SizedBox(width: 28),
-                            Icon(Icons.location_on, color: Colors.white, size: 16),
-                            SizedBox(width: 8),
-                            Text(
-                              '1 Km de distancia',
-                              style: TextStyle(
+                            const SizedBox(width: 28),
+                            const Icon(Icons.location_on, color: Colors.white, size: 16),
+                            const SizedBox(width: 8),
+                            Text(SHARED.Utils.haversineDistanceString(
+                                originLatLng?.latitude ?? 0.0,
+                                originLatLng?.longitude ?? 0.0,
+                                partner.latitud,
+                                partner.longitud),
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
