@@ -40,7 +40,7 @@ class RequestLogin extends StatelessWidget {
               );
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFFFE3E80), // Color de fondo del botón
+              backgroundColor: Color(0xFF009C47), // Color de fondo del botón
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10), // Bordes redondeados
               ),

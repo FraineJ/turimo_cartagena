@@ -31,13 +31,13 @@ class LanguageState extends Equatable {
 
 
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
-  LanguageBloc() : super(const LanguageState(Locale('en'))) {
+  LanguageBloc() : super(const LanguageState(Locale('es'))) {
     on<ChangeLanguageEvent>((event, emit) {
       emit(LanguageState(event.locale));
     });
 
     on<LoadInitialLanguageEvent>((event, emit) {
-      emit(const LanguageState(Locale('en'))); // Cambia esto según sea necesario
+      emit(const LanguageState(Locale('es'))); // Cambia esto según sea necesario
     });
   }
 }

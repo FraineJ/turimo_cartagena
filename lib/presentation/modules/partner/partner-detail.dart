@@ -1,12 +1,13 @@
 import 'dart:convert';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:turismo_cartagena/domain/models/rate.model.dart';
 import 'package:turismo_cartagena/domain/models/service.model.dart';
-import 'package:turismo_cartagena/presentation/modules/partner/widgets/card-reviews.dart';
-import 'package:turismo_cartagena/presentation/modules/partner/widgets/card-services.dart';
+import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/widgets/spaces-header-appbar.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../domain/models/partner.model.dart';
 import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
 
@@ -107,6 +108,26 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
     }
   }
 
+  Future<void> _makePhoneCall(String phoneNumber) async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    await launchUrl(launchUri);
+  }
+
+  void _launchURL(Uri uri, bool inApp) async {
+    try {
+      if (inApp) {
+        await launchUrl(uri, mode: LaunchMode.inAppWebView);
+      } else {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +137,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
-              return Center(
+              return const Center(
                 child: Text("Error al obtener la ubicación"),
               );
             } else {
@@ -143,8 +164,8 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                             ),
                           ),
                           const SizedBox(height: 16,),
-                          const Text("Descripción",
-                            style: TextStyle(
+                          Text(S.current.description,
+                            style: const TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold
                             ),
@@ -158,7 +179,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
 
                           ),
                           const SizedBox(height: 16,),
-                          const Text("Reseñas",
+                          /*const Text("Reseñas",
                             style: TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold
@@ -173,7 +194,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                               userImageUrl: "https://fotografias.antena3.com/clipping/cmsimages01/2021/05/02/26E03450-C5FB-4D16-BC9B-B282AE784352/57.jpg",
                               rating: 2
 
-                          ),
+                          )
                           const SizedBox(height: 16,),
                           const Text("Servicios",
                             style: TextStyle(
@@ -182,12 +203,12 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                             ),
 
                           ),
-                          const SizedBox(height: 16,),
+                          const SizedBox(height: 16,),*/
                         ],
                       ),
                     ),
                   ),
-                  SliverToBoxAdapter(
+                  /*SliverToBoxAdapter(
                     child: SizedBox(
                       height: 370, // Altura fija para la lista horizontal
                       child: ListView.builder(
@@ -202,7 +223,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                             ),
                       ),
                     ),
-                  ),
+                  ),*/
                   SliverToBoxAdapter(
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -210,17 +231,16 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 16,),
-                          const Text("Contacto",
-                            style: TextStyle(
+                           Text(S.current.contact,
+                            style: const TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold
                             ),
 
                           ),
                           const SizedBox(height: 8,),
-                          const Text(
-                            "Pulsa en cualquiera de los iconos para comunicarte.",
-                            style: TextStyle(
+                           Text(S.current.sendLinkContact,
+                            style: const TextStyle(
                               fontSize: 15,
                             ),
 
@@ -229,7 +249,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                           Container(
                             child: Row(
                               children: [
-                                Container(
+                                partners!.phone != 0 ? Container(
                                   width: 60,
                                   height: 60,
                                   decoration: BoxDecoration(
@@ -239,7 +259,9 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                                   ),
                                   child: Center(
                                     child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        _makePhoneCall(partners.phone.toString());
+                                      },
                                       icon: const Icon(
                                         Icons.phone,
                                         color: Colors.white,
@@ -247,9 +269,9 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
 
                                     ),
                                   ),
-                                ),
-                                SizedBox(width: 16,),
-                                Container(
+                                ) : const SizedBox.shrink(),
+                                const SizedBox(width: 16,),
+                                partners!.whatsapp != 0 ? Container(
                                   width: 60,
                                   height: 60,
                                   decoration: BoxDecoration(
@@ -259,18 +281,21 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                                   ),
                                   child: Center(
                                     child: IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.near_me,
-                                        color: Colors.white,
+                                      onPressed: () {
+                                        _launchURL(Uri.parse('whatsapp://send?phone=+${partners.whatsapp}&text=hola como estas'), false);
+                                      },
+                                      icon: const  FaIcon(
+                                          FontAwesomeIcons.whatsapp,
+                                          color:  Colors.white
+
                                       ),
 
                                     ),
                                   ),
-                                ),
-                                SizedBox(width: 16,),
+                                ) : SizedBox.shrink(),
+                                const SizedBox(width: 16,),
 
-                                Container(
+                                /*Container(
                                   width: 60,
                                   height: 60,
                                   decoration: BoxDecoration(
@@ -280,7 +305,9 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                                   ),
                                   child: Center(
                                     child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+
+                                      },
                                       icon: const Icon(
                                         Icons.language,
                                         color: Colors.white,
@@ -288,7 +315,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
 
                                     ),
                                   ),
-                                ),
+                                ),*/
                               ],
                             ),
                           ),
@@ -320,7 +347,6 @@ class _HeaderSliver extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     final percent = shrinkOffset / maxHeaderExtent;
-    print("latitud ${originLatLng?.latitude}");
     return Stack(
       children: [
         Positioned(

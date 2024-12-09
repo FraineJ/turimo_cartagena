@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.simasoft_turismo_cartagena.turismo_cartagena.app-mergeDebugResources-30:/values-zh-rCN/values-zh-rCN.xml",
+            "outputFile": "com.goowaySimasoft.co.app-mergeDebugResources-38:/values-zh-rCN/values-zh-rCN.xml",
             "map": [
                 {
                     "source": "/Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/res/values-zh-rCN/values-zh-rCN.xml",
@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/res/values-zh-rCN/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "199",
-                        "endColumns": "94",
-                        "endOffsets": "293"
-                    },
-                    "to": {
-                        "startLines": "17",
-                        "startColumns": "4",
-                        "startOffsets": "1581",
-                        "endColumns": "98",
-                        "endOffsets": "1675"
-                    }
-                },
-                {
-                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/res/values-zh-rCN/values.xml",
+                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/2efe1817eb6eac02070f6e0e4a2acc7f/transformed/jetified-play-services-base-18.5.0/res/values-zh-rCN/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -52,6 +35,23 @@
                         "startOffsets": "719,820,949,1064,1166,1271,1387,1489,1680,1788,1889,2019,2134,2238,2346,2402,2459",
                         "endColumns": "100,128,114,101,104,115,101,91,107,100,129,114,103,107,55,56,73",
                         "endOffsets": "815,944,1059,1161,1266,1382,1484,1576,1783,1884,2014,2129,2233,2341,2397,2454,2528"
+                    }
+                },
+                {
+                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/d2e2fbb8dd402780aa93970d187fe7d2/transformed/jetified-play-services-basement-18.4.0/res/values-zh-rCN/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "199",
+                        "endColumns": "94",
+                        "endOffsets": "293"
+                    },
+                    "to": {
+                        "startLines": "17",
+                        "startColumns": "4",
+                        "startOffsets": "1581",
+                        "endColumns": "98",
+                        "endOffsets": "1675"
                     }
                 },
                 {

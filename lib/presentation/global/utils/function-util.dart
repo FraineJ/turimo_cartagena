@@ -1,10 +1,13 @@
 import 'dart:math';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class Utils {
   // Formatear fechas
@@ -64,25 +67,23 @@ class Utils {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     String user = prefs.getString('user_login') ?? '';
-    print("store user $user");
 
     if (user.isEmpty) {
-      return {'token': ''};
+      return {};
     }
 
     try {
       // Decodifica el JSON correctamente
       Map<String, dynamic> userMap = jsonDecode(user);
-      print("store userMap: $userMap");
 
       // Extrae el token o devuelve vacío si no existe
       String token = userMap['tokenAcces'] ?? '';
       String id = userMap['id'] ?? '';
+      String name = userMap['name'] ?? '';
+      String email = userMap['email'] ?? '';
 
-      return {'token': token, 'id': id};
+      return {'token': token, 'id': id, 'name': name, 'email': email };
     } catch (e) {
-      // Si ocurre un error, devuelve un token vacío
-      print("Error decoding user: $e");
       return {'token': ''};
     }
   }
@@ -204,4 +205,44 @@ class Utils {
       return '${distanceInMeters.toStringAsFixed(0)} m';
     }
   }
+
+  double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+    const R = 6371; // Radio de la Tierra en kilómetros
+
+    // Convertir grados a radianes
+    double lat1Rad = lat1 * pi / 180;
+    double lon1Rad = lon1 * pi / 180;
+    double lat2Rad = lat2 * pi / 180;
+    double lon2Rad = lon2 * pi / 180;
+
+    // Diferencias entre las coordenadas
+    double dLat = lat2Rad - lat1Rad;
+    double dLon = lon2Rad - lon1Rad;
+
+    // Fórmula de Haversine
+    double a = sin(dLat / 2) * sin(dLat / 2) +
+        cos(lat1Rad) * cos(lat2Rad) *
+            sin(dLon / 2) * sin(dLon / 2);
+    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+
+    // Distancia en kilómetros
+    double distance = R * c;
+
+    return distance; // Retorna la distancia en kilómetros
+  }
+
+
+  static void launchURL(Uri uri, bool inApp) async {
+    try {
+      if (inApp) {
+        await launchUrl(uri, mode: LaunchMode.inAppWebView);
+      } else {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+
 }

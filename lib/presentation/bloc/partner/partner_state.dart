@@ -32,6 +32,11 @@ class ErrorAddPartnerFavorite extends PartnersState {
   ErrorAddPartnerFavorite({required this.response} );
 }
 
+class SuccessDeletePartnerFavorite extends PartnersState {
+  final ResponsePages response;
+  SuccessDeletePartnerFavorite({required this.response} );
+}
+
 class ErrorServeAddPartnerFavorite extends PartnersState {
   final String message;
   ErrorServeAddPartnerFavorite({required this.message} );

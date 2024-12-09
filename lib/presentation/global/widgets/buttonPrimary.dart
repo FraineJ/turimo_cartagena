@@ -25,21 +25,14 @@ class ButtonPrimaryCustom extends StatelessWidget {
         decoration: BoxDecoration(
           color: color, // Utiliza el color asignado
           borderRadius: BorderRadius.circular(8.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-              spreadRadius: 1,
-              blurRadius: 2,
-              offset: const Offset(0, 2), // changes position of shadow
-            ),
-          ],
+
         ),
         child: Center(
           child: Text(
             text,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 20,
+              fontSize: 19,
               fontWeight: FontWeight.bold,
             ),
           ),

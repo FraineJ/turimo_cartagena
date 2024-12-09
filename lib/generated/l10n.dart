@@ -270,11 +270,21 @@ class S {
     );
   }
 
-  /// `Al hacer clic en 'Registrarse', aceptas nuestras Condiciones y Politicas de privacidad`
-  String get messagePolity {
+  /// `Al hacer clic en 'Registrarse', aceptas nuestras Condiciones y`
+  String get messagePolityOne {
     return Intl.message(
-      'Al hacer clic en \'Registrarse\', aceptas nuestras Condiciones y Politicas de privacidad',
-      name: 'messagePolity',
+      'Al hacer clic en \'Registrarse\', aceptas nuestras Condiciones y',
+      name: 'messagePolityOne',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Politicas de privacidad`
+  String get messagePolityTow {
+    return Intl.message(
+      'Politicas de privacidad',
+      name: 'messagePolityTow',
       desc: '',
       args: [],
     );
@@ -315,6 +325,86 @@ class S {
     return Intl.message(
       'Contraseña',
       name: 'hintTexPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Descripción`
+  String get description {
+    return Intl.message(
+      'Descripción',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contacto`
+  String get contact {
+    return Intl.message(
+      'Contacto',
+      name: 'contact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pulsa en cualquiera de los iconos para comunicarse.`
+  String get sendLinkContact {
+    return Intl.message(
+      'Pulsa en cualquiera de los iconos para comunicarse.',
+      name: 'sendLinkContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `De momento no hay eventos disponibles.`
+  String get noFoundEvent {
+    return Intl.message(
+      'De momento no hay eventos disponibles.',
+      name: 'noFoundEvent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reintentar`
+  String get retry {
+    return Intl.message(
+      'Reintentar',
+      name: 'retry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Eliminar cuenta`
+  String get deleteAccount {
+    return Intl.message(
+      'Eliminar cuenta',
+      name: 'deleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `La eliminación de la cuenta es definitiva. Si elimina tu cuanta de Gooway, no podras recuperarla el contenido ni la información que nos compartistes, tambien se eliminara Tus favoritos y reseñas`
+  String get deleteAccountMessage {
+    return Intl.message(
+      'La eliminación de la cuenta es definitiva. Si elimina tu cuanta de Gooway, no podras recuperarla el contenido ni la información que nos compartistes, tambien se eliminara Tus favoritos y reseñas',
+      name: 'deleteAccountMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continuar`
+  String get textContinue {
+    return Intl.message(
+      'Continuar',
+      name: 'textContinue',
       desc: '',
       args: [],
     );

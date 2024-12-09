@@ -22,6 +22,7 @@ class PartnersModel {
   String link;
   String address;
   String categoryId;
+  bool favorite;
 
   PartnersModel({
     required this.id,
@@ -37,6 +38,7 @@ class PartnersModel {
     required this.link,
     required this.address,
     required this.categoryId,
+    required this.favorite
   });
 
   factory PartnersModel.fromJson(Map<String, dynamic> json) => PartnersModel(
@@ -53,6 +55,7 @@ class PartnersModel {
     link: json["link"],
     address: json["address"],
     categoryId: json["categoryId"],
+    favorite: json["favorite"] ?? true
   );
 
   Map<String, dynamic> toJson() => {
@@ -69,5 +72,6 @@ class PartnersModel {
     "link": link,
     "address": address,
     "categoryId": categoryId,
+    "favorite": favorite,
   };
 }

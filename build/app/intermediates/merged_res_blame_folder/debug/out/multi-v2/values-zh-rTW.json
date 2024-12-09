@@ -1,25 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "com.simasoft_turismo_cartagena.turismo_cartagena.app-mergeDebugResources-30:/values-zh-rTW/values-zh-rTW.xml",
+            "outputFile": "com.goowaySimasoft.co.app-mergeDebugResources-38:/values-zh-rTW/values-zh-rTW.xml",
             "map": [
-                {
-                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/res/values-zh-rTW/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "199",
-                        "endColumns": "98",
-                        "endOffsets": "297"
-                    },
-                    "to": {
-                        "startLines": "17",
-                        "startColumns": "4",
-                        "startOffsets": "1580",
-                        "endColumns": "102",
-                        "endOffsets": "1678"
-                    }
-                },
                 {
                     "source": "/Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/res/values-zh-rTW/values-zh-rTW.xml",
                     "from": {
@@ -38,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/res/values-zh-rTW/values.xml",
+                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/b26845e112e320af395db0c3837853fc/transformed/browser-1.8.0/res/values-zh-rTW/values-zh-rTW.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,139,231,332",
+                        "endColumns": "83,91,100,92",
+                        "endOffsets": "134,226,327,420"
+                    },
+                    "to": {
+                        "startLines": "27,28,29,30",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2535,2619,2711,2812",
+                        "endColumns": "83,91,100,92",
+                        "endOffsets": "2614,2706,2807,2900"
+                    }
+                },
+                {
+                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/2efe1817eb6eac02070f6e0e4a2acc7f/transformed/jetified-play-services-base-18.5.0/res/values-zh-rTW/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -55,20 +55,20 @@
                     }
                 },
                 {
-                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/b26845e112e320af395db0c3837853fc/transformed/browser-1.8.0/res/values-zh-rTW/values-zh-rTW.xml",
+                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/d2e2fbb8dd402780aa93970d187fe7d2/transformed/jetified-play-services-basement-18.4.0/res/values-zh-rTW/values.xml",
                     "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,139,231,332",
-                        "endColumns": "83,91,100,92",
-                        "endOffsets": "134,226,327,420"
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "199",
+                        "endColumns": "98",
+                        "endOffsets": "297"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "2535,2619,2711,2812",
-                        "endColumns": "83,91,100,92",
-                        "endOffsets": "2614,2706,2807,2900"
+                        "startLines": "17",
+                        "startColumns": "4",
+                        "startOffsets": "1580",
+                        "endColumns": "102",
+                        "endOffsets": "1678"
                     }
                 }
             ]

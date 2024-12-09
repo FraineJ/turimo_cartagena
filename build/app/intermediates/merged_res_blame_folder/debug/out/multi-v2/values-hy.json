@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.simasoft_turismo_cartagena.turismo_cartagena.app-mergeDebugResources-30:/values-hy/values-hy.xml",
+            "outputFile": "com.goowaySimasoft.co.app-mergeDebugResources-38:/values-hy/values-hy.xml",
             "map": [
                 {
                     "source": "/Users/frainersimarra/.gradle/caches/transforms-3/fa5f3176ef4f90d3018836fec5bcc736/transformed/core-1.13.1/res/values-hy/values-hy.xml",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/res/values-hy/values.xml",
+                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/2efe1817eb6eac02070f6e0e4a2acc7f/transformed/jetified-play-services-base-18.5.0/res/values-hy/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -35,23 +35,6 @@
                         "startOffsets": "775,881,1046,1180,1288,1442,1578,1705,1969,2136,2244,2412,2548,2710,2876,2941,3008",
                         "endColumns": "105,164,133,107,153,135,126,112,166,107,167,135,161,165,64,66,81",
                         "endOffsets": "876,1041,1175,1283,1437,1573,1700,1813,2131,2239,2407,2543,2705,2871,2936,3003,3085"
-                    }
-                },
-                {
-                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/res/values-hy/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "146",
-                        "endOffsets": "341"
-                    },
-                    "to": {
-                        "startLines": "17",
-                        "startColumns": "4",
-                        "startOffsets": "1818",
-                        "endColumns": "150",
-                        "endOffsets": "1964"
                     }
                 },
                 {
@@ -69,6 +52,23 @@
                         "startOffsets": "3090,3194,3297,3408",
                         "endColumns": "103,102,110,102",
                         "endOffsets": "3189,3292,3403,3506"
+                    }
+                },
+                {
+                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/d2e2fbb8dd402780aa93970d187fe7d2/transformed/jetified-play-services-basement-18.4.0/res/values-hy/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "146",
+                        "endOffsets": "341"
+                    },
+                    "to": {
+                        "startLines": "17",
+                        "startColumns": "4",
+                        "startOffsets": "1818",
+                        "endColumns": "150",
+                        "endOffsets": "1964"
                     }
                 }
             ]

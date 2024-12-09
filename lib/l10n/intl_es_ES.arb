@@ -21,19 +21,19 @@
   "emailRegister" : "Correo electrónico",
   "passwordRegister" : "Ingrese su contraseña",
   "confirmPasswordRegister" : "Confirmar contraseña",
-  "messagePolity" : "Al hacer clic en 'Registrarse', aceptas nuestras Condiciones y Politicas de privacidad",
+  "messagePolityOne" : "Al hacer clic en 'Registrarse', aceptas nuestras Condiciones y",
+  "messagePolityTow" : "Politicas de privacidad",
   "hintTextName" : "Ingrese su nombre",
   "hintTextLastName" : "Ingrese sus apellidos",
   "hintTextEmail" : "Ingrese un correo electrónico",
-  "hintTexPassword" : "Contraseña"
-
-
-
-
-
-
-
-
-
+  "hintTexPassword" : "Contraseña",
+  "description":  "Descripción",
+  "contact": "Contacto",
+  "sendLinkContact": "Pulsa en cualquiera de los iconos para comunicarse.",
+  "noFoundEvent": "De momento no hay eventos disponibles.",
+  "retry": "Reintentar",
+  "deleteAccount": "Eliminar cuenta",
+  "deleteAccountMessage": "La eliminación de la cuenta es definitiva. Si elimina tu cuanta de Gooway, no podras recuperarla el contenido ni la información que nos compartistes, tambien se eliminara Tus favoritos y reseñas",
+  "textContinue" : "Continuar"
 
 }

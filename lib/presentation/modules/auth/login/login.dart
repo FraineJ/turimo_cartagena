@@ -86,8 +86,8 @@ class Authentication extends StatelessWidget {
                             ),
                             const SizedBox(height: 32),
                             W.InputTextCustom(
-                                hintText: 'Ingrese su usuario',
-                                labelText: 'Usuario',
+                                hintText: 'micorreo@gmail.com',
+                                labelText: 'Correo electrónico',
                                 prefixIcon: Icons.email,
                                 controller: username,
                                 isRequired: true,
@@ -106,7 +106,7 @@ class Authentication extends StatelessWidget {
                             ),
                             const SizedBox(height: 16),
                             W.ButtonPrimaryCustom(
-                              color: const Color(0xFF22014D),
+                              color: const Color(0xFF009C47),
                               text: 'Iniciar sesión',
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
@@ -118,7 +118,19 @@ class Authentication extends StatelessWidget {
                                 }
                               },
                             ),
-                            const SizedBox(height: 24),
+                            const SizedBox(height: 16),
+                            W.RegistrationButton(
+                              width: double.infinity,
+                              color: Colors.red,
+                              text: 'Registrate',
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => Register())
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 16),
                             GestureDetector(
                               onTap: (){
                                 Navigator.push(
@@ -143,7 +155,7 @@ class Authentication extends StatelessWidget {
                                       ),
                                     ),
                                     TextSpan(
-                                      text: 'Crear una nueva cuenta es gratis.!',
+                                      text: 'Registrate es gratis.!',
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Color(0xFFFF6969)
@@ -154,6 +166,7 @@ class Authentication extends StatelessWidget {
 
                               ),
                             ),
+                            const SizedBox(height: 24),
 
                           ],
                         ),

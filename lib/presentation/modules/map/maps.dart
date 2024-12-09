@@ -9,28 +9,44 @@ import 'package:turismo_cartagena/presentation/bloc/places/places_bloc.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as Widgets;
 import 'package:turismo_cartagena/presentation/modules/partner/widgets/card-partner-map.dart';
 
-class MapView extends StatelessWidget {
+class MapView extends StatefulWidget {
   final bool showAppBar;
   final String categoryId;
 
   const MapView({super.key, required this.showAppBar, required this.categoryId});
 
   @override
-  Widget build(BuildContext context) {
+  _MapViewState createState() => _MapViewState();
+}
 
+class _MapViewState extends State<MapView> {
+  // Inicializar MapController
+  final MapController _mapController = MapController();
+
+  @override
+  Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PartnerBloc(sl())..add(GetPartnerByCategoryEvent(id: categoryId)),
+      create: (context) => PartnerBloc(sl())..add(GetPartnerByCategoryEvent(id: widget.categoryId)),
       child: Scaffold(
         body: SafeArea(
           child: BlocBuilder<PartnerBloc, PartnersState>(
             builder: (context, state) {
               List<Marker> markers = [];
-              if(state is LoadingGetPlaceByCategory){
-                return CircularProgressIndicator();
+              LatLng initialCenter = LatLng(10.42455283436972, -75.54906879770333); // Valor predeterminado
+
+              if (state is LoadingGetPlaceByCategory) {
+                return const Center(child: CircularProgressIndicator());
               }
 
               if (state is SuccessGetPartnerByCategory) {
                 List<PartnersModel> partners = state.partnerModel;
+
+                if (partners.isNotEmpty) {
+                  // Actualiza la posición inicial con el primer marcador
+                  initialCenter = LatLng(partners[0].latitud, partners[0].longitud);
+                  // Mueve la cámara al primer marcador
+                  _mapController.move(initialCenter, 14.5);  // Puedes ajustar el zoom aquí
+                }
 
                 markers = partners.map((partner) {
                   return Marker(
@@ -55,7 +71,7 @@ class MapView extends StatelessWidget {
                           },
                         );
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.location_on_sharp,
                         size: 40,
                         color: Colors.red,
@@ -64,20 +80,22 @@ class MapView extends StatelessWidget {
                   );
                 }).toList();
               }
+
               return Container(
                 width: double.infinity,
                 height: double.infinity,
                 child: Column(
                   children: [
-                    if (showAppBar)
+                    if (widget.showAppBar)
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Widgets.AppBarCustom(textTitle: "Mapa"),
                       ),
                     Expanded(
                       child: FlutterMap(
-                        options: const MapOptions(
-                          initialCenter: LatLng(10.42455283436972, -75.54906879770333),
+                        mapController: _mapController,  // Asignar el controlador del mapa
+                        options: MapOptions(
+                          initialCenter: initialCenter, // Inicializar en el primer marcador
                           initialZoom: 14.5,
                         ),
                         children: [

@@ -28,6 +28,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Trips": MessageLookupByLibrary.simpleMessage("Trips"),
         "confirmPasswordRegister":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "contact": MessageLookupByLibrary.simpleMessage("Contact"),
+        "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete account"),
+        "deleteAccountMessage": MessageLookupByLibrary.simpleMessage(
+            "The account deletion is permanent. If you delete your Gooway account, you will not be able to recover the content or information you shared with us. Your favorites and reviews will also be deleted."),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "emailRegister": MessageLookupByLibrary.simpleMessage("Email"),
         "event": MessageLookupByLibrary.simpleMessage("Events"),
         "hintTexPassword": MessageLookupByLibrary.simpleMessage("Password"),
@@ -48,15 +53,23 @@ class MessageLookup extends MessageLookupByLibrary {
             "You haven\'t added any places to your favorites yet. Explore and add your favorite places!"),
         "login_view_profile": MessageLookupByLibrary.simpleMessage(
             "Sign in to view your profile"),
-        "messagePolity": MessageLookupByLibrary.simpleMessage(
-            "By clicking \'Sign Up\', you agree to our Terms and Privacy Policy"),
+        "messagePolityOne": MessageLookupByLibrary.simpleMessage(
+            "By clicking \'Sign Up\', you agree to our Terms and"),
+        "messagePolityTow":
+            MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "nameRegister": MessageLookupByLibrary.simpleMessage("Name"),
+        "noFoundEvent": MessageLookupByLibrary.simpleMessage(
+            "Currently, there are no events available."),
         "passwordRegister":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
         "places": MessageLookupByLibrary.simpleMessage("Places"),
+        "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "select_languages":
             MessageLookupByLibrary.simpleMessage("Select language"),
+        "sendLinkContact": MessageLookupByLibrary.simpleMessage(
+            "Click on any of the icons to communicate."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "textContinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "update_information_user":
             MessageLookupByLibrary.simpleMessage("Update information"),
         "where_to_go_today":

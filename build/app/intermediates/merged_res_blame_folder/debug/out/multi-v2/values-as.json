@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "com.simasoft_turismo_cartagena.turismo_cartagena.app-mergeDebugResources-30:/values-as/values-as.xml",
+            "outputFile": "com.goowaySimasoft.co.app-mergeDebugResources-38:/values-as/values-as.xml",
             "map": [
                 {
-                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/3c617f1b934fd174f90032b0fe1bf712/transformed/jetified-play-services-base-18.3.0/res/values-as/values.xml",
+                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/d2e2fbb8dd402780aa93970d187fe7d2/transformed/jetified-play-services-basement-18.4.0/res/values-as/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "121",
+                        "endOffsets": "316"
+                    },
+                    "to": {
+                        "startLines": "17",
+                        "startColumns": "4",
+                        "startOffsets": "1776",
+                        "endColumns": "125",
+                        "endOffsets": "1897"
+                    }
+                },
+                {
+                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/2efe1817eb6eac02070f6e0e4a2acc7f/transformed/jetified-play-services-base-18.5.0/res/values-as/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -52,23 +69,6 @@
                         "startOffsets": "55,156,259,367,472,576,676,3355",
                         "endColumns": "100,102,107,104,103,99,128,100",
                         "endOffsets": "151,254,362,467,571,671,800,3451"
-                    }
-                },
-                {
-                    "source": "/Users/frainersimarra/.gradle/caches/transforms-3/afd7bb08a2a39b26abb64bc19b56e24b/transformed/jetified-play-services-basement-18.3.0/res/values-as/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "121",
-                        "endOffsets": "316"
-                    },
-                    "to": {
-                        "startLines": "17",
-                        "startColumns": "4",
-                        "startOffsets": "1776",
-                        "endColumns": "125",
-                        "endOffsets": "1897"
                     }
                 }
             ]

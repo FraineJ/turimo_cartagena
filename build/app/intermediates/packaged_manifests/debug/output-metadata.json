@@ -4,14 +4,14 @@
     "type": "PACKAGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.simasoft_turismo_cartagena.turismo_cartagena",
+  "applicationId": "com.goowaySimasoft.co",
   "variantName": "debug",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 1,
+      "versionCode": 8,
       "versionName": "1.0.0",
       "outputFile": "AndroidManifest.xml"
     }

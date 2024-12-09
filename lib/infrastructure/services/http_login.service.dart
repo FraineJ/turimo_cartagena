@@ -46,7 +46,6 @@ class HttpLoginService extends AbstractAuthRepository {
 
     final environment = await Environment.forEnvironment('environment-dev');
     String apiUrl  = "${environment.baseUrl}/users/insertar";
-    print("datos a enviar ${user.toJson()}");
 
     try {
       final response = await http.post(Uri.parse(apiUrl),
@@ -57,11 +56,9 @@ class HttpLoginService extends AbstractAuthRepository {
       );
 
       final body = jsonDecode(response.body);
-      print("response ${body}");
 
       return body;
     } catch (error) {
-      print("error ${error}");
       return error;
     }
   }

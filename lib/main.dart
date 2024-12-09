@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -6,9 +8,21 @@ import 'package:turismo_cartagena/presentation/bloc/initial-bloc/initial_bloc.da
 import 'package:turismo_cartagena/presentation/bloc/preference-bloc/preference_utils_bloc.dart';
 import 'package:turismo_cartagena/presentation/modules/layuot.dart';
 import 'generated/l10n.dart';
+import 'infrastructure/services/firebase-notification.service.dart';
 
-void main() {
+Future<void> _firebaseBackgroundHandler(RemoteMessage message) async {
+  print("Mensaje en segundo plano recibido: ${message.messageId}");
+  // Aquí puedes hacer tareas en segundo plano, como actualizar la UI o guardar datos
+  if (message.data['type'] == 'geofence') {
+    // Lógica para manejar la notificación de geofencing
+  }
+}
+
+void main() async {
   initArticlesInjections();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await FirebaseApiNotification().initNotifications();
   runApp(const MyApp());
 }
 
@@ -40,7 +54,7 @@ class MyApp extends StatelessWidget {
             locale: state.locale,  // Aquí se actualiza el idioma según el estado
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              primarySwatch: Colors.blue,
+              primarySwatch: Colors.green,
               colorScheme: ColorScheme.fromSeed(
                 seedColor: const Color(0xFFF5F6F8),
               ),

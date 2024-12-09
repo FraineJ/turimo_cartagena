@@ -1,4 +1,4 @@
-package com.simasoft_turismo_cartagena.turismo_cartagena
+package com.goowaySimasoft.co
 
 import io.flutter.embedding.android.FlutterActivity
 

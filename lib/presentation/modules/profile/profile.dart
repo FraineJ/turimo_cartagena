@@ -6,10 +6,21 @@ import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/initial-bloc/initial_bloc.dart';
 import 'package:turismo_cartagena/presentation/modules/auth/login/login.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as Widgets;
+import 'package:turismo_cartagena/presentation/modules/profile/pages/configuration.dart';
 import 'package:turismo_cartagena/presentation/modules/profile/widgets/language-selector.dart';
+import 'package:turismo_cartagena/presentation/global/utils/all.dart' as Global;
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+
+  String name = "";
+  String email = "";
 
   Future<void> logout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -22,6 +33,18 @@ class ProfileView extends StatelessWidget {
 
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => Login()));
+  }
+
+  void getInfo() async {
+    Map<String, String> userDetails = await Global.Utils.getUserDetails();
+    name = userDetails['name']!;
+    email = userDetails['email']!;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getInfo();
   }
 
   @override
@@ -45,12 +68,14 @@ class ProfileView extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 30, right: 30),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Row(
                           children: [
                             const CircleAvatar(
-                              radius: 45,
-                              backgroundImage: AssetImage("assets/images/default-user.jpeg"),
+                              radius: 30,
+                              backgroundImage: AssetImage(
+                                  "assets/images/default-user.jpeg"
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
@@ -59,17 +84,16 @@ class ProfileView extends StatelessWidget {
                               child: ConstrainedBox(
                                 constraints: BoxConstraints(
                                     maxWidth: MediaQuery.of(context).size.width - 170),
-                                child: const Column(
+                                child:  Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "Frainer",
-                                      style: TextStyle(
+                                    Text(name,
+                                      style: const TextStyle(
                                           fontSize: 25, fontWeight: FontWeight.w500),
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 1,
                                     ),
-                                    const Text("frainer2013@gmail.com"),
+                                    Text(email),
                                   ],
                                 ),
                               ),
@@ -84,137 +108,137 @@ class ProfileView extends StatelessWidget {
                       const SizedBox(
                         height: 16,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              leading: const Icon(
-                                Icons.edit_outlined,
-                                color: Color(0xFF22014D),
-                              ),
-                              title: Text(S.current.update_information_user,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  )),
+                      Column(
+                        children: [
+                          ListTile(
+                            leading: const Icon(
+                              Icons.edit_outlined,
+                              color: Color(0xFF22014D),
                             ),
-                            ListTile(
-                              onTap: () {
-                                showDialog(
-                                    barrierDismissible: false,
-                                    context: context,
-                                    builder: (context) => Center(
-                                        child: Dialog(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(12.0),
-                                            ),
-                                            child: Container(
-                                              width: MediaQuery.of(context).size.width * 0.8,
-                                              height:
-                                              MediaQuery.of(context).size.height * 0.3,
-                                              padding: const EdgeInsets.all(16),
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        S.current.select_languages,
-                                                        style: const TextStyle(
-                                                          fontWeight: FontWeight.w800,
-                                                          fontSize: 24,
-                                                        ),
-                                                      ),
-                                                      InkWell(
-                                                        onTap: () {
-                                                          Navigator.of(context).pop();
-                                                        },
-                                                        child: Container(
-                                                          width: 40,
-                                                          height: 40,
-                                                          decoration: BoxDecoration(
-                                                            shape: BoxShape.circle,
-                                                            color: Colors.grey[200],
-                                                          ),
-                                                          child: const Icon(
-                                                            Icons.clear,
-                                                            color: Color(0xFFFF6969),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 16,
-                                                  ),
-                                                  LanguageSelector(),
-                                                ],
-                                              ),
-                                            )
-                                        )
-                                    )
-                                );
-                              },
-                              leading: const Icon(
-                                Icons.translate_rounded,
-                                color: Color(0xFF22014D),
-                              ),
-                              title: Text(S.current.languages,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ),
-                            ListTile(
-                              leading: const Icon(Icons.settings_outlined,
-                                  color: const Color(0xFF22014D)),
-                              title: Text(S.current.settings,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: ListTile(
-                          leading: const Icon(
-                            Icons.logout_outlined,
-                            color: Color(0xFFFF6969),
-                            size: 30,
-                          ),
-                          title: Text(S.current.log_out,
-                              style: const TextStyle(
+                            title: Text(S.current.update_information_user,
+                                style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xFFFF6969))),
-                          onTap: () {
-                            logout(context);
-                          },
+                                )),
+                          ),
+                          ListTile(
+                            onTap: () {
+                              showDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  builder: (context) => Center(
+                                      child: Dialog(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(12.0),
+                                          ),
+                                          child: Container(
+                                            width: MediaQuery.of(context).size.width * 0.8,
+                                            height:
+                                            MediaQuery.of(context).size.height * 0.3,
+                                            padding: const EdgeInsets.all(16),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      S.current.select_languages,
+                                                      style: const TextStyle(
+                                                        fontWeight: FontWeight.w800,
+                                                        fontSize: 24,
+                                                      ),
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      child: Container(
+                                                        width: 40,
+                                                        height: 40,
+                                                        decoration: BoxDecoration(
+                                                          shape: BoxShape.circle,
+                                                          color: Colors.grey[200],
+                                                        ),
+                                                        child: const Icon(
+                                                          Icons.clear,
+                                                          color: Color(0xFFFF6969),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 16,
+                                                ),
+                                                LanguageSelector(),
+                                              ],
+                                            ),
+                                          )
+                                      )
+                                  )
+                              );
+                            },
+                            leading: const Icon(
+                              Icons.translate_rounded,
+                              color: Color(0xFF22014D),
+                            ),
+                            title: Text(S.current.languages,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                          ),
+                          ListTile(
+                            onTap: (){
+                              Navigator.push(context,MaterialPageRoute(builder: (context)  => Configuration()));
+                            },
+                            leading: const Icon(Icons.settings_outlined,
+                                color: const Color(0xFF22014D)),
+                            title: Text(S.current.settings,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                          ),
+                        ],
+                      ),
+                      const Divider(),
+                      ListTile(
+                        leading: const Icon(
+                          Icons.logout_outlined,
+                          color: Color(0xFFFF6969),
+                          size: 30,
                         ),
+                        title: Text(S.current.log_out,
+                            style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFFF6969))),
+                        onTap: () {
+                          logout(context);
+                        },
                       ),
                     ],
                   );
                 } else if (state is IsAuthenticatedFailure) {
                   // Aquí muestra el estado cuando no está autenticado
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Widgets.AppBarCustom(
-                          textTitle: S.current.Profile, botonVolver: false),
-                      Widgets.RequestLogin(
-                        title: S.current.login_view_favorites,
-                        description: S.current.login_view_detail_profile,
-                      ),
-                    ],
+                  return Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Widgets.AppBarCustom(
+                            textTitle: S.current.Profile, botonVolver: false),
+                        Widgets.RequestLogin(
+                          title: S.current.login_view_favorites,
+                          description: S.current.login_view_detail_profile,
+                        ),
+                      ],
+                    ),
                   );
                 }
                 // Mientras el estado se resuelve, muestra un indicador de carga

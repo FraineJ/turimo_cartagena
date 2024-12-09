@@ -72,6 +72,7 @@ class _SpacesHeaderAppBarState extends State<SpacesHeaderAppBar> {
               child: IconButton(
                 icon: const Icon(Icons.arrow_back_ios_new_rounded,
                   size: 30,
+                  color: Colors.white,
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();

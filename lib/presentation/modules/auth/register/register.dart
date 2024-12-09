@@ -5,6 +5,7 @@ import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
 import 'package:turismo_cartagena/presentation/modules/auth/login/login.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
+import 'package:url_launcher/url_launcher.dart';
 
 class Register extends StatelessWidget {
   @override
@@ -25,18 +26,42 @@ class CustomerForm extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final List<Map<String, String>> countries = [
-    {"name": "United States", "flag": "🇺🇸"},
-    {"name": "Canada", "flag": "🇨🇦"},
-    {"name": "Germany", "flag": "🇩🇪"},
-    {"name": "France", "flag": "🇫🇷"},
-    {"name": "Brazil", "flag": "🇧🇷"},
     {"name": "Argentina", "flag": "🇦🇷"},
-    {"name": "United Kingdom", "flag": "🇬🇧"},
+    {"name": "Australia", "flag": "🇦🇺"},
+    {"name": "Brazil", "flag": "🇧🇷"},
+    {"name": "Canada", "flag": "🇨🇦"},
+    {"name": "Chile", "flag": "🇨🇱"},
+    {"name": "Colombia", "flag": "🇨🇴"},
+    {"name": "Ecuador", "flag": "🇪🇨"},
+    {"name": "France", "flag": "🇫🇷"},
+    {"name": "Germany", "flag": "🇩🇪"},
+    {"name": "India", "flag": "🇮🇳"},
     {"name": "Italy", "flag": "🇮🇹"},
+    {"name": "Japan", "flag": "🇯🇵"},
     {"name": "Mexico", "flag": "🇲🇽"},
+    {"name": "Peru", "flag": "🇵🇪"},
+    {"name": "Russia", "flag": "🇷🇺"},
+    {"name": "South Africa", "flag": "🇿🇦"},
+    {"name": "South Korea", "flag": "🇰🇷"},
     {"name": "Spain", "flag": "🇪🇸"},
+    {"name": "United Kingdom", "flag": "🇬🇧"},
+    {"name": "United States", "flag": "🇺🇸"},
+    {"name": "Venezuela", "flag": "🇻🇪"},
   ];
+
   String? selectedCountry;
+
+  void openWebPage(Uri uri, bool inApp) async {
+    try {
+      if (inApp) {
+        await launchUrl(uri, mode: LaunchMode.inAppWebView);
+      } else {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,12 +201,44 @@ class CustomerForm extends StatelessWidget {
                       keyboardType: TextInputType.visiblePassword,
                     ),
                     const SizedBox(height: 16),
-                    Text(S.current.messagePolity,
-                      style: const TextStyle(fontSize: 16, color: Color(0xFFFF6969)),
+                    InkWell(
+
+                      onTap: (){
+                        openWebPage(Uri.parse("https://www.gooway.co/politica-de-privacidad-de-la-aplicacion-gooway/"), true);
+                      },
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text:  TextSpan(
+
+                          style: const TextStyle(
+                            fontSize: 24.0,
+                            color: Colors.black,
+
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: S.current.messagePolityOne,
+                              style: const TextStyle(
+                                  fontSize: 16
+                              ),
+                            ),
+                            TextSpan(
+
+                              text: " " + S.current.messagePolityTow,
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.blue
+                              ),
+                            ),
+                          ],
+                        ),
+
+                      ),
                     ),
+
                     const SizedBox(height: 16),
                     W.ButtonPrimaryCustom(
-                      color: const Color(0xFF22014D),
+                      color: const Color(0xFF009C47),
                       text: 'Registrarse',
                       onPressed: () => _submitForm(context),
                     ),

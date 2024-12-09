@@ -20,8 +20,7 @@ class LayoutState extends State<Layout> {
   List<Widget> get pages => [
     HomeView(),
     FavoriteView(),
-    TravelView(),
-    //MapView(showAppBar: true,),
+    //TravelView(),
     ProfileView(),
   ];
 
@@ -37,9 +36,8 @@ class LayoutState extends State<Layout> {
           });
         },
         type: BottomNavigationBarType.fixed,
-        items:  [
+        items: [
           BottomNavigationBarItem(
-            backgroundColor: Colors.white70,
             icon: const Icon(Icons.search),
             label: S.current.Explore,
           ),
@@ -48,24 +46,30 @@ class LayoutState extends State<Layout> {
             label: S.current.Favorites,
           ),
           /*BottomNavigationBarItem(
-              icon: Icon(Icons.credit_card),
-              label: "Gastos"
-          ),*/
-          BottomNavigationBarItem(
             icon: const Icon(Icons.airplanemode_on_rounded),
             label: S.current.Trips,
-          ),
-          /*BottomNavigationBarItem(
-            icon: Icon(Icons.place_outlined),
-            label: "Mapas",
           ),*/
           BottomNavigationBarItem(
             icon: const Icon(Icons.person),
             label: S.current.Profile,
           ),
         ],
-        selectedItemColor: const Color(0xFF22014D), // Color de texto seleccionado
-        unselectedItemColor: Colors.black,
+        selectedItemColor: const Color(0xFF009C47),
+        unselectedItemColor: Colors.black54,
+        selectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+        unselectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.normal,
+        ),
+        selectedIconTheme: const IconThemeData(
+          color: Color(0xFF009C47),
+          size: 30.0,
+        ),
+        unselectedIconTheme: const IconThemeData(
+          color: Colors.black54,
+          size: 24.0,
+        ),
       ),
     );
   }

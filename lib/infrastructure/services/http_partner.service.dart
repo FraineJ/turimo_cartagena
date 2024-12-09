@@ -11,7 +11,15 @@ class HttpPartnerService extends PartnerRepository {
   @override
   Future getPartnerByCategory(String id) async {
     final environment = await Environment.forEnvironment('environment-dev');
-    String apiUrl  = "${environment.baseUrl}/partners/getPartnerByCategory/$id";
+
+    Map<String, String> userDetails = await Global.Utils.getUserDetails();
+    final String? userId = userDetails['id'];
+
+    String apiUrl = "${environment.baseUrl}/partners/getPartnerByCategory/$id";
+    if (userId != null && userId.isNotEmpty) {
+      apiUrl += "/$userId";
+    }
+
 
     try {
       final response = await http.get(
@@ -22,7 +30,7 @@ class HttpPartnerService extends PartnerRepository {
       );
 
       final body = jsonDecode(utf8.decode(response.bodyBytes));
-      print("body el id ${body["data"]}");
+
       final List<dynamic> jsonDataList = body["data"] as List<dynamic>;
       final List<PartnersModel> partner = jsonDataList.map((jsonData) => PartnersModel.fromJson(jsonData)).toList();
 
@@ -88,10 +96,8 @@ class HttpPartnerService extends PartnerRepository {
       );
 
       final body = jsonDecode(response.body);
-      print("response ${body}");
 
       if (body["status"] == 200) {
-        // Trabaja directamente con el cuerpo de la respuesta como una lista de mapas
         final List<Map<String, dynamic>> jsonDataList = List<Map<String, dynamic>>.from(body["data"]);
         return jsonDataList;
       }

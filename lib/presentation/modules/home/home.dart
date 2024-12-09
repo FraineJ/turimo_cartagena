@@ -9,10 +9,8 @@ import 'package:turismo_cartagena/domain/models/category.model.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/category/category_bloc.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/no-data.dart';
-import 'package:turismo_cartagena/presentation/modules/home/pages/qr-view/qa-view-example.dart';
 import 'package:turismo_cartagena/presentation/modules/home/pages/tab-view-one.dart';
-import 'package:turismo_cartagena/presentation/modules/map/maps.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED ;
+import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
 import 'package:turismo_cartagena/presentation/modules/partner/partner.dart';
 
 const MAPBOX_ACCESS_TOKEN =
@@ -39,14 +37,15 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<Home> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+class _HomeViewState extends State<Home>
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   LatLng? myPosition;
   List<Widget> _tabs = [];
   List<CategoryModel> category = [];
   Position? originLatLng;
   Position? currentLocation;
   Future<Position?>? _currentPositionFuture;
-  int currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
@@ -54,29 +53,29 @@ class _HomeViewState extends State<Home> with SingleTickerProviderStateMixin, Au
     _currentPositionFuture = _getCurrentLocation();
   }
 
-
   Future<Position?> _getCurrentLocation() async {
     var status = await Permission.location.status;
     Position? currentLocation = await SHARED.Utils.getPositionCurrent();
     if (currentLocation != null && currentLocation.longitude != null && currentLocation.latitude != null) {
       originLatLng = Position(
-          latitude: currentLocation.latitude,
-          longitude: currentLocation.longitude,
-          timestamp: DateTime.now(),
-          accuracy: 0.0,
-          altitude: 0.0,
-          heading: 0.0,
-          speed: 0.0,
-          speedAccuracy: 0.0,
-          altitudeAccuracy: 0,
-          headingAccuracy: 0
+        latitude: currentLocation.latitude,
+        longitude: currentLocation.longitude,
+        timestamp: DateTime.now(),
+        accuracy: 0.0,
+        altitude: 0.0,
+        heading: 0.0,
+        speed: 0.0,
+        speedAccuracy: 0.0,
+        altitudeAccuracy: 0,
+        headingAccuracy: 0,
       );
     }
 
     if (status.isGranted) {
       try {
         Position position = await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.high);
+          desiredAccuracy: LocationAccuracy.high,
+        );
         await _savePosition(position);
         return position;
       } catch (e) {
@@ -105,79 +104,77 @@ class _HomeViewState extends State<Home> with SingleTickerProviderStateMixin, Au
     super.build(context);
     return Scaffold(
       body: SafeArea(
-        child:  BlocBuilder<CategoryBloc, CategoryState>(
-        builder: (context, state) {
-          if (state is LoadingGetCategory) {
-            return const Center(child: CircularProgressIndicator());
-          }
+        child: BlocBuilder<CategoryBloc, CategoryState>(
+          builder: (context, state) {
+            if (state is LoadingGetCategory) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          if(state is ErrorGetCategory) {
-            return Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: const NoDataWidget(
-                icon: Icons.wifi_off_outlined,
-                title: "Error de conexión",
-                description: "No se pudo establecer conexión a internet. Por favor, verifique su red e intente nuevamente.",
-              ),
-            );
+            if (state is ErrorGetCategory) {
+              return Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: const NoDataWidget(
+                  icon: Icons.wifi_off_outlined,
+                  title: "Error de conexión",
+                  description: "No se pudo establecer conexión a internet. Por favor, verifique su red e intente nuevamente.",
+                ),
+              );
+            }
 
-          }
+            if (state is SuccessGetCategory) {
+              category = state.categoryModel;
 
-          if (state is SuccessGetCategory) {
-            category = state.categoryModel;
+              _tabs = [
+                const Tab(text: "Destacados"),
+                ...category.map((category) {
+                  return Tab(text: category.name);
+                }).toList(),
+              ];
 
-            _tabs = [
-              const Tab(text: "Destacados"),
-              ...category.map((category) {
-                return Tab(text: category.name);
-              }).toList(),
-            ];
-
-            return  Container(
-              width: double.infinity,
-              height: double.infinity,
-              child: Column(
+              return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 16),
-                  const Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Cartagena",
-                            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
 
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image(
+                          image: AssetImage("assets/images/logo-app.png"),
+                          width: 150,
+                        )
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                  Padding(
+                  ),
+                  //const SizedBox(height: 8),
+                  /*Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10, bottom: 16),
                     child: TextField(
-                      //controller: _searchController,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(vertical: 0),
                         hintText: S.current.settings,
                         prefixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0),
-                          borderSide: BorderSide(color: Colors.grey, width: 1.0), // Borde gris de 1px
+                          borderSide: const BorderSide(color: Colors.grey, width: 1.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          borderSide: const BorderSide(color: Colors.grey, width: 1.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          borderSide: const BorderSide(color: Color(0xFF009C47), width: 2.0),
                         ),
                         filled: true,
                         fillColor: Colors.grey[200],
                       ),
-                      onChanged: (value) {
-                        //searchCustomer(value);
-                      },
                     ),
-                  ),
-
-
+                  ),*/
                   DefaultTabController(
                     length: _tabs.length,
-                    child: Expanded( // Aquí utilizamos Expanded para darle una altura fija al TabBarView
+                    child: Expanded(
                       child: Column(
                         children: [
                           TabBar(
@@ -188,48 +185,23 @@ class _HomeViewState extends State<Home> with SingleTickerProviderStateMixin, Au
                             child: TabBarView(
                               children: [
                                 const TabViewOneHome(),
-                                ...category.asMap().entries.map((entry) {
-                                  int index = entry.key;
-                                  CategoryModel cat = entry.value;
-
-                                  return Builder(
-                                    builder: (context) {
-                                      currentIndex = DefaultTabController.of(context)!.index;
-                                      if (currentIndex == index + 1) {
-                                        return PartnerView( categoryId: cat.id);
-                                      } else {
-                                        return const Center(child: Text("Cargando..."));
-                                      }
-                                    },
-                                  );
+                                ...category.map((cat) {
+                                  return PartnerView(categoryId: cat.id);
                                 }).toList(),
-                              ]
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                ]
-              ),
-            );
-          }
-          return const Center(child: CircularProgressIndicator());
-        }),
-      ),
-      /*floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ListPhone()),
-          );
-
-        },
-        backgroundColor: const Color(0xFF22014D),
-        child: const Icon(
-          Icons.phone,
-          color: Color(0xFFFFFFFF),
+                ],
+              );
+            }
+            return const Center(child: CircularProgressIndicator());
+          },
         ),
-      ),*/
+      ),
     );
   }
 

@@ -67,7 +67,7 @@ class _PropertyCardStateState extends State<PropertyCardState> {
     }
 
     setState(() {
-      isFavorite = !isFavorite;
+      widget.partner.favorite = !widget.partner.favorite;
     });
 
     final event = AddPartnerFavoriteEvent(id: widget.partner.id);
@@ -112,7 +112,7 @@ class _PropertyCardStateState extends State<PropertyCardState> {
 
               }
 
-              if (state is ErrorAddPartnerFavorite) {
+              if (state is SuccessDeletePartnerFavorite) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text(
@@ -200,10 +200,10 @@ class _PropertyCardStateState extends State<PropertyCardState> {
                     child: CircleAvatar(
                       backgroundColor: Colors.white,
                       child: Icon(
-                        isFavorite
+                        widget.partner.favorite
                             ? Icons.favorite
                             : Icons.favorite_border,
-                        color: isFavorite ? Colors.red : Colors.black54,
+                        color: widget.partner.favorite ? Colors.red : Colors.black54,
                       ),
                     ),
                   ),

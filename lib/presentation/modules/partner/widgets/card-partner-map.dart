@@ -5,7 +5,7 @@ import 'package:turismo_cartagena/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/partner.model.dart';
 import 'package:turismo_cartagena/presentation/bloc/partner/partner_bloc.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/partner-detail.dart';
-
+import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
 
 
 class PartnerCardMap extends StatelessWidget {
@@ -95,7 +95,7 @@ class _PlaceCardState extends State<PlaceCardView> {
                     ),
                   ],
                 ),
-                Positioned(
+                /*Positioned(
                   top: 20,
                   right: 20,
                   child: IconButton(
@@ -113,7 +113,7 @@ class _PlaceCardState extends State<PlaceCardView> {
                       });
                     },
                   ),
-                ),
+                ),*/
                 Positioned(
                   bottom: 10.0,
                   left: 0.0,
@@ -153,13 +153,13 @@ class _PlaceCardState extends State<PlaceCardView> {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    partner.description,
+                  Text(SHARED.Utils.truncateText(partner.description, 30)
+                    ,
                     style: const TextStyle(
                       fontSize: 14,
                       color: Colors.black54,
                     ),
-                    maxLines: 3,
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     softWrap: true,
                   ),

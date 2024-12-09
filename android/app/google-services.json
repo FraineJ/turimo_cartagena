@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "639403984663",
+    "project_id": "gooway-9d5d9",
+    "storage_bucket": "gooway-9d5d9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639403984663:android:a21327c90a5d05ab1b9952",
+        "android_client_info": {
+          "package_name": "com.goowaySimasoft.co"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWCd-1bkdyq1wUzWYfGQ3F9olss5K_Q-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
