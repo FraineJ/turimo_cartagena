@@ -1,1 +1,0 @@
- /Users/frainersimarra/Downloads/turimo_cartagena/.dart_tool/flutter_build/92a0498ca02785bcacbe7835ec69bea7/native_assets.yaml: 

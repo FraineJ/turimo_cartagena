@@ -9,6 +9,7 @@ import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' 
 import 'package:turismo_cartagena/presentation/modules/profile/pages/configuration.dart';
 import 'package:turismo_cartagena/presentation/modules/profile/widgets/language-selector.dart';
 import 'package:turismo_cartagena/presentation/global/utils/all.dart' as Global;
+import 'package:turismo_cartagena/presentation/modules/profile/widgets/provile-view.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -21,10 +22,12 @@ class _ProfileViewState extends State<ProfileView> {
 
   String name = "";
   String email = "";
+  String avatar = "";
 
   Future<void> logout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();
+    context.read<InitialBloc>().add(IsAuthenticatedEvent(isAuthenticated: false));
 
     LoadingOverlay.show(context);
     await Future.delayed(Duration(seconds: 3), () {
@@ -39,6 +42,7 @@ class _ProfileViewState extends State<ProfileView> {
     Map<String, String> userDetails = await Global.Utils.getUserDetails();
     name = userDetails['name']!;
     email = userDetails['email']!;
+    avatar = userDetails['avatar']!;
   }
 
   @override
@@ -53,10 +57,10 @@ class _ProfileViewState extends State<ProfileView> {
       body: SafeArea(
         child: Container(
           child: BlocProvider(
-            create: (context) => InitialBloc(sl())..add(AppInitialEvent()),
+            create: (context) => InitialBloc()..add(AppInitialEvent()),
             child: BlocBuilder<InitialBloc, InitialState>(
               builder: (context, state) {
-                if (state is IsAuthenticatedSuccess) {
+                if (state.isLoginApp) {
                   // Aquí deberías mostrar el contenido cuando el usuario esté autenticado
                   return Column(
                     children: [
@@ -71,12 +75,52 @@ class _ProfileViewState extends State<ProfileView> {
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Row(
                           children: [
-                            const CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage(
-                                  "assets/images/default-user.jpeg"
+                            Container(
+                              width: 80,
+                              height: 80,
+                              decoration: const BoxDecoration(
+                                color: Colors.black,
+                                shape: BoxShape.circle,
+                              ),
+                              child: avatar == null || avatar.isEmpty
+                                  ? Center(
+                                child: Text(
+                                  name != null && name.isNotEmpty
+                                      ? name.toUpperCase().substring(0, 1)
+                                      : "?", // Muestra un "?" si el nombre es vacío o nulo
+                                  style: const TextStyle(
+                                    fontSize: 46,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              )
+                              : ClipOval(
+                                child: Image.network(
+                                  avatar,
+                                  fit: BoxFit.cover,
+                                  width: 80, // Ajusta el tamaño de la imagen según sea necesario
+                                  height: 80,
+                                  errorBuilder: (context, error, stackTrace) => Center(
+                                    child: Text(
+                                      name.toUpperCase().substring(0, 1),
+                                      style: const TextStyle(
+                                        fontSize: 60,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  loadingBuilder: (context, child, loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
+
                             Padding(
                               padding: const EdgeInsets.only(
                                 left: 20,
@@ -111,6 +155,9 @@ class _ProfileViewState extends State<ProfileView> {
                       Column(
                         children: [
                           ListTile(
+                            onTap: (){
+                              Navigator.push(context,MaterialPageRoute(builder: (context)  => ProfileDetail()));
+                            },
                             leading: const Icon(
                               Icons.edit_outlined,
                               color: Color(0xFF22014D),
@@ -223,8 +270,7 @@ class _ProfileViewState extends State<ProfileView> {
                       ),
                     ],
                   );
-                } else if (state is IsAuthenticatedFailure) {
-                  // Aquí muestra el estado cuando no está autenticado
+                } else  {
                   return Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(

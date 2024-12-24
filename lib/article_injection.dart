@@ -6,18 +6,21 @@ import 'package:turismo_cartagena/domain/repositorys/device_user.repository.dart
 import 'package:turismo_cartagena/domain/repositorys/event.repository.dart';
 import 'package:turismo_cartagena/domain/repositorys/partner.repository.dart';
 import 'package:turismo_cartagena/domain/repositorys/place.repository.dart';
+import 'package:turismo_cartagena/domain/repositorys/user.repository.dart';
 import 'package:turismo_cartagena/domain/usecases/auth.usecases.dart';
 import 'package:turismo_cartagena/domain/usecases/category.usecases.dart';
 import 'package:turismo_cartagena/domain/usecases/device-user.usecases.dart';
 import 'package:turismo_cartagena/domain/usecases/event.usecases.dart';
 import 'package:turismo_cartagena/domain/usecases/partner.usecases.dart';
 import 'package:turismo_cartagena/domain/usecases/place.usecases.dart';
+import 'package:turismo_cartagena/domain/usecases/user.usecases.dart';
 import 'package:turismo_cartagena/infrastructure/services/http_category.service.dart';
 import 'package:turismo_cartagena/infrastructure/services/http_device_user.service.dart';
 import 'package:turismo_cartagena/infrastructure/services/http_event.service.dart';
 import 'package:turismo_cartagena/infrastructure/services/http_login.service.dart';
 import 'package:turismo_cartagena/infrastructure/services/http_partner.service.dart';
 import 'package:turismo_cartagena/infrastructure/services/http_place.service.dart';
+import 'package:turismo_cartagena/infrastructure/services/http_user.service.dart';
 
 
 final sl = GetIt.instance;
@@ -47,4 +50,8 @@ initArticlesInjections() {
   sl.registerLazySingleton<DeviceUserCaseUse>(
           () => DeviceUserCaseUse(sl<DeviceUserRepository>()));
   sl.registerLazySingleton<DeviceUserRepository>(() => HttpDeviceUserService());
+
+  sl.registerLazySingleton<UserCaseUse>(
+          () => UserCaseUse(sl<UserRepository>()));
+  sl.registerLazySingleton<UserRepository>(() => HttpUserService());
 }

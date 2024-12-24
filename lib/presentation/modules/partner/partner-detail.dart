@@ -144,7 +144,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
               return CustomScrollView(
                 controller: _scrollController,
                 slivers: [
-                  SpacesHeaderAppBar(imagenes: partners.imagesUrl,),
+                  SpacesHeaderAppBar(partners: partners),
                   SliverPersistentHeader(
                     pinned: true,
                     delegate: _HeaderSliver(

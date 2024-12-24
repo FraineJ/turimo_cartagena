@@ -25,6 +25,7 @@ class HttpCategoryService extends CategoryRepository {
       final List<CategoryModel> category = jsonDataList.map((jsonData) => CategoryModel.fromJson(jsonData)).toList();
 
       if(response.statusCode == 200) {
+        print("category response ${category[0]}");
         return category;
       }
 

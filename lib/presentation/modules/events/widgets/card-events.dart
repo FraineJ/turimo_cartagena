@@ -60,7 +60,10 @@ class EventCard extends StatelessWidget {
                   // Dirección y estado
                   Row(
                     children: [
-                      const Icon(Icons.location_on, size: 18, color: Colors.blue),
+                      const Icon(
+                          Icons.location_on,
+                          size: 18, color: Colors.red
+                      ),
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(

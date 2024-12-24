@@ -93,7 +93,6 @@ class HttpPlaceService extends PlaceRepository {
       final List<PlaceModel> place = jsonDataList.map((jsonData) => PlaceModel.fromJson(jsonData)).toList();
 
       if(response.statusCode == 200) {
-        print("Lista de favoritos $place");
         return place;
       }
 

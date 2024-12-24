@@ -15,11 +15,7 @@ class TravelView extends StatelessWidget {
             child: const Column(
               children: [
                 Widgets.AppBarCustom(textTitle: "Viajes", botonVolver: false,),
-                Widgets.NoDataWidget(
-                  icon: Icons.airplanemode_on_rounded,
-                  title: "Viajes",
-                  description: "Aún no has realizado ninún viaje. ¡Explora y viaja a tús lugares preferidos!",
-                )
+
 
               ],
             ),

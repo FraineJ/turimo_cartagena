@@ -10,20 +10,20 @@ import 'package:turismo_cartagena/presentation/modules/layuot.dart';
 import 'generated/l10n.dart';
 import 'infrastructure/services/firebase-notification.service.dart';
 
-Future<void> _firebaseBackgroundHandler(RemoteMessage message) async {
-  print("Mensaje en segundo plano recibido: ${message.messageId}");
-  // Aquí puedes hacer tareas en segundo plano, como actualizar la UI o guardar datos
-  if (message.data['type'] == 'geofence') {
-    // Lógica para manejar la notificación de geofencing
-  }
-}
 
 void main() async {
   initArticlesInjections();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FirebaseApiNotification().initNotifications();
-  runApp(const MyApp());
+  runApp(
+      MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => InitialBloc())
+          ],
+          child: MyApp()
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<InitialBloc>(
-          create: (context) => InitialBloc(sl())..add(AppInitialEvent()),
+          create: (context) => InitialBloc()..add(AppInitialEvent()),
         ),
         BlocProvider<LanguageBloc>(
           create: (context) => LanguageBloc()..add(LoadInitialLanguageEvent()),

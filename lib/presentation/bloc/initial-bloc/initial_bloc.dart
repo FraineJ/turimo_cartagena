@@ -1,27 +1,35 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-import 'package:turismo_cartagena/domain/usecases/auth.usecases.dart';
+import 'package:equatable/equatable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'initial_event.dart';
 part 'initial_state.dart';
+
 class InitialBloc extends Bloc<InitialEvent, InitialState> {
-  final AuthCaseUse authUseCase;
+  InitialBloc()
+      : super(const InitialState(
+    isAuthenticated: false,
+  )) {
+    // Manejadores de eventos
+    on<AppInitialEvent>((event, emit) async {
+      await _initIsAuthenticated(emit);
+    });
 
-  InitialBloc(this.authUseCase) : super(AppStartedState()) {
-    on<AppInitialEvent>(_initialApp);
-    on<IsAuthenticatedEvent>(_isAuthenticated);
+    on<IsAuthenticatedEvent>((event, emit) {
+      emit(state.copyWith(
+        isAuthenticated: event.isAuthenticated,
+      ));
+    });
+
+    // Iniciar el primer evento explícitamente
+    add(AppInitialEvent());
   }
 
-  void _initialApp(AppInitialEvent event, Emitter<InitialState> emit) async {
-    add(IsAuthenticatedEvent());
-  }
+  // Inicializar autenticación
+  Future<void> _initIsAuthenticated(Emitter<InitialState> emit) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isAuthenticated = prefs.containsKey('user_login');
 
-  Future<void> _isAuthenticated(IsAuthenticatedEvent event, Emitter<InitialState> emit) async {
-    bool response = await this.authUseCase.isUserAuthenticated();
-    if (response) {
-      emit(IsAuthenticatedSuccess());
-    } else {
-      emit(IsAuthenticatedFailure());
-    }
+    emit(state.copyWith(isAuthenticated: isAuthenticated));
   }
 }

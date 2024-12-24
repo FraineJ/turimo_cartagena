@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -12,9 +13,6 @@ import 'package:turismo_cartagena/presentation/global/widgets/no-data.dart';
 import 'package:turismo_cartagena/presentation/modules/home/pages/tab-view-one.dart';
 import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
 import 'package:turismo_cartagena/presentation/modules/partner/partner.dart';
-
-const MAPBOX_ACCESS_TOKEN =
-    'pk.eyJ1IjoicGl0bWFjIiwiYSI6ImNsY3BpeWxuczJhOTEzbnBlaW5vcnNwNzMifQ.ncTzM4bW-jpq-hUFutnR1g';
 
 class HomeView extends StatelessWidget {
   @override
@@ -40,11 +38,22 @@ class Home extends StatefulWidget {
 class _HomeViewState extends State<Home>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   LatLng? myPosition;
-  List<Widget> _tabs = [];
   List<CategoryModel> category = [];
   Position? originLatLng;
   Position? currentLocation;
   Future<Position?>? _currentPositionFuture;
+  int _selectedIndex = 0;
+  final ScrollController _scrollController = ScrollController();
+
+  void _scrollToIndex(int index) {
+    const double itemWidth = 100.0; // Ancho estimado del elemento (ajusta según tu diseño)
+    final double targetOffset = index * itemWidth;
+    _scrollController.animateTo(
+      targetOffset,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
 
   @override
   void initState() {
@@ -56,7 +65,9 @@ class _HomeViewState extends State<Home>
   Future<Position?> _getCurrentLocation() async {
     var status = await Permission.location.status;
     Position? currentLocation = await SHARED.Utils.getPositionCurrent();
-    if (currentLocation != null && currentLocation.longitude != null && currentLocation.latitude != null) {
+    if (currentLocation != null &&
+        currentLocation.longitude != null &&
+        currentLocation.latitude != null) {
       originLatLng = Position(
         latitude: currentLocation.latitude,
         longitude: currentLocation.longitude,
@@ -114,29 +125,32 @@ class _HomeViewState extends State<Home>
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: const NoDataWidget(
-                  icon: Icons.wifi_off_outlined,
-                  title: "Error de conexión",
-                  description: "No se pudo establecer conexión a internet. Por favor, verifique su red e intente nuevamente.",
+                  svgPath: "assets/images/danger.svg",
+                  title: "Error del Servidor",
+                  description:
+                  "Ocurrió un problema al conectarse con el servidor. Por favor, inténtelo nuevamente más tarde.",
                 ),
               );
             }
 
             if (state is SuccessGetCategory) {
-              category = state.categoryModel;
 
-              _tabs = [
-                const Tab(text: "Destacados"),
-                ...category.map((category) {
-                  return Tab(text: category.name);
-                }).toList(),
+              category = [
+                CategoryModel(
+                  id: '0',
+                  code: '0',
+                  name: "Destacados",
+                  image:
+                  "https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/categories/destacado/destacado.svg",
+                ),
+                ...state.categoryModel,
               ];
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -147,52 +161,73 @@ class _HomeViewState extends State<Home>
                       ],
                     ),
                   ),
-                  //const SizedBox(height: 8),
-                  /*Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 16),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                        hintText: S.current.settings,
-                        prefixIcon: const Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
-                          borderSide: const BorderSide(color: Colors.grey, width: 1.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
-                          borderSide: const BorderSide(color: Colors.grey, width: 1.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
-                          borderSide: const BorderSide(color: Color(0xFF009C47), width: 2.0),
-                        ),
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                      ),
-                    ),
-                  ),*/
-                  DefaultTabController(
-                    length: _tabs.length,
-                    child: Expanded(
-                      child: Column(
-                        children: [
-                          TabBar(
-                            isScrollable: true,
-                            tabs: _tabs,
-                          ),
-                          Expanded(
-                            child: TabBarView(
+                  SizedBox(
+                    height: 40, // Altura de los tabs
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: category.length,
+                      itemBuilder: (context, index) {
+                        final item = category[index];
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _selectedIndex = index; // Cambiar el índice seleccionado
+                            });
+                            _scrollToIndex(index);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 0.0
+                            ),
+                            decoration: BoxDecoration(
+                              color: _selectedIndex == index
+                                  ? Colors.green
+                                  : Colors.white,
+                              borderRadius: BorderRadius.circular(25),
+                              border: Border.all(
+                                color: _selectedIndex == index
+                                ? Colors.transparent
+                                : Colors.grey[400]!,
+                                width: 1.0,         // Ancho del borde
+                              ),
+                            ),
+                            child: Row(
                               children: [
-                                const TabViewOneHome(),
-                                ...category.map((cat) {
-                                  return PartnerView(categoryId: cat.id);
-                                }).toList(),
+                                SvgPicture.network(
+                                  item.image!,
+                                  width: 20,
+                                  height: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  item.name,
+                                  style: TextStyle(
+                                    color: _selectedIndex == index
+                                        ? Colors.white
+                                        : Colors.black,
+
+                                    fontWeight: _selectedIndex == index
+                                      ? FontWeight.bold
+                                      : FontWeight.w500
+                                  ),
+                                ),
                               ],
                             ),
                           ),
-                        ],
-                      ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 8,),
+                  Expanded(
+                    child: _selectedIndex == 0
+                        ? const TabViewOneHome()
+                        : PartnerView(
+                        key: ValueKey(category[_selectedIndex].id),
+
+                        categoryId: category[_selectedIndex].id
                     ),
                   ),
                 ],

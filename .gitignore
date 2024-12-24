@@ -1,0 +1,60 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.package
+.pub-cache/
+.pub/
+build/
+android/app/debug.keystore
+
+# iOS related
+ios/Flutter/.last_build_id
+ios/.symlinks
+ios/Pods
+ios/Podfile.lock
+
+# Android related
+*.keystore
+.android
+app/*.iml
+app/build/
+local.properties
+
+# IntelliJ/Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Miscellaneous
+*.log
+*.lock
+*.pyc
+*.pyo
+*.swp
+
+# Firebase/Crashlytics
+firebase_app_id_file.json
+crashlytics-build.properties
+
+# Generated Plugin Registrant
+lib/generated_plugin_registrant.dart
+
+# Coverage
+coverage/
+
+# Windows related
+windows/flutter/ephemeral/
+
+# Web related
+web/.dart_tool/
+web/.flutter-plugins
+web/.flutter-plugins-dependencies
+web/.packages

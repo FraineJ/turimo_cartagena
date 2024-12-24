@@ -1,15 +1,26 @@
 # This is a generated file; do not edit or check into version control.
+file_selector_linux=/Users/frainersimarra/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.3+2/
+file_selector_macos=/Users/frainersimarra/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.4+2/
+file_selector_windows=/Users/frainersimarra/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+3/
 firebase_core=/Users/frainersimarra/.pub-cache/hosted/pub.dev/firebase_core-3.4.0/
 firebase_core_web=/Users/frainersimarra/.pub-cache/hosted/pub.dev/firebase_core_web-2.17.5/
 firebase_messaging=/Users/frainersimarra/.pub-cache/hosted/pub.dev/firebase_messaging-15.1.0/
 firebase_messaging_web=/Users/frainersimarra/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.8.13/
 flutter_local_notifications=/Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_local_notifications-18.0.1/
 flutter_local_notifications_linux=/Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_local_notifications_linux-5.0.0/
+flutter_plugin_android_lifecycle=/Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.24/
 geolocator=/Users/frainersimarra/.pub-cache/hosted/pub.dev/geolocator-12.0.0/
 geolocator_android=/Users/frainersimarra/.pub-cache/hosted/pub.dev/geolocator_android-4.6.1/
 geolocator_apple=/Users/frainersimarra/.pub-cache/hosted/pub.dev/geolocator_apple-2.3.8+1/
 geolocator_web=/Users/frainersimarra/.pub-cache/hosted/pub.dev/geolocator_web-4.0.0/
 geolocator_windows=/Users/frainersimarra/.pub-cache/hosted/pub.dev/geolocator_windows-0.2.3/
+image_picker=/Users/frainersimarra/.pub-cache/hosted/pub.dev/image_picker-1.1.2/
+image_picker_android=/Users/frainersimarra/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+18/
+image_picker_for_web=/Users/frainersimarra/.pub-cache/hosted/pub.dev/image_picker_for_web-3.0.6/
+image_picker_ios=/Users/frainersimarra/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.12+1/
+image_picker_linux=/Users/frainersimarra/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1+1/
+image_picker_macos=/Users/frainersimarra/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1+1/
+image_picker_windows=/Users/frainersimarra/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1+1/
 path_provider_linux=/Users/frainersimarra/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
 path_provider_windows=/Users/frainersimarra/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
 permission_handler=/Users/frainersimarra/.pub-cache/hosted/pub.dev/permission_handler-11.3.1/

@@ -34,7 +34,7 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
               height: MediaQuery.of(context).size.height / 4 - 40,
               autoPlay: true,
               autoPlayInterval: const Duration(seconds: 3),
-              enlargeCenterPage: true,
+
             ),
             items: [
               'https://media.istockphoto.com/id/466497932/es/foto/torre-del-reloj-de-puerta.jpg?s=612x612&w=0&k=20&c=iDG3eUSoQHWvWFwwDmGlWOK0o0KFZ_Xfnw7tR9UdinI=',
@@ -46,7 +46,7 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
                 width: MediaQuery.of(context).size.width,
                 margin: const EdgeInsets.symmetric(horizontal: 5.0),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(8),
                   color: Colors.transparent,
                 ),
                 child: ClipRRect(

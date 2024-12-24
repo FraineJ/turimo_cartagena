@@ -57,6 +57,7 @@ dependencies:
   flutter_launcher_icons: ^0.14.1
   flutter_svg: ^2.0.7
   font_awesome_flutter: ^10.7.0
+  image_picker: ^1.1.2
 
 flutter_icons:
   android: 'launcher_icon'
@@ -85,14 +86,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/gif-imagen-ia.gif
-    - assets/images/chat-bot.gif
     - assets/images/no-image.png
     - assets/images/no-photo.jpg
     - assets/images/logo-app.png
     - assets/images/default-user.jpeg
     - assets/images/menu-icon-04.svg
     - assets/images/icon-gooway.png
+    - assets/images/danger.svg
+    - assets/images/heart.svg
     - lib/presentation/global/environments/environment-dev.json
     - lib/presentation/global/environments/environment-prod.json
   #   - images/a_dot_burr.jpeg

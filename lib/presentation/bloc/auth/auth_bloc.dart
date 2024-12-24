@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:turismo_cartagena/domain/models/login-response.dart';
 import 'package:turismo_cartagena/domain/models/user.model.dart';
 import 'package:turismo_cartagena/domain/usecases/auth.usecases.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -50,7 +49,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
         emit(ErrorAuthenticationState());
       }
     } catch (error) {
-      print("login ${error}");
       emit(ErrorAuthenticationState());
     }
 
@@ -68,14 +66,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
           status: ""
       );
 
-      print("block enviar response ${user}");
-
       emit(LoadingRRegisterState());
 
       final  response = await authCaseUse.register(user);
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      print("response ${response}");
       final dataResponse = UserModel.fromJson(response["data"]);
 
       if (response["status"] == 200) {
@@ -87,7 +82,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
         emit(ErrorRegisterState());
       }
     } catch (error) {
-      print("error ${error}");
       emit(ErrorRegisterState());
     }
   }

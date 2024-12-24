@@ -21,7 +21,7 @@ class CategoryModel {
     id: json["_id"],
     name: json["name"],
     code: json["code"],
-    image: json["imagen"],
+    image: json["image"],
   );
 
   Map<String, dynamic> toJson() => {

@@ -20,7 +20,7 @@ class PlacesBloc extends Bloc<PlacesEvent, PlacesState> {
 
     try {
       final List<PlaceModel> response = await placeCaseUse.getPlaceByCategory(event.id);
-      print("list place ${response}");
+
       if (response.isNotEmpty) {
         emit(SuccessGetPlaceByCategory(placeModel: response));
       } else {

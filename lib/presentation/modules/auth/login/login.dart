@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turismo_cartagena/article_injection.dart';
 import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
+import 'package:turismo_cartagena/presentation/bloc/initial-bloc/initial_bloc.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
 import 'package:turismo_cartagena/presentation/modules/auth/register/register.dart';
 import 'package:turismo_cartagena/presentation/modules/layuot.dart';
@@ -44,6 +45,8 @@ class Authentication extends StatelessWidget {
         }
 
         if (state is SuccessAuthenticationState) {
+          context.read<InitialBloc>().add(IsAuthenticatedEvent(isAuthenticated: true));
+
           Navigator.pop(context);
           Navigator.pushAndRemoveUntil(
               context,

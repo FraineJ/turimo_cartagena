@@ -22,12 +22,12 @@ class EventDetailScreen extends StatelessWidget {
                     child: Image.network(
                       event.imagesUrl.first,
                       width: double.infinity,
-                      height: 250,
+                      height: 280,
                       fit: BoxFit.cover,
                     ),
                 ),
                 Positioned(
-                  top: 20,
+                  top: 40,
                   right: 10,
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -49,7 +49,7 @@ class EventDetailScreen extends StatelessWidget {
                 ),
 
                 Positioned(
-                  top: 20,
+                  top: 40,
                   left: 10,
                   child: GestureDetector(
                     onTap: () =>  Navigator.of(context).pop(),
@@ -88,7 +88,11 @@ class EventDetailScreen extends StatelessWidget {
                   // Dirección
                   Row(
                     children: [
-                      const Icon(Icons.location_on, size: 20, color: Colors.blue),
+                      const Icon(
+                          Icons.location_on,
+                          size: 20, color:
+                          Colors.red
+                      ),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
@@ -128,19 +132,7 @@ class EventDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
 
-                  // Datos adicionales
-                  if (event.dedication.isNotEmpty)
-                    _buildDetailItem(
-                      icon: Icons.local_offer,
-                      title: "Dedicación",
-                      value: event.dedication,
-                    ),
-                  if (event.invite.isNotEmpty)
-                    _buildDetailItem(
-                      icon: Icons.card_giftcard,
-                      title: "Invitación",
-                      value: event.invite,
-                    ),
+
 
                 ],
               ),

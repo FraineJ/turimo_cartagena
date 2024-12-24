@@ -81,8 +81,9 @@ class Utils {
       String id = userMap['id'] ?? '';
       String name = userMap['name'] ?? '';
       String email = userMap['email'] ?? '';
+      String avatar = userMap['avatar'] ?? '';
 
-      return {'token': token, 'id': id, 'name': name, 'email': email };
+      return {'token': token, 'id': id, 'name': name, 'email': email, 'avatar': avatar };
     } catch (e) {
       return {'token': ''};
     }
@@ -242,6 +243,24 @@ class Utils {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  static  void showSnackBar(BuildContext context, String message,
+      Color backgroundColor) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: const TextStyle(color: Colors.white),
+        ),
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        backgroundColor: backgroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
   }
 
 

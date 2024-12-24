@@ -1,14 +1,23 @@
 part of 'initial_bloc.dart';
 
-@immutable
-sealed class InitialState {}
+class InitialState extends Equatable {
 
-class AppStartedState extends InitialState {}
+  final bool isAuthenticated;
+  bool get isLoginApp => isAuthenticated;
 
-class IsAuthenticatedState extends InitialState {}
+  const InitialState({
+    required this.isAuthenticated
+  });
 
-class IsAuthenticatedSuccess extends InitialState {
+  InitialState copyWith({
+    bool? isAuthenticated,
+  }) => InitialState (
+    isAuthenticated: isAuthenticated ?? this.isAuthenticated,
+  );
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [isAuthenticated];
+
 }
 
-class IsAuthenticatedFailure extends InitialState {
-}

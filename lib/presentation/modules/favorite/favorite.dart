@@ -55,16 +55,16 @@ class _FavoriteViewState extends State<FavoriteView> {
       body: SafeArea(
         child: MultiBlocProvider(
           providers: [
-            BlocProvider(create: (_) => InitialBloc(sl())..add(AppInitialEvent())),
+            BlocProvider(create: (_) => InitialBloc()..add(AppInitialEvent())),
             BlocProvider(create: (_) => PartnerBloc(sl())),
           ],
           child: BlocBuilder<InitialBloc, InitialState>(
             builder: (context, state) {
-              if (state is IsAuthenticatedSuccess) {
+              if (state.isLoginApp) {
                 isAuth = true;
                 context.read<PartnerBloc>().add(GetPartnerFavoriteByUserEvent());
                 return _buildPartnerBloc();
-              } else if (state is IsAuthenticatedFailure) {
+              } else  {
                 isAuth = false;
                 return _buildErrorOrEmptyView(
                   title: S.current.Favorites,
@@ -170,7 +170,7 @@ class _FavoriteViewState extends State<FavoriteView> {
           Expanded(
             child: customWidget ??
                 Widgets.NoDataWidget(
-                  icon: icon,
+                  svgPath: "assets/images/heart.svg",
                   title: title,
                   description: description,
                 ),
