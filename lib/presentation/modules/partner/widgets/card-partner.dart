@@ -265,4 +265,5 @@ class _PropertyCardStateState extends State<PropertyCardState> {
       ],
     );
   }
+
 }

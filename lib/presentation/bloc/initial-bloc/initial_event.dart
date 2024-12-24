@@ -9,9 +9,7 @@ class InitialEvent extends Equatable {
 
 }
 
-class AppInitialEvent extends InitialEvent {
-
-}
+class AppInitialEvent extends InitialEvent {}
 
 class IsAuthenticatedEvent extends InitialEvent {
 

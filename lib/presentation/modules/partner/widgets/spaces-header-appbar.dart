@@ -144,6 +144,8 @@ class _SpacesHeaderAppBarState extends State<SpacesHeaderAppBar> {
               Navigator.of(context).pop();
             },
           ),
-        ));
+        )
+    );
   }
+
 }

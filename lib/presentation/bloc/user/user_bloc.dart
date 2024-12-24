@@ -45,5 +45,4 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Future<void>  updateInfoUse(Map data) async {
   }
 
-
 }

@@ -11,5 +11,4 @@ class UploadAvatarUserEvent extends UserEvent{
   UploadAvatarUserEvent(this.image);
 }
 
-
 class UpdateInfoUserEvent extends UserState {}

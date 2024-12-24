@@ -10,7 +10,6 @@ class InitialBloc extends Bloc<InitialEvent, InitialState> {
       : super(const InitialState(
     isAuthenticated: false,
   )) {
-    // Manejadores de eventos
     on<AppInitialEvent>((event, emit) async {
       await _initIsAuthenticated(emit);
     });
@@ -21,11 +20,9 @@ class InitialBloc extends Bloc<InitialEvent, InitialState> {
       ));
     });
 
-    // Iniciar el primer evento explícitamente
     add(AppInitialEvent());
   }
 
-  // Inicializar autenticación
   Future<void> _initIsAuthenticated(Emitter<InitialState> emit) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isAuthenticated = prefs.containsKey('user_login');

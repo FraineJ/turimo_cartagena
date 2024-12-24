@@ -54,4 +54,5 @@ initArticlesInjections() {
   sl.registerLazySingleton<UserCaseUse>(
           () => UserCaseUse(sl<UserRepository>()));
   sl.registerLazySingleton<UserRepository>(() => HttpUserService());
+
 }

@@ -8,7 +8,6 @@ final class UserInitial extends UserState {}
 
 class LoadingRequestedState extends UserState{}
 
-
 //UPLOAD AVATAR USER
 class SuccessUploadAvatarState extends UserState{}
 
