@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:turismo_cartagena/domain/models/respose.model.dart';
 import 'package:turismo_cartagena/domain/models/user.model.dart';
 import 'package:turismo_cartagena/domain/usecases/auth.usecases.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,6 +17,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
     on<LoginEvent>(_login);
     on<RegisterEvent>(_register);
     on<LogoutRequested>(_logout);
+    on<RecoverPasswordEvent>(_recoverPassword);
+    on<VerifyCodeOtpEvent>(_verifyCodeOtp);
   }
 
   Future _login(LoginEvent event, Emitter<AuthBlocState> emit) async {
@@ -92,5 +95,49 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
     if (response == true) {
       emit(LogoutRequestedSuccessState());
     }
+  }
+
+
+  Future _recoverPassword(RecoverPasswordEvent event, Emitter<AuthBlocState> emit) async {
+
+    try {
+      emit(LoadingRecoverPasswordState());
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final ResponsePages response = await authCaseUse.recoverPassword(event.email);
+      if (response.status == 200) {
+
+        String userJson = jsonEncode({
+          "id": response.data[0]['id'],
+          "email": response.data[0]['email'],
+        });
+
+        prefs.setString('local_info', userJson);
+
+        emit(SuccessRecoverPasswordState(responsePages: response ));
+      } else {
+        emit(ErrorRecoverPasswordState(responsePages: response ));
+      }
+    } catch (error) {
+      ResponsePages response = ResponsePages(data: [], menssage: "Ha ocurrido un error inesperado", status: 400);
+      emit(ErrorRecoverPasswordState(responsePages: response));
+    }
+  }
+
+  Future _verifyCodeOtp(VerifyCodeOtpEvent event, Emitter<AuthBlocState> emit) async {
+    String code = event.code;
+
+    emit(VerifyCodeLoadingState());
+    try {
+      final ResponsePages response = await authCaseUse.verifyOtp(code);
+      if (response.status == 200) {
+        emit(VerifyCodeSuccessState(responsePages: response));
+      } else {
+        emit(VerifyCodeErrorState(responsePages: response));
+      }
+    } catch (error) {
+      ResponsePages response = ResponsePages(data: [], menssage: "Ha ocurrido un error inesperado", status: 400);
+      emit(VerifyCodeErrorState(responsePages: response));
+    }
+
   }
 }

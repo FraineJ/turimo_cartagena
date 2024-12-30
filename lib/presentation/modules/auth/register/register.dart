@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turismo_cartagena/article_injection.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
-import 'package:turismo_cartagena/presentation/modules/auth/login/login.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
+import 'package:turismo_cartagena/presentation/modules/layuot.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Register extends StatelessWidget {
@@ -86,7 +86,7 @@ class CustomerForm extends StatelessWidget {
             colorIcon: const Color(0xFF01e63d),
             onPressed: () => Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => Login()),
+              MaterialPageRoute(builder: (context) => Layout()),
                   (route) => false,
             ),
           ).mostrarAlerta(context);

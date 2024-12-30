@@ -4,7 +4,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turismo_cartagena/article_injection.dart';
-import 'package:turismo_cartagena/domain/repositorys/device_user.repository.dart';
 import 'package:turismo_cartagena/domain/usecases/device-user.usecases.dart';
 
 Future<void> handlerNotificationBackground(RemoteMessage message) async {
@@ -32,7 +31,7 @@ class FirebaseApiNotification {
       sound: true,
     );
 
-    const androidSettings = AndroidInitializationSettings('@drawable/ic_launcher');
+    const androidSettings = AndroidInitializationSettings('@drawable/launcher_icon');
     const initializationSettings = InitializationSettings(android: androidSettings);
     await _localNotifications.initialize(initializationSettings);
 
@@ -54,7 +53,7 @@ class FirebaseApiNotification {
               channelDescription: _androidChannel.description,
               importance: Importance.high,
               priority: Priority.high,
-              icon: '@drawable/ic_launcher', // Cambia por el nombre de tu ícono personalizado si es necesario
+              icon: '@drawable/launcher_icon', // Cambia por el nombre de tu ícono personalizado si es necesario
             ),
           ),
         );

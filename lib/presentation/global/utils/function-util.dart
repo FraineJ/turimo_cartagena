@@ -264,4 +264,25 @@ class Utils {
   }
 
 
+  static Future<Map<String, String>> getLocalInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String user = prefs.getString('local_info') ?? '';
+
+    if (user.isEmpty) {
+      return {};
+    }
+
+    try {
+      Map<String, dynamic> userMap = jsonDecode(user);
+
+      String id = userMap['id'] ?? '';
+      String email = userMap['email'] ?? '';
+
+      return {'id': id, 'email': email };
+    } catch (e) {
+      return {'token': ''};
+    }
+  }
+
 }

@@ -23,4 +23,12 @@ class AuthCaseUse {
   Future<bool> isUserAuthenticated() async {
     return _authRepository.isUserAuthenticated();
   }
+
+  Future recoverPassword(String email) async {
+    return _authRepository.recoverPassword(email);
+  }
+
+  Future verifyOtp(String code) async{
+    return await _authRepository.verifyOtp(code);
+  }
 }

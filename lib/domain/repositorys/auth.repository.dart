@@ -9,4 +9,8 @@ abstract class AbstractAuthRepository {
   Future<bool> logout();
 
   Future<bool> isUserAuthenticated();
+
+  Future recoverPassword(String email);
+
+  Future verifyOtp(String code);
 }

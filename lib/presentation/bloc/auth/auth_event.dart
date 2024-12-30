@@ -45,3 +45,15 @@ class ErrorRequested extends AuthEvent {
 
   List<Object?> get props => [];
 }
+
+
+class RecoverPasswordEvent extends AuthEvent {
+  final String email;
+  const RecoverPasswordEvent({required this.email});
+}
+
+
+class VerifyCodeOtpEvent extends AuthEvent {
+  final String code;
+  const VerifyCodeOtpEvent(this.code);
+}

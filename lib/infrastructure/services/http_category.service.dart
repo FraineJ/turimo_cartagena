@@ -18,14 +18,13 @@ class HttpCategoryService extends CategoryRepository {
     try {
       final response = await http.get(
           Uri.parse(apiUrl)
-      ).timeout(Duration(seconds: 5));
+      ).timeout(Duration(seconds: 15));
 
       final body = jsonDecode(response.body);
       final List<dynamic> jsonDataList = body["data"] as List<dynamic>;
       final List<CategoryModel> category = jsonDataList.map((jsonData) => CategoryModel.fromJson(jsonData)).toList();
 
       if(response.statusCode == 200) {
-        print("category response ${category[0]}");
         return category;
       }
 
@@ -37,7 +36,7 @@ class HttpCategoryService extends CategoryRepository {
       return [];
     }
     catch (error) {
-      print("response error");
+      print("response error ${error}");
 
       return error;
     }

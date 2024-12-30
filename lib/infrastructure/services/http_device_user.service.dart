@@ -16,8 +16,13 @@ class HttpDeviceUserService extends DeviceUserRepository {
     String apiUrl  = "${environment.baseUrl}/device/create";
 
     try {
+      if(token.isEmpty){
+        return [];
+      }
+
       final response = await http.post(
           Uri.parse(apiUrl),
+          headers: {"Content-Type": "application/json"},
           body:  jsonEncode({"token" : token})
       );
 

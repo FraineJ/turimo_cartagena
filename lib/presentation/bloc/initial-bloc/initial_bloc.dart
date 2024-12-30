@@ -15,6 +15,8 @@ class InitialBloc extends Bloc<InitialEvent, InitialState> {
     });
 
     on<IsAuthenticatedEvent>((event, emit) {
+      print("IsAuthenticatedEvent received: ${event.isAuthenticated}");
+
       emit(state.copyWith(
         isAuthenticated: event.isAuthenticated,
       ));

@@ -136,12 +136,15 @@ class _FavoriteViewState extends State<FavoriteView> {
             itemBuilder: (context, index) {
               final partner = PartnersModel.fromJson(partnerResponse[index]["partner"]);
               return GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => PartnerDetailScreen(partners: partner),
-                  ),
-                ),
+                onTap: () {
+
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                        create: (context) => PartnerBloc(sl()),
+                        child: PartnerDetailScreen(partners: partner)
+                    ),
+                  ));
+                },
                 child: CardPartner(
                   partner: partner,
                   onFavoriteToggle: () => _toggleFavorite(context, partner),

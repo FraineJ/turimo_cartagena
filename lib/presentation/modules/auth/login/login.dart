@@ -4,6 +4,7 @@ import 'package:turismo_cartagena/article_injection.dart';
 import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
 import 'package:turismo_cartagena/presentation/bloc/initial-bloc/initial_bloc.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
+import 'package:turismo_cartagena/presentation/modules/auth/recoverPassword/recover-password.dart';
 import 'package:turismo_cartagena/presentation/modules/auth/register/register.dart';
 import 'package:turismo_cartagena/presentation/modules/layuot.dart';
 
@@ -41,7 +42,7 @@ class Authentication extends StatelessWidget {
         if (state is ErrorAuthenticationState) {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Ha ocurrido un error inesperado")));
+              const SnackBar(content: Text("Usuario o contraseña inválidos. Intenta nuevamente.")));
         }
 
         if (state is SuccessAuthenticationState) {
@@ -120,6 +121,23 @@ class Authentication extends StatelessWidget {
                                   }
                                 }
                               },
+                            ),
+                            const SizedBox(height: 16),
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => RecoverPassword())
+                                );
+                              },
+                              child: const Center(
+                                child:  Text("¿Olvidaste tu contraseña?",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xFF009C47)
+                                  ),
+                                ),
+                              ),
                             ),
                             const SizedBox(height: 16),
                             W.RegistrationButton(

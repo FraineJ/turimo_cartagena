@@ -47,7 +47,12 @@ class _PlaceCardState extends State<PlaceCardView> {
 
     return GestureDetector(
       onTap: (){
-        Navigator.push(context,MaterialPageRoute(builder: (context)  => PartnerDetailScreen(partners: partner)));
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => BlocProvider(
+              create: (context) => PartnerBloc(sl()),
+              child: PartnerDetailScreen(partners: partner)
+          ),
+        ));
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),

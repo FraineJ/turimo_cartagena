@@ -7,6 +7,7 @@ class InputTextCustom extends StatefulWidget {
   final IconData? suffixIcon;
   final IconData? prefixIcon;
   final bool isPassword;
+  final bool isEmail;
   final bool isRequired;
   final String? requiredText;
   final TextInputType keyboardType;
@@ -24,6 +25,7 @@ class InputTextCustom extends StatefulWidget {
     this.suffixIcon,
     this.prefixIcon,
     this.isPassword = false,
+     this.isEmail = false,
     this.isRequired = false,
     this.requiredText,
     this.keyboardType = TextInputType.text,
@@ -40,6 +42,18 @@ class InputTextCustom extends StatefulWidget {
 class _InputTextCustomState extends State<InputTextCustom> {
   bool _obscureText = true;
   String? _errorMessage;
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'El correo electrónico es obligatorio';
+    }
+    // Expresión regular para un correo válido
+    final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+    if (!emailRegex.hasMatch(value)) {
+      return 'Por favor, ingresa un correo electrónico válido';
+    }
+    return null; // Devuelve null si no hay errores
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +84,7 @@ class _InputTextCustomState extends State<InputTextCustom> {
             : Icon(widget.suffixIcon),
         errorText: _errorMessage,
       ),
-      validator: (value) {
+      validator: widget.isRequired == true ? (value) {
         if (widget.isRequired && (value == null || value.isEmpty)) {
           return widget.requiredText ?? 'Este campo es requerido';
         }
@@ -80,7 +94,7 @@ class _InputTextCustomState extends State<InputTextCustom> {
           return 'Debe tener al menos ${widget.minLength} caracteres';
         }
         return null;
-      },
+      } : widget.isEmail == true ?  _validateEmail : null,
       onChanged: (value) {
 
 

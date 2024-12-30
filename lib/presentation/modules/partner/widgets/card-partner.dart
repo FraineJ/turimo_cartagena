@@ -45,6 +45,7 @@ class _PropertyCardStateState extends State<PropertyCardState> {
   }
 
   void _toggleFavorite(BuildContext context, bool isAuth) {
+    print("is auteh $isAuth");
     if (!isAuth) {
       SHARED.Utils.showSnackBar(
         context,
@@ -77,7 +78,7 @@ class _PropertyCardStateState extends State<PropertyCardState> {
       child: BlocBuilder<InitialBloc, InitialState>(
         builder: (context, state) {
           final isAuth = state.isLoginApp;
-
+          print("estado del auth $isAuth");
           return GestureDetector(
             onTap: () {
 

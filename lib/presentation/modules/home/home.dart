@@ -226,7 +226,6 @@ class _HomeViewState extends State<Home>
                         ? const TabViewOneHome()
                         : PartnerView(
                         key: ValueKey(category[_selectedIndex].id),
-
                         categoryId: category[_selectedIndex].id
                     ),
                   ),
