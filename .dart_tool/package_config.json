@@ -200,6 +200,12 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "flutter_animate",
+      "rootUri": "file:///Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_animate-4.5.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_bloc",
       "rootUri": "file:///Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_bloc-8.1.3",
       "packageUri": "lib/",
@@ -254,6 +260,12 @@
       "languageVersion": "3.5"
     },
     {
+      "name": "flutter_shaders",
+      "rootUri": "file:///Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_shaders-0.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "flutter_svg",
       "rootUri": "file:///Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_svg-2.0.16",
       "packageUri": "lib/",
@@ -264,6 +276,12 @@
       "rootUri": "file:///Applications/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.3"
+    },
+    {
+      "name": "flutter_tts",
+      "rootUri": "file:///Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_tts-4.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
     },
     {
       "name": "flutter_web_plugins",
@@ -806,7 +824,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-12-27T18:21:11.531401Z",
+  "generated": "2024-12-30T23:43:52.928387Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///Applications/flutter",

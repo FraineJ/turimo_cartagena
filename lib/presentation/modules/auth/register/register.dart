@@ -4,6 +4,7 @@ import 'package:turismo_cartagena/article_injection.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
+import 'package:turismo_cartagena/presentation/modules/auth/widgets/password-validator.widget.dart';
 import 'package:turismo_cartagena/presentation/modules/layuot.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -189,6 +190,7 @@ class CustomerForm extends StatelessWidget {
                       keyboardType: TextInputType.visiblePassword,
                     ),
                     const SizedBox(height: 16),
+                    PasswordValidatorWidget(controller: password),
                     W.InputTextCustom(
                       hintText: S.current.confirmPasswordRegister,
                       labelText: S.current.confirmPasswordRegister,

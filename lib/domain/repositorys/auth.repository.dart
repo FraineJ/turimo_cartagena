@@ -13,4 +13,7 @@ abstract class AbstractAuthRepository {
   Future recoverPassword(String email);
 
   Future verifyOtp(String code);
+
+
+  Future changePassword(String password);
 }

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:turismo_cartagena/domain/models/event.model.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class EventDetailScreen extends StatelessWidget {
   final EventModel event;
 
-  const EventDetailScreen({Key? key, required this.event}) : super(key: key);
+  EventDetailScreen({Key? key, required this.event}) : super(key: key);
+  final FlutterTts flutterTts = FlutterTts();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -131,6 +135,7 @@ class EventDetailScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 16, color: Colors.black87),
                   ),
                   const SizedBox(height: 16),
+
 
 
 

@@ -70,3 +70,25 @@ class VerifyCodeErrorState extends AuthBlocState {
 }
 
 class VerifyCodeLoadingState extends AuthBlocState {}
+
+
+// STATES CHANGE PASSWORD
+
+class LoadingChangePasswordState extends AuthBlocState {}
+
+class SuccessChangePasswordState extends AuthBlocState {
+  final ResponsePages responsePages;
+  const SuccessChangePasswordState({required this.responsePages});
+
+  @override
+  List<Object> get props => [responsePages];
+
+}
+
+class ErrorChangePasswordState extends AuthBlocState {
+  final ResponsePages responsePages;
+  const ErrorChangePasswordState({required this.responsePages});
+
+  @override
+  List<Object> get props => [responsePages];
+}

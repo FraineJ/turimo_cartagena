@@ -57,3 +57,8 @@ class VerifyCodeOtpEvent extends AuthEvent {
   final String code;
   const VerifyCodeOtpEvent(this.code);
 }
+
+class ChangePasswordEvent extends AuthEvent {
+  final String password;
+  const ChangePasswordEvent({required this.password});
+}

@@ -128,4 +128,31 @@ class HttpLoginService extends AbstractAuthRepository {
       return error;
     }
   }
+
+  @override
+  Future changePassword(String password) async {
+    final environment = await Environment.forEnvironment('environment-dev');
+    String apiUrl  = "${environment.baseUrl}/mail/validateCodeOTP";
+
+    try {
+      Map<String, String> userDetails = await Global.Utils.getLocalInfo();
+      final String? userId = userDetails['id'];
+
+
+      final response = await http.post(Uri.parse(apiUrl),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: jsonEncode({'code': password, 'id': userId})
+      );
+
+      final body = jsonDecode(response.body);
+      final ResponsePages dataResponse = ResponsePages.fromJson(body);
+
+      return dataResponse;
+
+    } catch (error) {
+      return error;
+    }
+  }
 }

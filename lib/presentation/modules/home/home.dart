@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
@@ -12,6 +13,7 @@ import 'package:turismo_cartagena/presentation/bloc/category/category_bloc.dart'
 import 'package:turismo_cartagena/presentation/global/widgets/no-data.dart';
 import 'package:turismo_cartagena/presentation/modules/home/pages/tab-view-one.dart';
 import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
+import 'package:turismo_cartagena/presentation/modules/home/widgest/flag_animada.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/partner.dart';
 
 class HomeView extends StatelessWidget {
@@ -46,7 +48,8 @@ class _HomeViewState extends State<Home>
   final ScrollController _scrollController = ScrollController();
 
   void _scrollToIndex(int index) {
-    const double itemWidth = 100.0; // Ancho estimado del elemento (ajusta según tu diseño)
+    const double itemWidth =
+        100.0; // Ancho estimado del elemento (ajusta según tu diseño)
     final double targetOffset = index * itemWidth;
     _scrollController.animateTo(
       targetOffset,
@@ -128,20 +131,19 @@ class _HomeViewState extends State<Home>
                   svgPath: "assets/images/danger.svg",
                   title: "Error del Servidor",
                   description:
-                  "Ocurrió un problema al conectarse con el servidor. Por favor, inténtelo nuevamente más tarde.",
+                      "Ocurrió un problema al conectarse con el servidor. Por favor, inténtelo nuevamente más tarde.",
                 ),
               );
             }
 
             if (state is SuccessGetCategory) {
-
               category = [
                 CategoryModel(
                   id: '0',
                   code: '0',
                   name: "Destacados",
                   image:
-                  "https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/categories/destacado/destacado.svg",
+                      "https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/categories/destacado/destacado.svg",
                 ),
                 ...state.categoryModel,
               ];
@@ -149,15 +151,17 @@ class _HomeViewState extends State<Home>
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4.0),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16, vertical: 4.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Image(
                           image: AssetImage("assets/images/logo-app.png"),
                           width: 150,
-                        )
+                        ),
+                        AnimatedImage()
                       ],
                     ),
                   ),
@@ -172,15 +176,15 @@ class _HomeViewState extends State<Home>
                         return GestureDetector(
                           onTap: () {
                             setState(() {
-                              _selectedIndex = index; // Cambiar el índice seleccionado
+                              _selectedIndex =
+                                  index; // Cambiar el índice seleccionado
                             });
                             _scrollToIndex(index);
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(horizontal: 8.0),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 0.0
-                            ),
+                                horizontal: 16.0, vertical: 0.0),
                             decoration: BoxDecoration(
                               color: _selectedIndex == index
                                   ? Colors.green
@@ -188,9 +192,9 @@ class _HomeViewState extends State<Home>
                               borderRadius: BorderRadius.circular(25),
                               border: Border.all(
                                 color: _selectedIndex == index
-                                ? Colors.transparent
-                                : Colors.grey[400]!,
-                                width: 1.0,         // Ancho del borde
+                                    ? Colors.transparent
+                                    : Colors.grey[400]!,
+                                width: 1.0, // Ancho del borde
                               ),
                             ),
                             child: Row(
@@ -204,14 +208,12 @@ class _HomeViewState extends State<Home>
                                 Text(
                                   item.name,
                                   style: TextStyle(
-                                    color: _selectedIndex == index
-                                        ? Colors.white
-                                        : Colors.black,
-
-                                    fontWeight: _selectedIndex == index
-                                      ? FontWeight.bold
-                                      : FontWeight.w500
-                                  ),
+                                      color: _selectedIndex == index
+                                          ? Colors.white
+                                          : Colors.black,
+                                      fontWeight: _selectedIndex == index
+                                          ? FontWeight.bold
+                                          : FontWeight.w500),
                                 ),
                               ],
                             ),
@@ -220,14 +222,15 @@ class _HomeViewState extends State<Home>
                       },
                     ),
                   ),
-                  const SizedBox(height: 8,),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   Expanded(
                     child: _selectedIndex == 0
                         ? const TabViewOneHome()
                         : PartnerView(
-                        key: ValueKey(category[_selectedIndex].id),
-                        categoryId: category[_selectedIndex].id
-                    ),
+                            key: ValueKey(category[_selectedIndex].id),
+                            categoryId: category[_selectedIndex].id),
                   ),
                 ],
               );

@@ -94,7 +94,8 @@ class Authentication extends StatelessWidget {
                                 labelText: 'Correo electrónico',
                                 prefixIcon: Icons.email,
                                 controller: username,
-                                isRequired: true,
+                                isRequired: false,
+                                isEmail: true,
                                 keyboardType: TextInputType.emailAddress
                             ),
                             const SizedBox(height: 16),

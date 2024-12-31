@@ -31,4 +31,8 @@ class AuthCaseUse {
   Future verifyOtp(String code) async{
     return await _authRepository.verifyOtp(code);
   }
+
+  Future changePassword(String password) async{
+    return await _authRepository.verifyOtp(password);
+  }
 }

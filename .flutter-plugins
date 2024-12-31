@@ -9,6 +9,7 @@ firebase_messaging_web=/Users/frainersimarra/.pub-cache/hosted/pub.dev/firebase_
 flutter_local_notifications=/Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_local_notifications-18.0.1/
 flutter_local_notifications_linux=/Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_local_notifications_linux-5.0.0/
 flutter_plugin_android_lifecycle=/Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.24/
+flutter_tts=/Users/frainersimarra/.pub-cache/hosted/pub.dev/flutter_tts-4.2.1/
 geolocator=/Users/frainersimarra/.pub-cache/hosted/pub.dev/geolocator-12.0.0/
 geolocator_android=/Users/frainersimarra/.pub-cache/hosted/pub.dev/geolocator_android-4.6.1/
 geolocator_apple=/Users/frainersimarra/.pub-cache/hosted/pub.dev/geolocator_apple-2.3.8+1/

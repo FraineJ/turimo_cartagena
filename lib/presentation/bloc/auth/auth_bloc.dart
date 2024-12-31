@@ -97,7 +97,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
     }
   }
 
-
   Future _recoverPassword(RecoverPasswordEvent event, Emitter<AuthBlocState> emit) async {
 
     try {
@@ -140,4 +139,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
     }
 
   }
+
+  Future _changePassword(ChangePasswordEvent event, Emitter<AuthBlocState> emit) async {
+
+    try {
+      emit(LoadingChangePasswordState());
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final ResponsePages response = await authCaseUse.recoverPassword(event.password);
+      if (response.status == 200) {
+
+        String userJson = jsonEncode({
+          "id": response.data[0]['id'],
+          "email": response.data[0]['email'],
+        });
+
+        prefs.setString('local_info', userJson);
+
+        emit(SuccessChangePasswordState(responsePages: response ));
+      } else {
+        emit(ErrorChangePasswordState(responsePages: response ));
+      }
+    } catch (error) {
+      ResponsePages response = ResponsePages(data: [], menssage: "Ha ocurrido un error inesperado", status: 400);
+      emit(ErrorChangePasswordState(responsePages: response));
+    }
+  }
+
 }
