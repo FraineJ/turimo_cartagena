@@ -1,17 +1,33 @@
-import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/generated/l10n.dart';
+import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
+import 'package:turismo_cartagena/presentation/modules/auth/recoverPassword/recover-password.dart';
 import 'package:turismo_cartagena/presentation/modules/auth/widgets/password-validator.widget.dart';
+import 'package:turismo_cartagena/presentation/modules/profile/profile.dart';
 
-class ChangePassword extends StatefulWidget {
 
-  const ChangePassword({Key? key}) : super(key: key);
 
+class ChangePassword extends StatelessWidget {
   @override
-  State<ChangePassword> createState() => _ChangePasswordState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => AuthBloc(sl()),
+      child: const ChangePasswordView(),
+    );
+  }
 }
 
-class _ChangePasswordState extends State<ChangePassword> {
+class ChangePasswordView extends StatefulWidget {
+  const ChangePasswordView({Key? key}) : super(key: key);
+  @override
+  State<ChangePasswordView> createState() => _ChangePasswordState();
+}
+
+class _ChangePasswordState extends State<ChangePasswordView> {
 
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
@@ -25,7 +41,57 @@ class _ChangePasswordState extends State<ChangePassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+        body: BlocListener<AuthBloc, AuthBlocState>(
+          listener: (context, state) {
+
+            if (state is LoadingChangePasswordState) {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+
+            if(state is SuccessChangePasswordState) {
+              showDialog(
+                context: context,
+                barrierDismissible: false, // Evita cerrar el diálogo al tocar fuera
+                builder: (BuildContext context) {
+                  return W.AlertScreenPopup(
+                    title: S.current.updatePassword,
+                    message: S.current.textUpdatePassword,
+                    icon:  Icons.check_circle,
+                    iconColor: Color(0xFF01e63d),
+                    actions: [
+                      W.ButtonPrimaryCustom(
+                        width: MediaQuery.of(context).size.width  - 128,
+                        color: const Color(0xFF009C47),
+                        text: S.current.textContinue,
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (context) => ProfileView()),
+                                  (route) => false
+                          );
+                        },
+                      ),
+
+                    ],
+                  );
+                },
+              );
+            }
+
+            if(state is ErrorChangePasswordState) {
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("${state.responsePages.menssage}"))
+              );
+            }
+          },
+          child: Container(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
@@ -74,9 +140,12 @@ class _ChangePasswordState extends State<ChangePassword> {
                   W.RegistrationButton(
                     width: MediaQuery.of(context).size.width / 2 - 20,
                     color: Colors.red,
-                    text: 'Cancelar',
+                    text: S.current.cancel,
                     onPressed: () {
-
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) =>  RecoverPassword()), (route) => false
+                      );
                     },
                   ),
                   const SizedBox(
@@ -85,7 +154,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   W.ButtonPrimaryCustom(
                     width: MediaQuery.of(context).size.width / 2 - 20,
                     color: const Color(0xFF009C47),
-                    text: 'Continuar',
+                    text: S.current.textContinue,
                     onPressed: () {
                       final password = passwordController.text;
                       if (password.isEmpty ||
@@ -112,7 +181,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                         return;
                       }
 
-                      print("Contraseña válida: $password");
+                      final event = ChangePasswordEvent(
+                        password:  password,
+                      );
+                      context.read<AuthBloc>().add(event);
                     },
                   ),
                ],
@@ -120,7 +192,8 @@ class _ChangePasswordState extends State<ChangePassword> {
               const SizedBox(height: 20,),
             ],
           ),
-        )
+        ),
+)
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:turismo_cartagena/domain/models/place.model.dart';
+import 'package:turismo_cartagena/domain/models/respose.model.dart';
 import 'package:turismo_cartagena/domain/usecases/place.usecases.dart';
 
 part 'places_event.dart';
@@ -9,24 +10,33 @@ part 'places_state.dart';
 class PlacesBloc extends Bloc<PlacesEvent, PlacesState> {
   final PlaceCaseUse placeCaseUse;
   PlacesBloc(this.placeCaseUse) : super(PlacesInitial()) {
-    on<GetPlaceByCategoryEvent>(_getAllPlace);
+    on<GetAllPlaceByCategoryEvent>(_getAllPlace);
     on<AddPlaceFavoriteEvent>(_addPlaceFavorite);
     on<GetPlaceFavoriteByUserEvent>(_getPlaceFavoriteByUser);
   }
 
 
-  Future _getAllPlace(GetPlaceByCategoryEvent event, Emitter<PlacesState> emit) async {
+  Future _getAllPlace(GetAllPlaceByCategoryEvent event, Emitter<PlacesState> emit) async {
     emit(LoadingGetPlaceByCategory());
 
     try {
-      final List<PlaceModel> response = await placeCaseUse.getPlaceByCategory(event.id);
+      final ResponsePages response = await placeCaseUse.getAllPlaceByCategory();
 
-      if (response.isNotEmpty) {
-        emit(SuccessGetPlaceByCategory(placeModel: response));
+      print("response ${response.status}");
+      print("response ${response.data}");
+
+      if (response.status == 200) {
+        List<PlaceModel> place = response.data.map((jsonData) => PlaceModel.fromJson(jsonData))
+        .toList();
+
+        print("response status ${place}");
+
+        emit(SuccessGetPlaceByCategory(placeModel: place));
       } else {
         emit(ErrorGetPlaceByCategory());
       }
     } catch (error) {
+      print("response ${error}");
       emit(ErrorGetPlaceByCategory());
     }
   }

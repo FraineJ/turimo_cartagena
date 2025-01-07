@@ -7,6 +7,10 @@ sealed class PlacesEvent {
 
 class InitialPlaceEvent extends PlacesEvent{}
 
+class GetAllPlaceByCategoryEvent extends PlacesEvent{
+  const GetAllPlaceByCategoryEvent(): super();
+}
+
 
 class GetPlaceByCategoryEvent extends PlacesEvent{
   final String id;

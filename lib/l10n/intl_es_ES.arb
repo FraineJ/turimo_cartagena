@@ -2,6 +2,7 @@
   "where_to_go_today" : "¿A dónde quieres ir hoy?",
   "places" : "Lugares",
   "Explore" : "Explorar",
+  "Home" : "Inicio",
   "Favorites" : "Favoritos",
   "Trips" : "Viajes",
   "Profile" : "Perfil",
@@ -34,6 +35,22 @@
   "retry": "Reintentar",
   "deleteAccount": "Eliminar cuenta",
   "deleteAccountMessage": "La eliminación de la cuenta es definitiva. Si elimina tu cuanta de Gooway, no podras recuperarla el contenido ni la información que nos compartistes, tambien se eliminara Tus favoritos y reseñas",
-  "textContinue" : "Continuar"
+  "textContinue" : "Continuar",
+  "errorServer" : "Ha ocurrido un error. Por favor, inténtalo más tarde.",
+  "textValidateUppercase": "Al menos una mayúscula.",
+  "textPasswordRequired": "Tu contraseña debe cumplir con los siguientes requisitos:",
+  "characterSpecial": "Al menos un carácter especial",
+  "sixCharacters": "Más de 6 caracteres",
+  "userRegister": "Usuario registrado",
+  "textSuccessRegister": "¡Tu cuenta se ha creado con éxito! Ahora puedes explorar y disfrutar de todo lo que tenemos para ti. ¡Bienvenido!",
+  "passwordNotMatch" : "Las contraseñas no coinciden.",
+  "passwordRequirements": "La contraseña debe cumplir con los requisitos",
+  "titleEmailInvalid": "Correo inválido",
+  "textEmailInvalid": "El correo electrónico ingresado no es válido. Por favor, revisa y asegúrate de que esté correctamente escrito para continuar.",
+  "back": "Regresar",
+  "cancel" : "Cancelar",
+  "updatePassword": "Contraseña Actualizada",
+  "textUpdatePassword": "Tu contraseña se ha cambiado con éxito.",
+  "chatAna": "Ana"
 
 }

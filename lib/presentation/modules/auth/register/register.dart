@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:turismo_cartagena/article_injection.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
+import 'package:turismo_cartagena/presentation/global/widgets/alertMessage.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
 import 'package:turismo_cartagena/presentation/modules/auth/widgets/password-validator.widget.dart';
 import 'package:turismo_cartagena/presentation/modules/layuot.dart';
@@ -64,8 +66,20 @@ class CustomerForm extends StatelessWidget {
     }
   }
 
+  bool validatePassword(String password) {
+
+    if (password.contains(RegExp(r'[A-Z]')) && password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]')) && password.length > 6 ) {
+      return true;
+    }
+
+    return false;
+  }
+
+
   @override
   Widget build(BuildContext context) {
+
+
     return BlocListener<AuthBloc, AuthBlocState>(
       listener: (context, state) {
 
@@ -80,28 +94,40 @@ class CustomerForm extends StatelessWidget {
         }
 
         if (state is SuccessRegisterState) {
-          W.AlertScreen(
-            message: "Uusario registrado",
-            title: "Registro Exitoso",
-            icon: Icons.check_circle,
-            colorIcon: const Color(0xFF01e63d),
-            onPressed: () => Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => Layout()),
-                  (route) => false,
-            ),
-          ).mostrarAlerta(context);
-        } else if (state is ErrorRegisterState) {
-          W.AlertScreen(
-            message: "Verifique los datos ingresados",
-            title: "Registro Fallido",
-            icon: Icons.cancel,
-            colorIcon: const Color(0xFFf03705),
-            onPressed: () => {
-              Navigator.pop(context),
-              Navigator.pop(context)
+
+          showDialog(
+            context: context,
+            barrierDismissible: false, // Evita cerrar el diálogo al tocar fuera
+            builder: (BuildContext context) {
+              return W.AlertScreenPopup(
+                title: S.current.userRegister,
+                message: S.current.textSuccessRegister,
+                icon:  Icons.check_circle,
+                iconColor: Color(0xFF01e63d),
+                actions: [
+                  W.ButtonPrimaryCustom(
+                    width: MediaQuery.of(context).size.width  - 128,
+                    color: const Color(0xFF009C47),
+                    text: S.current.textContinue,
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => Layout()),
+                      (route) => false);
+                    },
+                  ),
+
+                ],
+              );
             },
-          ).mostrarAlerta(context);
+          );
+
+        } else if (state is ErrorRegisterState) {
+
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("${state.responsePages.menssage}"))
+          );
         }
       },
       child: Scaffold(
@@ -190,7 +216,7 @@ class CustomerForm extends StatelessWidget {
                       keyboardType: TextInputType.visiblePassword,
                     ),
                     const SizedBox(height: 16),
-                    PasswordValidatorWidget(controller: password),
+
                     W.InputTextCustom(
                       hintText: S.current.confirmPasswordRegister,
                       labelText: S.current.confirmPasswordRegister,
@@ -202,6 +228,8 @@ class CustomerForm extends StatelessWidget {
                       maxLines: 3,
                       keyboardType: TextInputType.visiblePassword,
                     ),
+                    const SizedBox(height: 16),
+                    PasswordValidatorWidget(controller: password),
                     const SizedBox(height: 16),
                     InkWell(
 
@@ -244,6 +272,7 @@ class CustomerForm extends StatelessWidget {
                       text: 'Registrarse',
                       onPressed: () => _submitForm(context),
                     ),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ),
@@ -257,24 +286,43 @@ class CustomerForm extends StatelessWidget {
   void _submitForm(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       if (email.text.isEmpty || !RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email.text)) {
-        W.AlertScreen(
-          message: "Por favor, ingrese un correo electrónico válido.",
-          title: "Correo Inválido",
-          icon: Icons.warning,
-          colorIcon: Colors.orange,
-          onPressed: () => Navigator.pop(context),
-        ).mostrarAlerta(context);
+
+        showDialog(
+          context: context,
+          barrierDismissible: false, // Evita cerrar el diálogo al tocar fuera
+          builder: (BuildContext context) {
+            return W.AlertScreenPopup(
+              title: S.current.titleEmailInvalid,
+              message: S.current.textEmailInvalid,
+              icon: Icons.alternate_email,
+              iconColor: Colors.red,
+              actions: [
+                W.ButtonPrimaryCustom(
+                  width: MediaQuery.of(context).size.width  - 128,
+                  color: const Color(0xFF009C47),
+                  text: S.current.back,
+                  onPressed: () =>  Navigator.of(context).pop(),
+                ),
+
+              ],
+            );
+          },
+        );
+
+        return;
+      }
+
+      if(!validatePassword(password.text)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(S.current.passwordRequirements))
+        );
         return;
       }
 
       if (password.text != passwordConfirm.text) {
-        W.AlertScreen(
-          message: "Las contraseñas no coinciden.",
-          title: "Error en Contraseñas",
-          icon: Icons.warning,
-          colorIcon: Colors.orange,
-          onPressed: () => Navigator.pop(context),
-        ).mostrarAlerta(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(S.current.passwordNotMatch))
+        );
         return;
       }
 

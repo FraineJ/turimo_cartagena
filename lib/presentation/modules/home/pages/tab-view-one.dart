@@ -1,14 +1,19 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:turismo_cartagena/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/event.model.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/event/event_bloc.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/button-outlined.dart';
 import 'package:turismo_cartagena/presentation/global/widgets/skeleton-card-buys.dart';
+import 'package:turismo_cartagena/presentation/global/widgets/skeleton.dart';
 import 'package:turismo_cartagena/presentation/modules/events/widgets/card-events.dart';
+import 'package:turismo_cartagena/presentation/global/utils/all.dart' as UTILS;
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
 
 class TabViewOneHome extends StatefulWidget {
   const TabViewOneHome({super.key});
@@ -18,6 +23,7 @@ class TabViewOneHome extends StatefulWidget {
 }
 
 class _TabViewOneHomeState extends State<TabViewOneHome> {
+  late final WebViewController _webViewController;
   void _reloadEvents(BuildContext context) {
     context.read<EventBloc>().add(GetEventEvent());
   }
@@ -34,28 +40,83 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
               height: MediaQuery.of(context).size.height / 4 - 40,
               autoPlay: true,
               autoPlayInterval: const Duration(seconds: 3),
-
             ),
             items: [
-              'https://media.istockphoto.com/id/466497932/es/foto/torre-del-reloj-de-puerta.jpg?s=612x612&w=0&k=20&c=iDG3eUSoQHWvWFwwDmGlWOK0o0KFZ_Xfnw7tR9UdinI=',
-              'https://ca-times.brightspotcdn.com/dims4/default/b62e116/2147483647/strip/true/crop/1515x1000+0+0/resize/1200x792!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fec%2F48%2F75fb9d684e1b9673520e911a8a3c%2Fun-destino-para-gozar-958578.JPG',
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Baluarte_de_Santiago_CTG_11_2019_9804.jpg/1200px-Baluarte_de_Santiago_CTG_11_2019_9804.jpg',
-              'https://somosmotta.com/wp-content/uploads/2019/07/fotografia-foto-photo-aviso-letrero-turistico-bienvenida-cartagena-turismo-travel-colombia-fondos-wallpapers-somos-motta.jpg',
-            ].map((imagePath) {
-              return Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.transparent,
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.network(
-                    imagePath,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              {
+                "image": 'https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/carrusel/slider-two.jpeg',
+                "isAd": true,
+                "link": "https://carnavaldebarranquilla.org/"
+              },
+              {
+                "image": 'https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/carrusel/slider-one.webp',
+                "isAd": true,
+                "link": "https://convocatorias.ipcc.gov.co/convocatoria-festival-del-frito-2025"
+              },
+              {
+                "image": 'https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/carrusel/slider-three.webp',
+                "isAd": false,
+                "link": "https://www.hayfestival.com/cartagena/inicio"
+              },
+              {
+                "image": 'https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/carrusel/slider-for.webp',
+                "isAd": false,
+                "link": "https://www.hayfestival.com/cartagena/inicio"
+              }
+            ].map((item) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return GestureDetector(
+                    onTap: (){
+                      UTILS.Utils.launchURL(context, Uri.parse( item["link"].toString()), true);
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.transparent,
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: CachedNetworkImage(
+                              imageUrl: item["image"].toString()!,
+                              fit: BoxFit.fill,
+                              placeholder: (context, url) =>
+                              const Center(child:   Skeleton(height: 160, width: double.infinity),),
+                              errorWidget: (context, url, error) => Image.asset(
+                                "assets/images/no-photo.jpg",
+                                fit: BoxFit.cover, // Asegura que la imagen de respaldo cubra el área
+                              ),
+                            ),
+                          ),
+                        ),
+                        if (item["isAd"] == true)
+                          Positioned(
+                            left: 10,
+                            bottom: 10.0,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 6, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: const Text(
+                                "Publicidad",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  );
+                },
               );
             }).toList(),
           ),
@@ -64,7 +125,8 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               S.current.event,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style:
+              const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(height: 8),
@@ -78,7 +140,7 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
                 if (state is SuccessGetEvent) {
                   final List<EventModel> listModel = state.events;
                   if (listModel.isEmpty) {
-                    return  Center(child: Text(S.current.noFoundEvent));
+                    return Center(child: Text(S.current.noFoundEvent));
                   }
                   return ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
@@ -93,35 +155,38 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
                 if (state is ErrorGetEvent) {
                   return Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal:  16.0, vertical: 30),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 30),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
                             "assets/images/menu-icon-04.svg",
-                            width: 80.0, // Ajusta según tus necesidades
+                            width: 80.0,
                             height: 80.0,
                           ),
                           const SizedBox(height: 16),
-                           Text(S.current.noFoundEvent,
+                          Text(
+                            S.current.noFoundEvent,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 16, color: Colors.black54),
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.black54),
                           ),
                           const SizedBox(height: 16),
                           RegistrationButton(
                             color: Colors.green,
                             width: 190,
                             text: S.current.retry,
-                            onPressed: () => _reloadEvents(context)
+                            onPressed: () => _reloadEvents(context),
                           ),
-
                         ],
                       ),
                     ),
                   );
                 }
-                return const Center(child: Text("Error al cargar los eventos."));
+                return const Center(
+                    child: Text("Error al cargar los eventos."));
               },
             ),
           ),

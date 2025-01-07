@@ -80,6 +80,16 @@ class S {
     );
   }
 
+  /// `Inicio`
+  String get Home {
+    return Intl.message(
+      'Inicio',
+      name: 'Home',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Favoritos`
   String get Favorites {
     return Intl.message(
@@ -405,6 +415,166 @@ class S {
     return Intl.message(
       'Continuar',
       name: 'textContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ha ocurrido un error. Por favor, inténtalo más tarde.`
+  String get errorServer {
+    return Intl.message(
+      'Ha ocurrido un error. Por favor, inténtalo más tarde.',
+      name: 'errorServer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Al menos una mayúscula.`
+  String get textValidateUppercase {
+    return Intl.message(
+      'Al menos una mayúscula.',
+      name: 'textValidateUppercase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tu contraseña debe cumplir con los siguientes requisitos:`
+  String get textPasswordRequired {
+    return Intl.message(
+      'Tu contraseña debe cumplir con los siguientes requisitos:',
+      name: 'textPasswordRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Al menos un carácter especial`
+  String get characterSpecial {
+    return Intl.message(
+      'Al menos un carácter especial',
+      name: 'characterSpecial',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Más de 6 caracteres`
+  String get sixCharacters {
+    return Intl.message(
+      'Más de 6 caracteres',
+      name: 'sixCharacters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Usuario registrado`
+  String get userRegister {
+    return Intl.message(
+      'Usuario registrado',
+      name: 'userRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `¡Tu cuenta se ha creado con éxito! Ahora puedes explorar y disfrutar de todo lo que tenemos para ti. ¡Bienvenido!`
+  String get textSuccessRegister {
+    return Intl.message(
+      '¡Tu cuenta se ha creado con éxito! Ahora puedes explorar y disfrutar de todo lo que tenemos para ti. ¡Bienvenido!',
+      name: 'textSuccessRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Las contraseñas no coinciden.`
+  String get passwordNotMatch {
+    return Intl.message(
+      'Las contraseñas no coinciden.',
+      name: 'passwordNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `La contraseña debe cumplir con los requisitos`
+  String get passwordRequirements {
+    return Intl.message(
+      'La contraseña debe cumplir con los requisitos',
+      name: 'passwordRequirements',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Correo inválido`
+  String get titleEmailInvalid {
+    return Intl.message(
+      'Correo inválido',
+      name: 'titleEmailInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El correo electrónico ingresado no es válido. Por favor, revisa y asegúrate de que esté correctamente escrito para continuar.`
+  String get textEmailInvalid {
+    return Intl.message(
+      'El correo electrónico ingresado no es válido. Por favor, revisa y asegúrate de que esté correctamente escrito para continuar.',
+      name: 'textEmailInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Regresar`
+  String get back {
+    return Intl.message(
+      'Regresar',
+      name: 'back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancelar`
+  String get cancel {
+    return Intl.message(
+      'Cancelar',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contraseña Actualizada`
+  String get updatePassword {
+    return Intl.message(
+      'Contraseña Actualizada',
+      name: 'updatePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tu contraseña se ha cambiado con éxito.`
+  String get textUpdatePassword {
+    return Intl.message(
+      'Tu contraseña se ha cambiado con éxito.',
+      name: 'textUpdatePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ana`
+  String get chatAna {
+    return Intl.message(
+      'Ana',
+      name: 'chatAna',
       desc: '',
       args: [],
     );

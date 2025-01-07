@@ -60,6 +60,10 @@ dependencies:
   image_picker: ^1.1.2
   flutter_tts: ^4.2.1
   flutter_animate: ^4.5.2
+  custom_info_window: ^1.0.1
+  google_maps_flutter: ^2.9.0
+  cached_network_image: ^3.4.0
+  webview_flutter: ^4.10.0
 
 flutter_icons:
   android: 'launcher_icon'
@@ -88,17 +92,20 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/no-image.png
     - assets/images/no-photo.jpg
     - assets/images/logo-app.png
+    - assets/images/icon-location.png
     - assets/images/default-user.jpeg
     - assets/images/menu-icon-04.svg
     - assets/images/icon-gooway.png
+    - assets/images/icon-person.png
     - assets/images/danger.svg
     - assets/images/heart.svg
     - lib/presentation/global/environments/environment-dev.json
     - lib/presentation/global/environments/environment-prod.json
     - assets/images/Flag_of_Cartagena.svg
+    - assets/images/beach-svgrepo-com.svg
+    - assets/images/ana.gif
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

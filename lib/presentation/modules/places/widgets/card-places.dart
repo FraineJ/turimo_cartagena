@@ -11,14 +11,13 @@ import 'package:turismo_cartagena/presentation/modules/places/place-detail.dart'
 class PlaceCard extends StatelessWidget {
   final PlaceModel place;
   final bool autoPlay;
-  bool isFavorite = false;
-  PlaceCard({super.key, required this.place, required this.autoPlay, this.isFavorite = false});
+  PlaceCard({super.key, required this.place, required this.autoPlay,});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => PlacesBloc(sl()),
-      child: PlaceCardView(place: place, autoPlay:  autoPlay, isFavorite: isFavorite)
+      child: PlaceCardView(place: place, autoPlay:  autoPlay)
     );
   }
 }
@@ -51,7 +50,8 @@ class _PlaceCardState extends State<PlaceCardView> {
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        elevation: 0,
+        margin: const EdgeInsets.symmetric(vertical: 8.0),
+        elevation: 1,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -71,14 +71,20 @@ class _PlaceCardState extends State<PlaceCardView> {
                       });
                     },
                   ),
-                  items: place.imagenes!.isNotEmpty
-                      ? place.imagenes!.map((image) {
+                  items: place.imagesUrl!.isNotEmpty
+                      ? place.imagesUrl!.map((image) {
                     return Builder(
                       builder: (BuildContext context) {
-                        return Image.network(
-                          image['url'] ?? "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg",
-                          fit: BoxFit.cover,
-                          width: MediaQuery.of(context).size.width,
+                        return ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0),
+                          ),
+                          child: Image.network(
+                            image ?? "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg",
+                            fit: BoxFit.cover,
+                            width: MediaQuery.of(context).size.width,
+                          ),
                         );
                       },
                     );
@@ -86,41 +92,30 @@ class _PlaceCardState extends State<PlaceCardView> {
                       : [
                     Builder(
                       builder: (BuildContext context) {
-                        return Image.asset(
-                          "assets/images/no-photo.jpg",
-                          fit: BoxFit.cover,
-                          width: MediaQuery.of(context).size.width,
+                        return ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0),
+                          ),
+                          child: Image.asset(
+                            "assets/images/no-photo.jpg",
+                            fit: BoxFit.cover,
+                            width: MediaQuery.of(context).size.width,
+                          ),
                         );
                       },
                     ),
                   ],
                 ),
-                Positioned(
-                  top: 20,
-                  right: 20,
-                  child: IconButton(
-                    icon: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: isFavorite ? Colors.red : Colors.white,
-                      size: 30,
-                    ),
-                    onPressed: () {
-                      final event = AddPlaceFavoriteEvent(id: place.id);
-                      context.read<PlacesBloc>().add(event);
 
-                      setState(() {
-                        isFavorite = !isFavorite;
-                      });
-                    },
-                  ),
-                ),
+
                 Positioned(
                   bottom: 10.0,
                   left: 0.0,
                   right: 0.0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: place.imagenes!.asMap().entries.map((entry) {
+                    children: place.imagesUrl!.asMap().entries.map((entry) {
                       return GestureDetector(
                         onTap: () => setState(() {
                           _currentIndex = entry.key;
@@ -154,10 +149,10 @@ class _PlaceCardState extends State<PlaceCardView> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    place.descripcion,
+                    place.description,
                     style: const TextStyle(
                       fontSize: 14,
-                      color: Colors.black54,
+
                     ),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,

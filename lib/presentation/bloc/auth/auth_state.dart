@@ -27,7 +27,13 @@ class LoadingRRegisterState extends AuthBlocState {}
 
 class SuccessRegisterState extends AuthBlocState {}
 
-class ErrorRegisterState extends AuthBlocState {}
+class ErrorRegisterState extends AuthBlocState {
+  final ResponsePages responsePages;
+  const ErrorRegisterState({required this.responsePages});
+
+  @override
+  List<Object> get props => [responsePages];
+}
 
 
 // STATES RECOVERY PASSWORD

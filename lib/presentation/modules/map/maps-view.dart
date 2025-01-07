@@ -3,33 +3,25 @@ import 'dart:io';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:turismo_cartagena/article_injection.dart';
-import 'package:turismo_cartagena/domain/models/partner.model.dart';
-import 'package:turismo_cartagena/presentation/bloc/partner/partner_bloc.dart';
+import 'package:turismo_cartagena/domain/models/place.model.dart';
+import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/places/places_bloc.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as Widgets;
 import 'package:turismo_cartagena/presentation/modules/map/maps-google.dart';
-import 'package:turismo_cartagena/presentation/modules/partner/partner-detail.dart';
+import 'package:turismo_cartagena/presentation/modules/places/place-detail.dart';
 
-
-class MapView extends StatefulWidget {
-  final bool showAppBar;
-  final String categoryId;
-
-  const MapView({super.key, required this.showAppBar, required this.categoryId});
+class MapViewComponent extends StatefulWidget {
+  MapViewComponent({super.key});
 
   @override
-  _MapViewState createState() => _MapViewState();
+  State<MapViewComponent> createState() => _MapViewComponentState();
 }
 
-class _MapViewState extends State<MapView> {
+class _MapViewComponentState extends State<MapViewComponent> {
+  CustomInfoWindowController controllerCustomInfoWindow = new CustomInfoWindowController();
   Set<Marker> markers = {};
-  final _customInfoWindowController = CustomInfoWindowController();
   BitmapDescriptor? customIcon;
-  Position? originLatLng;
-  Future<Position?>? _currentPositionFuture;
 
   Future<void> _loadCustomMarkerIcon() async {
     if(Platform.isIOS){
@@ -47,66 +39,52 @@ class _MapViewState extends State<MapView> {
     setState(() {});
   }
 
-  Future<Position?> _getCurrentLocation() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
-      setState(() {
-        originLatLng = position;
-      });
-      return position;
-    } catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error getting location: $e')),
-        );
-      }
-      return null;
-    }
-  }
-
-
   @override
   void initState() {
     super.initState();
     _loadCustomMarkerIcon();
-    _currentPositionFuture = _getCurrentLocation(); // Inicializa la posición actual
   }
+
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PartnerBloc(sl())..add(GetPartnerByCategoryEvent(id: widget.categoryId)),
+      create: (context) =>
+      PlacesBloc(sl())
+        ..add(GetAllPlaceByCategoryEvent()),
       child: Scaffold(
         body: SafeArea(
-          child: BlocBuilder<PartnerBloc, PartnersState>(
+          child: BlocBuilder<PlacesBloc, PlacesState>(
             builder: (context, state) {
-
               if (state is LoadingGetPlaceByCategory) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               }
 
-              if (state is SuccessGetPartnerByCategory) {
-                List<PartnersModel> partners = state.partnerModel;
+              if (state is ErrorGetPlaceByCategory) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(S.current.errorServer))
+                );
+              }
 
+              if(state is SuccessGetPlaceByCategory){
+                List<PlaceModel> places = state.placeModel;
 
-                for (int i = 0; i < partners.length; i++) {
+                for (int i = 0; i < places.length; i++) {
                   markers.add(
                     Marker(
                       markerId: MarkerId(i.toString()), // Unique identifier for each marker
                       icon: customIcon ?? BitmapDescriptor.defaultMarker, // Use custom icon if loaded
-                      position: LatLng(partners[i].latitud, partners[i].longitud), // Marker position
+                      position: LatLng(places[i].latitud, places[i].longitud), // Marker position
                       onTap: () {
-                        _customInfoWindowController.addInfoWindow!(
+                        controllerCustomInfoWindow.addInfoWindow!(
                           GestureDetector(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => BlocProvider(
-                                    create: (context) => PartnerBloc(sl()),
-                                    child: PartnerDetailScreen(partners: partners[i])
-                                ),
-                              ));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => PlaceDetailScreen(place: places[i]))
+                              );
                             },
                             child: Column(
                               children: [
@@ -132,11 +110,11 @@ class _MapViewState extends State<MapView> {
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          if (partners[i].imagesUrl != null && partners[i].imagesUrl!.isNotEmpty)
+                                          if (places[i].imagesUrl != null && places[i].imagesUrl!.isNotEmpty)
                                             ClipRRect(
                                               borderRadius: BorderRadius.vertical(top: Radius.circular(12.0)),
                                               child: Image.network(
-                                                partners[i].imagesUrl![0],
+                                                places[i].imagesUrl![0],
                                                 height: 125,
                                                 width: 250,
                                                 fit: BoxFit.cover,
@@ -185,7 +163,7 @@ class _MapViewState extends State<MapView> {
                                   width: double.infinity,
                                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8), // Añadir más padding
                                   child: Text(
-                                    partners[i].name,
+                                    places[i].name,
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18,
@@ -198,7 +176,7 @@ class _MapViewState extends State<MapView> {
                               ],
                             ),
                           ),
-                          LatLng(partners[i].latitud, partners[i].longitud), // Info window position
+                          LatLng(places[i].latitud, places[i].longitud), // Info window position
                         );
                       },
                     ),
@@ -207,22 +185,15 @@ class _MapViewState extends State<MapView> {
               }
 
               return Container(
-                width: double.infinity,
-                height: double.infinity,
                 child: Column(
                   children: [
-                    if (widget.showAppBar)
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Widgets.AppBarCustom(textTitle: "Mapa"),
-                      ),
                     Expanded(
-                      child:  MapGoogle(
+                      child: MapGoogle(
+                        isBarSearch: true,
                         markers: markers,
-                        controllerCustomInfoWindow: _customInfoWindowController,
-                        isBarSearch: false,
-                      )
-                    ),
+                        controllerCustomInfoWindow: controllerCustomInfoWindow,
+                      ),
+                    )
                   ],
                 ),
               );

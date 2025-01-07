@@ -56,7 +56,11 @@ class HttpLoginService extends AbstractAuthRepository {
 
       final body = jsonDecode(response.body);
 
-      return body;
+      print("response register ${body}");
+
+      final ResponsePages dataResponse = ResponsePages.fromJson(body);
+      return dataResponse;
+
     } catch (error) {
       return error;
     }
@@ -92,6 +96,7 @@ class HttpLoginService extends AbstractAuthRepository {
       );
 
       final body = jsonDecode(response.body);
+      print("recoverPassword $body");
       ResponsePages responsePages = ResponsePages.fromJson(body);
 
       return responsePages;
@@ -131,11 +136,13 @@ class HttpLoginService extends AbstractAuthRepository {
 
   @override
   Future changePassword(String password) async {
+    print("changePassword");
     final environment = await Environment.forEnvironment('environment-dev');
-    String apiUrl  = "${environment.baseUrl}/mail/validateCodeOTP";
+    String apiUrl  = "${environment.baseUrl}/auth/changePassword";
 
     try {
       Map<String, String> userDetails = await Global.Utils.getLocalInfo();
+      print("changePassword ${userDetails}");
       final String? userId = userDetails['id'];
 
 
@@ -143,7 +150,7 @@ class HttpLoginService extends AbstractAuthRepository {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: jsonEncode({'code': password, 'id': userId})
+          body: jsonEncode({'password': password, 'id': userId})
       );
 
       final body = jsonDecode(response.body);

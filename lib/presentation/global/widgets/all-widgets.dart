@@ -5,3 +5,4 @@ export 'package:turismo_cartagena/presentation/global/widgets/inputText.dart';
 export 'package:turismo_cartagena/presentation/global/widgets/buttonPrimary.dart';
 export 'package:turismo_cartagena/presentation/global/widgets/alertMessage.dart';
 export 'package:turismo_cartagena/presentation/global/widgets/button-outlined.dart';
+export 'package:turismo_cartagena/presentation/global/widgets/alert-screen-popup.dart';

@@ -43,7 +43,7 @@ class Configuration extends StatelessWidget {
                 color: Colors.red,
                 text: S.current.textContinue ,
                 onPressed: () {
-                  SHARED.Utils.launchURL(Uri.parse("https://www.gooway.co/eliminacion-de-cuenta/"), false);
+                  SHARED.Utils.launchURL(context, Uri.parse("https://www.gooway.co/eliminacion-de-cuenta/"), false);
                 },
               ),
             ],

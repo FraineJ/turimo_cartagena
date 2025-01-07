@@ -13,6 +13,7 @@ import 'package:turismo_cartagena/presentation/bloc/category/category_bloc.dart'
 import 'package:turismo_cartagena/presentation/global/widgets/no-data.dart';
 import 'package:turismo_cartagena/presentation/modules/home/pages/tab-view-one.dart';
 import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
+import 'package:turismo_cartagena/presentation/modules/home/pages/tab-view-two.dart';
 import 'package:turismo_cartagena/presentation/modules/home/widgest/flag_animada.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/partner.dart';
 
@@ -145,6 +146,13 @@ class _HomeViewState extends State<Home>
                   image:
                       "https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/categories/destacado/destacado.svg",
                 ),
+                CategoryModel(
+                  id: '1',
+                  code: '1',
+                  name: "Lugares",
+                  image:
+                  "https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/categories/destacado/beach.svg",
+                ),
                 ...state.categoryModel,
               ];
 
@@ -157,7 +165,7 @@ class _HomeViewState extends State<Home>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image(
+                        const Image(
                           image: AssetImage("assets/images/logo-app.png"),
                           width: 150,
                         ),
@@ -166,7 +174,7 @@ class _HomeViewState extends State<Home>
                     ),
                   ),
                   SizedBox(
-                    height: 40, // Altura de los tabs
+                    height: 40,
                     child: ListView.builder(
                       controller: _scrollController,
                       scrollDirection: Axis.horizontal,
@@ -228,9 +236,12 @@ class _HomeViewState extends State<Home>
                   Expanded(
                     child: _selectedIndex == 0
                         ? const TabViewOneHome()
+                        : _selectedIndex == 1
+                        ? const  TabViewTwoHome()
                         : PartnerView(
                             key: ValueKey(category[_selectedIndex].id),
-                            categoryId: category[_selectedIndex].id),
+                            categoryId: category[_selectedIndex].id
+                        ),
                   ),
                 ],
               );

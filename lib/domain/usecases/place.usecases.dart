@@ -7,6 +7,10 @@ class PlaceCaseUse {
   final PlaceRepository _placeRepository;
   PlaceCaseUse(this._placeRepository);
 
+  Future getAllPlaceByCategory() async{
+    return await _placeRepository.getAllPlaceByCategory();
+  }
+
   Future getPlaceByCategory(String id) async{
     return await _placeRepository.getPlaceByCategory(id);
   }

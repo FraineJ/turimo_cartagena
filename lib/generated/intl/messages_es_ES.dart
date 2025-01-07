@@ -24,8 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Explore": MessageLookupByLibrary.simpleMessage("Explorar"),
         "Favorites": MessageLookupByLibrary.simpleMessage("Favoritos"),
+        "Home": MessageLookupByLibrary.simpleMessage("Inicio"),
         "Profile": MessageLookupByLibrary.simpleMessage("Perfil"),
         "Trips": MessageLookupByLibrary.simpleMessage("Viajes"),
+        "back": MessageLookupByLibrary.simpleMessage("Regresar"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "characterSpecial": MessageLookupByLibrary.simpleMessage(
+            "Al menos un carácter especial"),
         "confirmPasswordRegister":
             MessageLookupByLibrary.simpleMessage("Confirmar contraseña"),
         "contact": MessageLookupByLibrary.simpleMessage("Contacto"),
@@ -36,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("Descripción"),
         "emailRegister":
             MessageLookupByLibrary.simpleMessage("Correo electrónico"),
+        "errorServer": MessageLookupByLibrary.simpleMessage(
+            "Ha ocurrido un error. Por favor, inténtalo más tarde."),
         "event": MessageLookupByLibrary.simpleMessage("Eventos"),
         "hintTexPassword": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "hintTextEmail": MessageLookupByLibrary.simpleMessage(
@@ -64,8 +71,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameRegister": MessageLookupByLibrary.simpleMessage("Nombre"),
         "noFoundEvent": MessageLookupByLibrary.simpleMessage(
             "De momento no hay eventos disponibles."),
+        "passwordNotMatch": MessageLookupByLibrary.simpleMessage(
+            "Las contraseñas no coinciden."),
         "passwordRegister":
             MessageLookupByLibrary.simpleMessage("Ingrese su contraseña"),
+        "passwordRequirements": MessageLookupByLibrary.simpleMessage(
+            "La contraseña debe cumplir con los requisitos"),
         "places": MessageLookupByLibrary.simpleMessage("Lugares"),
         "retry": MessageLookupByLibrary.simpleMessage("Reintentar"),
         "select_languages":
@@ -73,9 +84,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendLinkContact": MessageLookupByLibrary.simpleMessage(
             "Pulsa en cualquiera de los iconos para comunicarse."),
         "settings": MessageLookupByLibrary.simpleMessage("Configuración"),
+        "sixCharacters":
+            MessageLookupByLibrary.simpleMessage("Más de 6 caracteres"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continuar"),
+        "textEmailInvalid": MessageLookupByLibrary.simpleMessage(
+            "El correo electrónico ingresado no es válido. Por favor, revisa y asegúrate de que esté correctamente escrito para continuar."),
+        "textPasswordRequired": MessageLookupByLibrary.simpleMessage(
+            "Tu contraseña debe cumplir con los siguientes requisitos:"),
+        "textSuccessRegister": MessageLookupByLibrary.simpleMessage(
+            "¡Tu cuenta se ha creado con éxito! Ahora puedes explorar y disfrutar de todo lo que tenemos para ti. ¡Bienvenido!"),
+        "textUpdatePassword": MessageLookupByLibrary.simpleMessage(
+            "Tu contraseña se ha cambiado con éxito."),
+        "textValidateUppercase":
+            MessageLookupByLibrary.simpleMessage("Al menos una mayúscula."),
+        "titleEmailInvalid":
+            MessageLookupByLibrary.simpleMessage("Correo inválido"),
+        "updatePassword":
+            MessageLookupByLibrary.simpleMessage("Contraseña Actualizada"),
         "update_information_user": MessageLookupByLibrary.simpleMessage(
             "Actualización de información"),
+        "userRegister":
+            MessageLookupByLibrary.simpleMessage("Usuario registrado"),
         "where_to_go_today":
             MessageLookupByLibrary.simpleMessage("¿A dónde quieres ir hoy?")
       };

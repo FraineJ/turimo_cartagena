@@ -51,12 +51,12 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                       });
                     },
                   ),
-                  items: place.imagenes!.isNotEmpty
-                      ? place.imagenes!.map((image) {
+                  items: place.imagesUrl!.isNotEmpty
+                      ? place.imagesUrl!.map((image) {
                     return Builder(
                       builder: (BuildContext context) {
                         return Image.network(
-                          image['url'] ?? "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg",
+                          place.imagesUrl!.first,
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
                         );
@@ -77,26 +77,10 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
 
                 ),
                 Positioned(
-                  top: 20,
-                  right: 20,
-                  child: IconButton(
-                    icon: Icon(
-                      _isLiked ? Icons.favorite : Icons.favorite_border,
-                      color: _isLiked ? Colors.red : Colors.white,
-                      size: 30,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _isLiked = !_isLiked;
-                      });
-                    },
-                  ),
-                ),
-                Positioned(
                   bottom: 10,
                   right: 10,
                   child: Container(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       vertical: 4.0,
                       horizontal: 8.0,
                     ),
@@ -105,8 +89,8 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
-                      '${_currentIndex + 1} / ${place.imagenes!.length}',
-                      style: TextStyle(
+                      '${_currentIndex + 1} / ${place.imagesUrl!.length}',
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                       ),
@@ -135,13 +119,13 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Text("${place.direccion}",
+                  Text("${place.address}",
                     style: const TextStyle(
                       fontSize: 16,
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  const Row(
+                  //const SizedBox(height: 8),
+                  /*const Row(
                     children: [
                       Icon(Icons.star, color: Colors.orange, size: 20),
                       SizedBox(width: 4),
@@ -161,7 +145,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                         ),
                       ),
                     ],
-                  ),
+                  ),*/
                   const Divider(height: 32),
                   const Row(
                     children: [
@@ -174,14 +158,14 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Anfitrión: Mathieu Lehanneur',
+                            'Anfitrión: Gooway',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            'Diseñador en fuga',
+                            'Diseñador',
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.grey,
@@ -194,13 +178,13 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                   const Divider(height: 32),
 
                   const SizedBox(height: 8),
-                  Text("${place.descripcion}",
+                  Text("${place.description}",
                     style: const TextStyle(
                       fontSize: 16,
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text("Servicios",
+                  /*const Text("Servicios",
                     style:  TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -211,13 +195,13 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                   SizedBox(
                     height: 310, // Set an appropriate height
                     child: ListView.builder(
-                      itemCount: place.servicios!.length,
+                      itemCount: place.imagesUrl!.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return CardServices(services: place.servicios![index]);
+                        return CardServices(services: place.imagesUrl![index]);
                       },
                     ),
-                  ),
+                  ),*/
 
 
 

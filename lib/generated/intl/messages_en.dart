@@ -24,8 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Explore": MessageLookupByLibrary.simpleMessage("Explore"),
         "Favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
+        "Home": MessageLookupByLibrary.simpleMessage("Home"),
         "Profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "Trips": MessageLookupByLibrary.simpleMessage("Trips"),
+        "back": MessageLookupByLibrary.simpleMessage("Back"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "characterSpecial": MessageLookupByLibrary.simpleMessage(
+            "At least one special character"),
         "confirmPasswordRegister":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact"),
@@ -34,6 +39,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The account deletion is permanent. If you delete your Gooway account, you will not be able to recover the content or information you shared with us. Your favorites and reviews will also be deleted."),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "emailRegister": MessageLookupByLibrary.simpleMessage("Email"),
+        "errorServer": MessageLookupByLibrary.simpleMessage(
+            "An error has occurred. Please try again later."),
         "event": MessageLookupByLibrary.simpleMessage("Events"),
         "hintTexPassword": MessageLookupByLibrary.simpleMessage("Password"),
         "hintTextEmail": MessageLookupByLibrary.simpleMessage("Enter an email"),
@@ -60,8 +67,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameRegister": MessageLookupByLibrary.simpleMessage("Name"),
         "noFoundEvent": MessageLookupByLibrary.simpleMessage(
             "Currently, there are no events available."),
+        "passwordNotMatch":
+            MessageLookupByLibrary.simpleMessage("The passwords do not match."),
         "passwordRegister":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "passwordRequirements": MessageLookupByLibrary.simpleMessage(
+            "The password must meet the requirements"),
         "places": MessageLookupByLibrary.simpleMessage("Places"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "select_languages":
@@ -69,9 +80,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendLinkContact": MessageLookupByLibrary.simpleMessage(
             "Click on any of the icons to communicate."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "sixCharacters":
+            MessageLookupByLibrary.simpleMessage("More than 6 characters"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continue"),
+        "textEmailInvalid": MessageLookupByLibrary.simpleMessage(
+            "The email entered is not valid. Please check and make sure it is spelled correctly to continue."),
+        "textPasswordRequired": MessageLookupByLibrary.simpleMessage(
+            "Your password must meet the following requirements:"),
+        "textSuccessRegister": MessageLookupByLibrary.simpleMessage(
+            "Your account has been successfully created! You can now explore and enjoy everything we have for you. Welcome!"),
+        "textUpdatePassword": MessageLookupByLibrary.simpleMessage(
+            "Your password has been successfully changed."),
+        "textValidateUppercase": MessageLookupByLibrary.simpleMessage(
+            "At least one uppercase letter."),
+        "titleEmailInvalid":
+            MessageLookupByLibrary.simpleMessage("Invalid email"),
+        "updatePassword":
+            MessageLookupByLibrary.simpleMessage("Password Updated"),
         "update_information_user":
             MessageLookupByLibrary.simpleMessage("Update information"),
+        "userRegister": MessageLookupByLibrary.simpleMessage("Registered user"),
         "where_to_go_today":
             MessageLookupByLibrary.simpleMessage("where to go today")
       };

@@ -1,3 +1,4 @@
+import 'package:turismo_cartagena/domain/models/respose.model.dart';
 import 'package:turismo_cartagena/domain/repositorys/place.repository.dart';
 import 'package:turismo_cartagena/domain/models/place.model.dart';
 import 'package:turismo_cartagena/presentation/global/environments/environment.dart';
@@ -6,6 +7,30 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class HttpPlaceService extends PlaceRepository {
+
+
+  @override
+  Future getAllPlaceByCategory() async {
+    final environment = await Environment.forEnvironment('environment-dev');
+    String apiUrl  = "${environment.baseUrl}/places/listar";
+
+    try {
+      final response = await http.get(
+        Uri.parse(apiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      );
+
+      final body = jsonDecode(utf8.decode(response.bodyBytes));
+      ResponsePages responsePages = ResponsePages.fromJson(body);
+
+      return responsePages;
+
+    } catch (error) {
+      return error;
+    }
+  }
 
   @override
   Future getPlaceByCategory(String id) async {

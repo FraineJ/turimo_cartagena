@@ -233,15 +233,25 @@ class Utils {
   }
 
 
-  static void launchURL(Uri uri, bool inApp) async {
+  static void launchURL(BuildContext context, Uri uri, bool inApp) async {
     try {
+      // Verificamos si la URL es válida
+      if (await canLaunchUrl(uri)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('No se puede abrir la URL.')),
+        );
+        return;
+      }
+
       if (inApp) {
-        await launchUrl(uri, mode: LaunchMode.inAppWebView);
+        await launchUrl(uri, mode: LaunchMode.inAppBrowserView);
       } else {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
       }
     } catch (e) {
-      print(e.toString());
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Ocurrió un error al abrir la URL.')),
+      );
     }
   }
 

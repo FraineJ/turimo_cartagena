@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:turismo_cartagena/generated/l10n.dart';
 
 class PasswordValidatorWidget extends StatefulWidget {
   final TextEditingController controller;
@@ -42,8 +43,7 @@ class _PasswordValidatorWidgetState extends State<PasswordValidatorWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Tu contraseña debe cumplir con los siguientes requisitos:',
+        Text(S.current.textPasswordRequired,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
@@ -54,7 +54,7 @@ class _PasswordValidatorWidgetState extends State<PasswordValidatorWidget> {
               color: _hasUppercase ? Colors.green : Colors.red,
             ),
             const SizedBox(width: 8),
-            Text('Al menos una mayúscula'),
+            Text(S.current.textValidateUppercase),
           ],
         ),
         Row(
@@ -64,17 +64,17 @@ class _PasswordValidatorWidgetState extends State<PasswordValidatorWidget> {
               color: _hasSpecialCharacter ? Colors.green : Colors.red,
             ),
             const SizedBox(width: 8),
-            Text('Al menos un carácter especial'),
+            Text(S.current.characterSpecial),
           ],
         ),
         Row(
           children: [
             Icon(
-              _hasMinLength ? Icons.circle : Icons.cancel,
+              _hasMinLength ? Icons.check_circle : Icons.cancel,
               color: _hasMinLength ? Colors.green : Colors.red,
             ),
             const SizedBox(width: 8),
-            Text('Más de 6 caracteres'),
+            Text(S.current.sixCharacters),
           ],
         ),
       ],

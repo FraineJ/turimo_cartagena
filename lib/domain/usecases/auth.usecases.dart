@@ -33,6 +33,6 @@ class AuthCaseUse {
   }
 
   Future changePassword(String password) async{
-    return await _authRepository.verifyOtp(password);
+    return await _authRepository.changePassword(password);
   }
 }

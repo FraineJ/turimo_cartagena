@@ -7,6 +7,8 @@ import 'package:turismo_cartagena/domain/models/user.model.dart';
 import 'package:turismo_cartagena/domain/usecases/auth.usecases.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../generated/l10n.dart';
+
 part 'auth_event.dart';
 part 'auth_state.dart';
 
@@ -19,6 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
     on<LogoutRequested>(_logout);
     on<RecoverPasswordEvent>(_recoverPassword);
     on<VerifyCodeOtpEvent>(_verifyCodeOtp);
+    on<ChangePasswordEvent>(_changePassword);
   }
 
   Future _login(LoginEvent event, Emitter<AuthBlocState> emit) async {
@@ -71,21 +74,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
 
       emit(LoadingRRegisterState());
 
-      final  response = await authCaseUse.register(user);
+      final ResponsePages  response = await authCaseUse.register(user);
+      print("resoonse register ${response}");
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      final dataResponse = UserModel.fromJson(response["data"]);
+      if (response.status == 200) {
+        final data = jsonEncode(response.data);
 
-      if (response["status"] == 200) {
-        final data = jsonEncode(dataResponse);
-
-        prefs.setString('user_login', data);
+        //prefs.setString('user_login', data);
         emit(SuccessRegisterState());
       } else{
-        emit(ErrorRegisterState());
+        emit(ErrorRegisterState(responsePages: response));
       }
     } catch (error) {
-      emit(ErrorRegisterState());
+      print("resoonse register ${error}");
+      final ResponsePages  response = ResponsePages(data: [], menssage: S.current.errorServer, status: 500);
+      emit(ErrorRegisterState(responsePages: response));
     }
   }
 
@@ -117,6 +120,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
         emit(ErrorRecoverPasswordState(responsePages: response ));
       }
     } catch (error) {
+      print("error ${error}");
       ResponsePages response = ResponsePages(data: [], menssage: "Ha ocurrido un error inesperado", status: 400);
       emit(ErrorRecoverPasswordState(responsePages: response));
     }
@@ -144,22 +148,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
 
     try {
       emit(LoadingChangePasswordState());
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      final ResponsePages response = await authCaseUse.recoverPassword(event.password);
+      print("ChangePasswordEvent");
+      final ResponsePages response = await authCaseUse.changePassword(event.password);
+
       if (response.status == 200) {
-
-        String userJson = jsonEncode({
-          "id": response.data[0]['id'],
-          "email": response.data[0]['email'],
-        });
-
-        prefs.setString('local_info', userJson);
 
         emit(SuccessChangePasswordState(responsePages: response ));
       } else {
         emit(ErrorChangePasswordState(responsePages: response ));
       }
     } catch (error) {
+      print("error ${error}");
       ResponsePages response = ResponsePages(data: [], menssage: "Ha ocurrido un error inesperado", status: 400);
       emit(ErrorChangePasswordState(responsePages: response));
     }
