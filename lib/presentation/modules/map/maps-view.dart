@@ -4,7 +4,7 @@ import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/place.model.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/places/places_bloc.dart';
@@ -27,7 +27,7 @@ class _MapViewComponentState extends State<MapViewComponent> {
     if(Platform.isIOS){
       customIcon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(),
-        'assets/images/icon-location.png',
+        'assets/images/icon-location-ios.png',
       );
     } else {
       customIcon = await BitmapDescriptor.fromAssetImage(
@@ -63,10 +63,13 @@ class _MapViewComponentState extends State<MapViewComponent> {
               }
 
               if (state is ErrorGetPlaceByCategory) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(S.current.errorServer))
-                );
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(S.current.errorServer)),
+                  );
+                });
               }
+
 
               if(state is SuccessGetPlaceByCategory){
                 List<PlaceModel> places = state.placeModel;
@@ -189,7 +192,7 @@ class _MapViewComponentState extends State<MapViewComponent> {
                   children: [
                     Expanded(
                       child: MapGoogle(
-                        isBarSearch: true,
+                        isBarSearch: false,
                         markers: markers,
                         controllerCustomInfoWindow: controllerCustomInfoWindow,
                       ),

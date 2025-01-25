@@ -1,19 +1,9 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:turismo_cartagena/article_injection.dart';
-import 'package:turismo_cartagena/domain/models/event.model.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/place.model.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
-import 'package:turismo_cartagena/presentation/bloc/event/event_bloc.dart';
 import 'package:turismo_cartagena/presentation/bloc/places/places_bloc.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/button-outlined.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/skeleton-card-buys.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/skeleton.dart';
-import 'package:turismo_cartagena/presentation/modules/events/widgets/card-events.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as UTILS;
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:turismo_cartagena/presentation/modules/places/widgets/card-places.dart';
 
 
@@ -65,10 +55,9 @@ class _TabViewOneHomeState extends State<TabViewTwoHome> {
               }
 
               return Container(
-                child: Column(
+                child: const Column(
                   children: [
                      CircularProgressIndicator(),
-
                   ],
                 ),
               );

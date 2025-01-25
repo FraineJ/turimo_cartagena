@@ -45,7 +45,7 @@ class MapGoogleState extends State<MapGoogle> {
     if(Platform.isIOS){
       _customIcon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(),
-        'assets/images/icon-person.png',
+        'assets/images/icon-person-ios.png',
       );
     } else {
       _customIcon = await BitmapDescriptor.fromAssetImage(
@@ -111,7 +111,7 @@ class MapGoogleState extends State<MapGoogle> {
       CameraUpdate.newCameraPosition(
         CameraPosition(
           target: LatLng(position.latitude, position.longitude),
-          zoom: 15,
+          zoom: 10,
         ),
       ),
     );

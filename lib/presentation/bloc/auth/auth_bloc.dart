@@ -75,7 +75,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
       emit(LoadingRRegisterState());
 
       final ResponsePages  response = await authCaseUse.register(user);
-      print("resoonse register ${response}");
 
       if (response.status == 200) {
         final data = jsonEncode(response.data);
@@ -86,7 +85,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
         emit(ErrorRegisterState(responsePages: response));
       }
     } catch (error) {
-      print("resoonse register ${error}");
       final ResponsePages  response = ResponsePages(data: [], menssage: S.current.errorServer, status: 500);
       emit(ErrorRegisterState(responsePages: response));
     }
@@ -120,7 +118,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
         emit(ErrorRecoverPasswordState(responsePages: response ));
       }
     } catch (error) {
-      print("error ${error}");
       ResponsePages response = ResponsePages(data: [], menssage: "Ha ocurrido un error inesperado", status: 400);
       emit(ErrorRecoverPasswordState(responsePages: response));
     }
@@ -148,7 +145,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
 
     try {
       emit(LoadingChangePasswordState());
-      print("ChangePasswordEvent");
       final ResponsePages response = await authCaseUse.changePassword(event.password);
 
       if (response.status == 200) {
@@ -158,7 +154,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
         emit(ErrorChangePasswordState(responsePages: response ));
       }
     } catch (error) {
-      print("error ${error}");
       ResponsePages response = ResponsePages(data: [], menssage: "Ha ocurrido un error inesperado", status: 400);
       emit(ErrorChangePasswordState(responsePages: response));
     }

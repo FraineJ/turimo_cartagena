@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:turismo_cartagena/domain/models/respose.model.dart';
 import 'package:turismo_cartagena/domain/repositorys/place.repository.dart';
 import 'package:turismo_cartagena/domain/models/place.model.dart';
-import 'package:turismo_cartagena/presentation/global/environments/environment.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as Global;
+import 'package:turismo_cartagena/core/environments/environment.dart';
+import 'package:turismo_cartagena/core/utils/all.dart' as Global;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -20,14 +22,18 @@ class HttpPlaceService extends PlaceRepository {
         headers: {
           'Content-Type': 'application/json',
         },
-      );
+      ).timeout(Duration(seconds: 10));
 
       final body = jsonDecode(utf8.decode(response.bodyBytes));
       ResponsePages responsePages = ResponsePages.fromJson(body);
 
       return responsePages;
 
-    } catch (error) {
+    } on TimeoutException {
+      ResponsePages responsePages = ResponsePages(data: [], menssage: "Ha ocurrido un error inesperado", status: 400);
+      return responsePages;
+    }
+    catch (error) {
       return error;
     }
   }
@@ -81,7 +87,6 @@ class HttpPlaceService extends PlaceRepository {
       );
 
       final body = jsonDecode(response.body);
-      print("response $body");
 
       if(response.statusCode == 200) {
         return body;
@@ -90,7 +95,6 @@ class HttpPlaceService extends PlaceRepository {
       return [];
 
     } catch (error) {
-      print("error $error" );
       return error;
     }
   }
@@ -124,7 +128,6 @@ class HttpPlaceService extends PlaceRepository {
       return [];
 
     } catch (error) {
-      print("error $error" );
       return [];
     }
   }

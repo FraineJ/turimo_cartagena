@@ -2,8 +2,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turismo_cartagena/domain/models/respose.model.dart';
 import 'package:turismo_cartagena/domain/models/user.model.dart';
 import 'package:turismo_cartagena/domain/repositorys/auth.repository.dart';
-import 'package:turismo_cartagena/presentation/global/environments/environment.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as Global;
+import 'package:turismo_cartagena/core/environments/environment.dart';
+import 'package:turismo_cartagena/core/utils/all.dart' as Global;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

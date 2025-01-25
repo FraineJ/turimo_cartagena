@@ -27,10 +27,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Home": MessageLookupByLibrary.simpleMessage("Inicio"),
         "Profile": MessageLookupByLibrary.simpleMessage("Perfil"),
         "Trips": MessageLookupByLibrary.simpleMessage("Viajes"),
+        "advertising": MessageLookupByLibrary.simpleMessage("Publicidad"),
         "back": MessageLookupByLibrary.simpleMessage("Regresar"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "characterSpecial": MessageLookupByLibrary.simpleMessage(
             "Al menos un carácter especial"),
+        "chatAna": MessageLookupByLibrary.simpleMessage("Ana"),
         "confirmPasswordRegister":
             MessageLookupByLibrary.simpleMessage("Confirmar contraseña"),
         "contact": MessageLookupByLibrary.simpleMessage("Contacto"),
@@ -44,6 +46,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorServer": MessageLookupByLibrary.simpleMessage(
             "Ha ocurrido un error. Por favor, inténtalo más tarde."),
         "event": MessageLookupByLibrary.simpleMessage("Eventos"),
+        "forgotYourPassword":
+            MessageLookupByLibrary.simpleMessage("¿Olvidaste tu contraseña?"),
         "hintTexPassword": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "hintTextEmail": MessageLookupByLibrary.simpleMessage(
             "Ingrese un correo electrónico"),
@@ -54,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "languages": MessageLookupByLibrary.simpleMessage("Idiomas"),
         "lastNameRegister": MessageLookupByLibrary.simpleMessage("Apellidos"),
         "log_out": MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
+        "loginOrRegister":
+            MessageLookupByLibrary.simpleMessage("Inicia sesión o regístrate"),
         "login_for_create_favorites": MessageLookupByLibrary.simpleMessage(
             "Puedes crear, consultar o editar tus lugares favoritos una vez que hayas iniciado sesión."),
         "login_view_detail_profile": MessageLookupByLibrary.simpleMessage(
@@ -71,24 +77,32 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameRegister": MessageLookupByLibrary.simpleMessage("Nombre"),
         "noFoundEvent": MessageLookupByLibrary.simpleMessage(
             "De momento no hay eventos disponibles."),
+        "notAccount":
+            MessageLookupByLibrary.simpleMessage("¿No tienes una cuenta? "),
         "passwordNotMatch": MessageLookupByLibrary.simpleMessage(
             "Las contraseñas no coinciden."),
         "passwordRegister":
             MessageLookupByLibrary.simpleMessage("Ingrese su contraseña"),
         "passwordRequirements": MessageLookupByLibrary.simpleMessage(
             "La contraseña debe cumplir con los requisitos"),
+        "placeDetails":
+            MessageLookupByLibrary.simpleMessage("Detalles del Lugar"),
         "places": MessageLookupByLibrary.simpleMessage("Lugares"),
+        "registrationIsFree":
+            MessageLookupByLibrary.simpleMessage("Registrarse es gratis.!"),
         "retry": MessageLookupByLibrary.simpleMessage("Reintentar"),
         "select_languages":
             MessageLookupByLibrary.simpleMessage("Seleccionar idioma"),
         "sendLinkContact": MessageLookupByLibrary.simpleMessage(
             "Pulsa en cualquiera de los iconos para comunicarse."),
         "settings": MessageLookupByLibrary.simpleMessage("Configuración"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Registrate"),
         "sixCharacters":
             MessageLookupByLibrary.simpleMessage("Más de 6 caracteres"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continuar"),
         "textEmailInvalid": MessageLookupByLibrary.simpleMessage(
             "El correo electrónico ingresado no es válido. Por favor, revisa y asegúrate de que esté correctamente escrito para continuar."),
+        "textLogin": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
         "textPasswordRequired": MessageLookupByLibrary.simpleMessage(
             "Tu contraseña debe cumplir con los siguientes requisitos:"),
         "textSuccessRegister": MessageLookupByLibrary.simpleMessage(

@@ -1,15 +1,34 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/app-bar-custom.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/button-outlined.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
+import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as GLOBAL;
+import 'package:turismo_cartagena/core/utils/all.dart' as SHARED;
 
 
 class Configuration extends StatelessWidget {
   const Configuration({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    Future navigationWed(String link) async {
+      if (Platform.isIOS) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => GLOBAL.WebPageViewer(
+              url: link,
+              title: S.current.settings,
+            ),
+          ),
+        );
+      } else {
+        SHARED.Utils.launchURL(context, Uri.parse(link), true);
+      }
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -17,7 +36,7 @@ class Configuration extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppBarCustom(
+              GLOBAL.AppBarCustom(
                 textTitle: S.current.settings,
                 botonVolver: true,
               ),
@@ -38,12 +57,13 @@ class Configuration extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              RegistrationButton(
+              GLOBAL.RegistrationButton(
                 width: double.infinity,
                 color: Colors.red,
                 text: S.current.textContinue ,
                 onPressed: () {
-                  SHARED.Utils.launchURL(context, Uri.parse("https://www.gooway.co/eliminacion-de-cuenta/"), false);
+                  navigationWed("https://www.gooway.co/eliminacion-de-cuenta/");
+                  //SHARED.Utils.launchURL(context, Uri.parse("https://www.gooway.co/eliminacion-de-cuenta/"), false);
                 },
               ),
             ],

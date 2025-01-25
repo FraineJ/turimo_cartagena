@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
+import 'package:turismo_cartagena/core/theme/colors.dart';
+import 'package:turismo_cartagena/core/theme/sizes.dart';
+import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
 import 'package:turismo_cartagena/presentation/bloc/initial-bloc/initial_bloc.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
+import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as W;
 import 'package:turismo_cartagena/presentation/modules/auth/recoverPassword/recover-password.dart';
 import 'package:turismo_cartagena/presentation/modules/auth/register/register.dart';
 import 'package:turismo_cartagena/presentation/modules/layuot.dart';
@@ -79,12 +82,12 @@ class Authentication extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            W.AppBarCustom(textTitle: "", botonVolver: true,),
+                            const W.AppBarCustom(textTitle: "", botonVolver: true,),
                             const SizedBox(height: 32,),
-                            const Text("Inicia sesión o regrístrate",
-                              style: const TextStyle(
+                            Text(S.current.loginOrRegister,
+                              style:  TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 26,
+                                  fontSize: AppSizes.textLarge,
                                   height: 1.0
                               ),
                             ),
@@ -100,8 +103,8 @@ class Authentication extends StatelessWidget {
                             ),
                             const SizedBox(height: 16),
                             W.InputTextCustom(
-                                hintText: 'Ingrese su contraseña',
-                                labelText: 'Contraseña',
+                                hintText: S.current.passwordRegister,
+                                labelText: S.current.hintTexPassword,
                                 prefixIcon: Icons.lock,
                                 suffixIcon: Icons.visibility_off,
                                 controller: password,
@@ -111,8 +114,8 @@ class Authentication extends StatelessWidget {
                             ),
                             const SizedBox(height: 16),
                             W.ButtonPrimaryCustom(
-                              color: const Color(0xFF009C47),
-                              text: 'Iniciar sesión',
+                              color: AppColors.primary,
+                              text: S.current.textLogin,
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   if (username.text.isNotEmpty &&
@@ -131,11 +134,11 @@ class Authentication extends StatelessWidget {
                                     MaterialPageRoute(builder: (context) => RecoverPassword())
                                 );
                               },
-                              child: const Center(
-                                child:  Text("¿Olvidaste tu contraseña?",
-                                  style: TextStyle(
+                              child:  Center(
+                                child:  Text(S.current.forgotYourPassword,
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: const Color(0xFF009C47)
+                                    color:  AppColors.primary
                                   ),
                                 ),
                               ),
@@ -143,8 +146,8 @@ class Authentication extends StatelessWidget {
                             const SizedBox(height: 16),
                             W.RegistrationButton(
                               width: double.infinity,
-                              color: Colors.red,
-                              text: 'Registrate',
+                              color: AppColors.error,
+                              text: S.current.signUp,
                               onPressed: () {
                                 Navigator.push(
                                     context,
@@ -162,25 +165,23 @@ class Authentication extends StatelessWidget {
                               },
                               child: RichText(
                                 textAlign: TextAlign.center,
-                                text: const TextSpan(
-
-                                  style: TextStyle(
+                                text:  TextSpan(
+                                  style: const TextStyle(
                                     fontSize: 24.0,
                                     color: Colors.black,
-
                                   ),
                                   children: <TextSpan>[
                                     TextSpan(
-                                      text: '¿No tienes una cuenta? ',
-                                      style: TextStyle(
+                                      text: S.current.notAccount,
+                                      style: const TextStyle(
                                           fontSize: 16
                                       ),
                                     ),
                                     TextSpan(
-                                      text: 'Registrate es gratis.!',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Color(0xFFFF6969)
+                                      text: S.current.registrationIsFree,
+                                      style:  TextStyle(
+                                          fontSize: AppSizes.textMedium,
+                                          color: AppColors.error
                                       ),
                                     ),
                                   ],

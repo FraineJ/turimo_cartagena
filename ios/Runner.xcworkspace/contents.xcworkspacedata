@@ -4,4 +4,65 @@
    <FileRef
       location = "group:Runner.xcodeproj">
    </FileRef>
+   <Group
+      location = "group:Pods"
+      name = "Pods">
+      <Group
+         location = "group:Headers"
+         name = "Headers">
+      </Group>
+      <Group
+         location = "group:Local Podspecs"
+         name = "Local Podspecs">
+         <FileRef
+            location = "group:firebase_core.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:firebase_messaging.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:flutter_local_notifications.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:flutter_tts.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:Flutter.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:geolocator_apple.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:google_maps_flutter_ios.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:image_picker_ios.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:path_provider_foundation.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:permission_handler_apple.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:shared_preferences_foundation.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:sqflite_darwin.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:url_launcher_ios.podspec.json">
+         </FileRef>
+         <FileRef
+            location = "group:webview_flutter_wkwebview.podspec.json">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Target Support Files"
+         name = "Target Support Files">
+      </Group>
+   </Group>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

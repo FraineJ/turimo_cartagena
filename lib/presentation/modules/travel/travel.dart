@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as Widgets;
+import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as Widgets;
 
 
 class TravelView extends StatelessWidget {
@@ -15,8 +15,6 @@ class TravelView extends StatelessWidget {
             child: const Column(
               children: [
                 Widgets.AppBarCustom(textTitle: "Viajes", botonVolver: false,),
-
-
               ],
             ),
           )

@@ -51,6 +51,14 @@
   "cancel" : "Cancelar",
   "updatePassword": "Contraseña Actualizada",
   "textUpdatePassword": "Tu contraseña se ha cambiado con éxito.",
-  "chatAna": "Ana"
+  "chatAna": "Ana",
+  "placeDetails": "Detalles del Lugar",
+  "advertising": "Publicidad",
+  "textLogin" : "Iniciar sesión",
+  "forgotYourPassword" : "¿Olvidaste tu contraseña?",
+  "signUp" : "Registrate",
+  "notAccount": "¿No tienes una cuenta? ",
+  "registrationIsFree" : "Registrarse es gratis.!",
+  "loginOrRegister" : "Inicia sesión o regístrate"
 
 }

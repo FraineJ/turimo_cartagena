@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/partner.model.dart';
 import 'package:turismo_cartagena/presentation/bloc/initial-bloc/initial_bloc.dart';
 import 'package:turismo_cartagena/presentation/bloc/partner/partner_bloc.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
+import 'package:turismo_cartagena/core/utils/all.dart' as SHARED;
 import 'package:turismo_cartagena/presentation/modules/partner/partner-detail.dart';
 
 class PropertyCard extends StatelessWidget {

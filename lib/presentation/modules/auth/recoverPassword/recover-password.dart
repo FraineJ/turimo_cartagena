@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
+import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as W;
+import 'package:turismo_cartagena/core/utils/all.dart' as SHARED;
 import 'package:turismo_cartagena/presentation/modules/auth/recoverPassword/valitate-code.dart';
 
 class RecoverPassword extends StatelessWidget {

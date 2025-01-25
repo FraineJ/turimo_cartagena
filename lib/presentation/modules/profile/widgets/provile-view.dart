@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/city.model.dart';
 import 'package:turismo_cartagena/presentation/bloc/user/user_bloc.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as Global;
-import 'package:turismo_cartagena/presentation/global/utils/debouncer.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as W;
+import 'package:turismo_cartagena/core/utils/all.dart' as Global;
+import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as W;
 
 class ProfileDetail extends StatelessWidget {
   @override
@@ -25,17 +24,13 @@ class _ProfileDetailContent extends StatefulWidget {
 }
 
 class _ProfileDetailContentState extends State<_ProfileDetailContent> {
-  final TextEditingController _claveController = TextEditingController();
   final TextEditingController _usuarioController = TextEditingController();
-  final TextEditingController _correoController = TextEditingController();
-  final TextEditingController _celularController = TextEditingController();
-  final TextEditingController _direccionController = TextEditingController();
   final TextEditingController _telefonoController = TextEditingController();
   final TextEditingController _searchController = TextEditingController();
   String avatar = "";
   String name = "";
   List<CityModel> cities = [];
-  final debouncer = Debouncer();
+  final debouncer = Global.Debouncer();
   final FocusNode usernameFocusNode = FocusNode();
   String searchQuery = "";
   String selectedPlace = "";
@@ -62,7 +57,6 @@ class _ProfileDetailContentState extends State<_ProfileDetailContent> {
 
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
-        // Si el TextFormField recibe foco, desplazar hacia arriba
         _scrollController.animateTo(
           100.0, // Ajusta este valor según necesites
           duration: Duration(milliseconds: 300),
@@ -337,7 +331,6 @@ class _ProfileDetailContentState extends State<_ProfileDetailContent> {
                 _popupEdit(option['icon']!);
               },
             ),
-            // Agregar Divider entre los elementos
             const Divider(
               color: Colors.grey, // Color del Divider
               thickness: 0.5, // Grosor del Divider
@@ -489,5 +482,4 @@ class _ProfileDetailContentState extends State<_ProfileDetailContent> {
     )
         : SizedBox.shrink();
   }
-
 }

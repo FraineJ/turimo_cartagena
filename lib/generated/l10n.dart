@@ -579,6 +579,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Detalles del Lugar`
+  String get placeDetails {
+    return Intl.message(
+      'Detalles del Lugar',
+      name: 'placeDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Publicidad`
+  String get advertising {
+    return Intl.message(
+      'Publicidad',
+      name: 'advertising',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iniciar sesión`
+  String get textLogin {
+    return Intl.message(
+      'Iniciar sesión',
+      name: 'textLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `¿Olvidaste tu contraseña?`
+  String get forgotYourPassword {
+    return Intl.message(
+      '¿Olvidaste tu contraseña?',
+      name: 'forgotYourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registrate`
+  String get signUp {
+    return Intl.message(
+      'Registrate',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `¿No tienes una cuenta? `
+  String get notAccount {
+    return Intl.message(
+      '¿No tienes una cuenta? ',
+      name: 'notAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registrarse es gratis.!`
+  String get registrationIsFree {
+    return Intl.message(
+      'Registrarse es gratis.!',
+      name: 'registrationIsFree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inicia sesión o regístrate`
+  String get loginOrRegister {
+    return Intl.message(
+      'Inicia sesión o regístrate',
+      name: 'loginOrRegister',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

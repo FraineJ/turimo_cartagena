@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:turismo_cartagena/domain/models/event.model.dart';
 import 'package:turismo_cartagena/domain/repositorys/device_user.repository.dart';
 import 'dart:convert';
-import 'package:turismo_cartagena/presentation/global/environments/environment.dart';
+import 'package:turismo_cartagena/core/environments/environment.dart';
 
 class HttpDeviceUserService extends DeviceUserRepository {
 

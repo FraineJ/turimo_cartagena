@@ -2,10 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/presentation/bloc/initial-bloc/initial_bloc.dart';
 import 'package:turismo_cartagena/presentation/bloc/preference-bloc/preference_utils_bloc.dart';
 import 'package:turismo_cartagena/presentation/modules/layuot.dart';
+import 'core/theme/sizes.dart';
 import 'generated/l10n.dart';
 import 'infrastructure/services/firebase-notification.service.dart';
 
@@ -41,16 +42,16 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {
-          return MaterialApp(
+          return  MaterialApp(
             title: 'Gooway',
-            localizationsDelegates: [
+            localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: S.delegate.supportedLocales,
-            locale: state.locale,  // Aquí se actualiza el idioma según el estado
+            locale: state.locale,
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primarySwatch: Colors.green,
@@ -58,7 +59,12 @@ class MyApp extends StatelessWidget {
                 seedColor: const Color(0xFFF5F6F8),
               ),
             ),
-            home: Layout(),
+            home: Builder(
+              builder: (context) {
+                AppSizes.init(context); // Inicializa las dimensiones aquí
+                return Layout();
+              },
+            ),
           );
         },
       ),

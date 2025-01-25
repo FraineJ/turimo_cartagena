@@ -27,10 +27,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Home": MessageLookupByLibrary.simpleMessage("Home"),
         "Profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "Trips": MessageLookupByLibrary.simpleMessage("Trips"),
+        "advertising": MessageLookupByLibrary.simpleMessage("Advertising"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "characterSpecial": MessageLookupByLibrary.simpleMessage(
             "At least one special character"),
+        "chatAna": MessageLookupByLibrary.simpleMessage("Ana"),
         "confirmPasswordRegister":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact"),
@@ -42,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorServer": MessageLookupByLibrary.simpleMessage(
             "An error has occurred. Please try again later."),
         "event": MessageLookupByLibrary.simpleMessage("Events"),
+        "forgotYourPassword":
+            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "hintTexPassword": MessageLookupByLibrary.simpleMessage("Password"),
         "hintTextEmail": MessageLookupByLibrary.simpleMessage("Enter an email"),
         "hintTextLastName":
@@ -50,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "lastNameRegister": MessageLookupByLibrary.simpleMessage("Last Name"),
         "log_out": MessageLookupByLibrary.simpleMessage("Log out"),
+        "loginOrRegister":
+            MessageLookupByLibrary.simpleMessage("Log in or register"),
         "login_for_create_favorites": MessageLookupByLibrary.simpleMessage(
             "You can create, view, or edit your favorite places once you have logged in."),
         "login_view_detail_profile": MessageLookupByLibrary.simpleMessage(
@@ -67,24 +73,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameRegister": MessageLookupByLibrary.simpleMessage("Name"),
         "noFoundEvent": MessageLookupByLibrary.simpleMessage(
             "Currently, there are no events available."),
+        "notAccount":
+            MessageLookupByLibrary.simpleMessage("Don\'t have an account? "),
         "passwordNotMatch":
             MessageLookupByLibrary.simpleMessage("The passwords do not match."),
         "passwordRegister":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
         "passwordRequirements": MessageLookupByLibrary.simpleMessage(
             "The password must meet the requirements"),
+        "placeDetails": MessageLookupByLibrary.simpleMessage("Place Details"),
         "places": MessageLookupByLibrary.simpleMessage("Places"),
+        "registrationIsFree":
+            MessageLookupByLibrary.simpleMessage("Registration is free!"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "select_languages":
             MessageLookupByLibrary.simpleMessage("Select language"),
         "sendLinkContact": MessageLookupByLibrary.simpleMessage(
             "Click on any of the icons to communicate."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "sixCharacters":
             MessageLookupByLibrary.simpleMessage("More than 6 characters"),
         "textContinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "textEmailInvalid": MessageLookupByLibrary.simpleMessage(
             "The email entered is not valid. Please check and make sure it is spelled correctly to continue."),
+        "textLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "textPasswordRequired": MessageLookupByLibrary.simpleMessage(
             "Your password must meet the following requirements:"),
         "textSuccessRegister": MessageLookupByLibrary.simpleMessage(

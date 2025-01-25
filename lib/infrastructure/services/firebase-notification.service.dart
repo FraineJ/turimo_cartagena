@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/domain/usecases/device-user.usecases.dart';
 
 Future<void> handlerNotificationBackground(RemoteMessage message) async {
@@ -63,15 +63,19 @@ class FirebaseApiNotification {
 
   /// Inicializa los permisos y configuraciones para las notificaciones
   Future<void> initNotifications() async {
-    await _firebaseMessaging.requestPermission();
-    final fcmToken = await _firebaseMessaging.getToken();
+    try {
+      await _firebaseMessaging.requestPermission();
+      final fcmToken = await _firebaseMessaging.getToken();
 
-    if (fcmToken != null) {
-      await validateTokenDevice(fcmToken);
+      if (fcmToken != null) {
+        await validateTokenDevice(fcmToken);
+      }
+
+      FirebaseMessaging.onBackgroundMessage(handlerNotificationBackground);
+      await initPushNotification();
+    } catch (e) {
+      print('Error al inicializar las notificaciones: $e');
     }
-
-    FirebaseMessaging.onBackgroundMessage(handlerNotificationBackground);
-    await initPushNotification();
   }
 
 

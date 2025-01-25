@@ -50,24 +50,16 @@
   "back": "Back",
   "cancel" : "Cancel",
   "updatePassword": "Password Updated",
-  "textUpdatePassword": "Your password has been successfully changed."
-  "chatAna": "Ana"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  "textUpdatePassword": "Your password has been successfully changed.",
+  "chatAna": "Ana",
+  "placeDetails": "Place Details",
+  "advertising": "Advertising",
+  "textLogin" : "Login",
+  "forgotYourPassword" : "Forgot your password?",
+  "signUp" : "Sign Up",
+  "notAccount": "Don't have an account? ",
+  "registrationIsFree" : "Registration is free!",
+  "loginOrRegister" : "Log in or register"
 
 
 

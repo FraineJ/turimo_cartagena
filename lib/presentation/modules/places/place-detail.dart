@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/modules/places/widgets/card-services.dart';
 
 import '../../../domain/models/place.model.dart';
@@ -20,16 +21,15 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
 
 
   int _currentIndex = 0;
-  bool _isLiked = false;
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalles del Lugar'),
+        title: Text(S.current.placeDetails),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -56,7 +56,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     return Builder(
                       builder: (BuildContext context) {
                         return Image.network(
-                          place.imagesUrl!.first,
+                          image ?? "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg",
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
                         );

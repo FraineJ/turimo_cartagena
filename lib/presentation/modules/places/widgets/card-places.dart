@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/place.model.dart';
 import 'package:turismo_cartagena/presentation/bloc/places/places_bloc.dart';
 import 'package:turismo_cartagena/presentation/modules/places/place-detail.dart';

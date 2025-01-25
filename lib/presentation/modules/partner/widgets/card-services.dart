@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:turismo_cartagena/domain/models/service.model.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as UTILS;
+import 'package:turismo_cartagena/core/utils/all.dart' as UTILS;
 
 class CardServicesPartner extends StatelessWidget {
   final Servicio services;

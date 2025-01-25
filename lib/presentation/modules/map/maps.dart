@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/partner.model.dart';
 import 'package:turismo_cartagena/presentation/bloc/partner/partner_bloc.dart';
 import 'package:turismo_cartagena/presentation/bloc/places/places_bloc.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as Widgets;
+import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as Widgets;
 import 'package:turismo_cartagena/presentation/modules/map/maps-google.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/partner-detail.dart';
 
@@ -35,7 +35,7 @@ class _MapViewState extends State<MapView> {
     if(Platform.isIOS){
       customIcon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(),
-        'assets/images/icon-location.png',
+        'assets/images/icon-location-ios.png',
       );
     } else {
       customIcon = await BitmapDescriptor.fromAssetImage(

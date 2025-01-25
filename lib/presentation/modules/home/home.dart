@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/category.model.dart';
-import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/category/category_bloc.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/no-data.dart';
+import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as WIDGET;
 import 'package:turismo_cartagena/presentation/modules/home/pages/tab-view-one.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
+import 'package:turismo_cartagena/core/utils/all.dart' as SHARED;
 import 'package:turismo_cartagena/presentation/modules/home/pages/tab-view-two.dart';
 import 'package:turismo_cartagena/presentation/modules/home/widgest/flag_animada.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/partner.dart';
@@ -128,7 +126,7 @@ class _HomeViewState extends State<Home>
             if (state is ErrorGetCategory) {
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: const NoDataWidget(
+                child: const WIDGET.NoDataWidget(
                   svgPath: "assets/images/danger.svg",
                   title: "Error del Servidor",
                   description:

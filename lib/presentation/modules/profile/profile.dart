@@ -3,13 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/initial-bloc/initial_bloc.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/all-widgets.dart' as Widgets;
+import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as Widgets;
 import 'package:turismo_cartagena/presentation/modules/auth/login/login.dart';
-import 'package:turismo_cartagena/presentation/modules/layuot.dart';
 import 'package:turismo_cartagena/presentation/modules/profile/pages/configuration.dart';
 import 'package:turismo_cartagena/presentation/modules/profile/widgets/language-selector.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as Global;
-import 'package:turismo_cartagena/presentation/modules/profile/widgets/provile-view.dart';
+import 'package:turismo_cartagena/core/utils/all.dart' as Global;
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -27,10 +25,8 @@ class _ProfileViewState extends State<ProfileView> {
   Future<void> logout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
-    print("SharedPreferences cleared: ${prefs.getKeys()}"); // Debug
 
     context.read<InitialBloc>().add(IsAuthenticatedEvent(isAuthenticated: false));
-    print("IsAuthenticatedEvent dispatched"); // Debug
 
     LoadingOverlay.show(context);
     await Future.delayed(Duration(seconds: 3), () {
@@ -44,7 +40,6 @@ class _ProfileViewState extends State<ProfileView> {
 
   void getInfo() async {
     Map<String, String> userDetails = await Global.Utils.getUserDetails();
-    print("userDetails ${userDetails}");
     if(userDetails.isNotEmpty){
       setState(() {
         name = userDetails['name']!;

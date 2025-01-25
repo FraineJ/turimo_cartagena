@@ -2,18 +2,18 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:turismo_cartagena/article_injection.dart';
+import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/event.model.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/event/event_bloc.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/button-outlined.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/skeleton-card-buys.dart';
-import 'package:turismo_cartagena/presentation/global/widgets/skeleton.dart';
-import 'package:turismo_cartagena/presentation/modules/events/widgets/card-events.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as UTILS;
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
+import 'package:turismo_cartagena/presentation/modules/events/widgets/card-events.dart';
+import 'package:turismo_cartagena/core/utils/all.dart' as UTILS;
+import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as GLOBAL;
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:turismo_cartagena/presentation/modules/layuot.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'dart:io';
 
 class TabViewOneHome extends StatefulWidget {
   const TabViewOneHome({super.key});
@@ -27,6 +27,23 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
   void _reloadEvents(BuildContext context) {
     context.read<EventBloc>().add(GetEventEvent());
   }
+
+  Future navigationWed(String link) async {
+    if (Platform.isIOS) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GLOBAL.WebPageViewer(
+            url: link,
+            title: S.current.advertising,
+          ),
+        ),
+      );
+    } else {
+      UTILS.Utils.launchURL(context, Uri.parse(link), true);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,29 +62,38 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
               {
                 "image": 'https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/carrusel/slider-two.jpeg',
                 "isAd": true,
-                "link": "https://carnavaldebarranquilla.org/"
+                "link": "https://carnavaldebarranquilla.org/",
+                "navigationInternal" : false,
               },
               {
                 "image": 'https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/carrusel/slider-one.webp',
                 "isAd": true,
-                "link": "https://convocatorias.ipcc.gov.co/convocatoria-festival-del-frito-2025"
+                "link": "https://convocatorias.ipcc.gov.co/convocatoria-festival-del-frito-2025",
+                "navigationInternal" : false,
               },
               {
                 "image": 'https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/carrusel/slider-three.webp',
                 "isAd": false,
-                "link": "https://www.hayfestival.com/cartagena/inicio"
+                "link": "https://www.hayfestival.com/cartagena/inicio",
+                "navigationInternal" : false,
               },
               {
                 "image": 'https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/carrusel/slider-for.webp',
                 "isAd": false,
-                "link": "https://www.hayfestival.com/cartagena/inicio"
+                "link": "https://www.hayfestival.com/cartagena/inicio",
+                "navigationInternal" : true,
               }
             ].map((item) {
               return Builder(
                 builder: (BuildContext context) {
                   return GestureDetector(
                     onTap: (){
-                      UTILS.Utils.launchURL(context, Uri.parse( item["link"].toString()), true);
+                      item["navigationInternal"] == false
+                      ? navigationWed(item["link"].toString())
+                      : Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => Layout(currentItemPages: 2)), (route) => false
+                      );
                     },
                     child: Stack(
                       children: [
@@ -84,7 +110,7 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
                               imageUrl: item["image"].toString()!,
                               fit: BoxFit.fill,
                               placeholder: (context, url) =>
-                              const Center(child:   Skeleton(height: 160, width: double.infinity),),
+                              const Center(child:   GLOBAL.Skeleton(height: 160, width: double.infinity),),
                               errorWidget: (context, url, error) => Image.asset(
                                 "assets/images/no-photo.jpg",
                                 fit: BoxFit.cover, // Asegura que la imagen de respaldo cubra el área
@@ -135,7 +161,7 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
             child: BlocBuilder<EventBloc, EventState>(
               builder: (context, state) {
                 if (state is LoadingGetEvent) {
-                  return const Center(child: SkeletonCardBuys());
+                  return const Center(child: GLOBAL.SkeletonCardBuys());
                 }
                 if (state is SuccessGetEvent) {
                   final List<EventModel> listModel = state.events;
@@ -174,7 +200,7 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
                                 fontSize: 16, color: Colors.black54),
                           ),
                           const SizedBox(height: 16),
-                          RegistrationButton(
+                          GLOBAL.RegistrationButton(
                             color: Colors.green,
                             width: 190,
                             text: S.current.retry,

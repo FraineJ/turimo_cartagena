@@ -9,7 +9,7 @@ import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/widgets/spaces-header-appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../domain/models/partner.model.dart';
-import 'package:turismo_cartagena/presentation/global/utils/all.dart' as SHARED;
+import 'package:turismo_cartagena/core/utils/all.dart' as SHARED;
 
 class PartnerDetailScreen extends StatefulWidget {
   final PartnersModel partners;
