@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:turismo_cartagena/domain/models/event.model.dart';
-import 'package:turismo_cartagena/core/utils/all.dart' as SHARED;
 import 'package:turismo_cartagena/presentation/modules/events/events.dart';
 
 class EventCard extends StatelessWidget {

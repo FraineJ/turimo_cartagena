@@ -73,13 +73,11 @@ class EventDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // Contenido del evento
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Título
                   Text(
                     event.name,
                     style: const TextStyle(
@@ -89,7 +87,6 @@ class EventDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
 
-                  // Dirección
                   Row(
                     children: [
                       const Icon(
@@ -108,44 +105,16 @@ class EventDetailScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 16),
-
-                  // Fechas y estado
-                  /*Row(
-                    children: [
-                      const Icon(Icons.calendar_today, size: 20, color: Colors.blue),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Inicio: ${event.openingDate}',
-                        style: const TextStyle(fontSize: 16, color: Colors.black87),
-                      ),
-                      const SizedBox(width: 16),
-                      const Icon(Icons.event, size: 20, color: Colors.blue),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Fin: ${event.endDate.toLocal()}'.split(' ')[0],
-                        style: const TextStyle(fontSize: 16, color: Colors.black87),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),*/
-
-                  // Descripción
                   Text(
                     event.description,
                     style: const TextStyle(fontSize: 16, color: Colors.black87),
                   ),
                   const SizedBox(height: 16),
 
-
-
-
                 ],
               ),
             ),
-
             const SizedBox(height: 16),
-
-
           ],
         ),
       ),

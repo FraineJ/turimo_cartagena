@@ -7,12 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:639403984663:android:a21327c90a5d05ab1b9952",
+        "mobilesdk_app_id": "1:639403984663:android:f18eb1a46683fc5a1b9952",
         "android_client_info": {
           "package_name": "com.goowaySimasoft.co"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "639403984663-dc4vcqeql50q3gsf58p7ep246m4vq197.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAWCd-1bkdyq1wUzWYfGQ3F9olss5K_Q-8"
@@ -20,7 +25,55 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639403984663-dc4vcqeql50q3gsf58p7ep246m4vq197.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "639403984663-phjjbtguqqse89ef6g4308ohp4jspt2e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gooway.turismoCartagena"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639403984663:android:246d19ef650eb1e11b9952",
+        "android_client_info": {
+          "package_name": "com.goowaySimasoft.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639403984663-dc4vcqeql50q3gsf58p7ep246m4vq197.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWCd-1bkdyq1wUzWYfGQ3F9olss5K_Q-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639403984663-dc4vcqeql50q3gsf58p7ep246m4vq197.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "639403984663-phjjbtguqqse89ef6g4308ohp4jspt2e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gooway.turismoCartagena"
+              }
+            }
+          ]
         }
       }
     }
