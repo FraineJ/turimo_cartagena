@@ -18,6 +18,7 @@ class EventModel {
   String invite;
   String status;
   String address;
+  bool? video;
 
   EventModel({
     required this.id,
@@ -33,6 +34,7 @@ class EventModel {
     required this.invite,
     required this.status,
     required this.address,
+    this.video
   });
 
   /// Método `fromJson` ajustado para manejar campos opcionales correctamente.
@@ -50,6 +52,7 @@ class EventModel {
     invite: json["invite"] ?? "",
     status: json["status"] ?? "",
     address: json["address"] ?? "",
+    video: json["video"] ?? false
   );
 
   /// Método `toJson` ajustado para manejar campos opcionales.
@@ -67,5 +70,6 @@ class EventModel {
     "invite": invite,
     "status": status,
     "address": address,
+    "video" : video
   };
 }

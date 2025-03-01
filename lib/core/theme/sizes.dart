@@ -31,6 +31,7 @@ class AppSizes {
   static double get textSmall => scaleWidth(12.0);
   static double get textMedium => scaleWidth(16.0);
   static double get textLarge => scaleWidth(24.0);
+  static double get textLarge32 => scaleWidth(32.0);
 
   static double get borderRadiusSmall => scaleWidth(8.0);
   static double get borderRadiusMedium => scaleWidth(16.0);
@@ -39,4 +40,8 @@ class AppSizes {
   static double get marginSmall => scaleWidth(8.0);
   static double get marginMedium => scaleWidth(16.0);
   static double get marginLarge => scaleWidth(24.0);
+
+
+  static double get heightSmall => scaleWidth(24.0);
+  static double get heightMedium => scaleWidth(32.0);
 }

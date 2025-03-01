@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:turismo_cartagena/core/di/article_injection.dart';
+import 'package:turismo_cartagena/core/theme/sizes.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/auth/auth_bloc.dart';
 import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as W;
+import 'package:turismo_cartagena/presentation/modules/auth/widgets/login_or_bar.dart';
 import 'package:turismo_cartagena/presentation/modules/auth/widgets/password-validator.widget.dart';
 import 'package:turismo_cartagena/presentation/modules/layuot.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../widgets/SocialAuthSection.dart';
 
 class Register extends StatelessWidget {
   @override
@@ -131,148 +135,159 @@ class CustomerForm extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 16),
-                    const W.AppBarCustom(textTitle: "Registrarte", botonVolver: true,),
-                    const SizedBox(height: 8),
-                    const Text(
-                      "Por favor rellenar todos los campos",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    const SizedBox(height: 16),
-                    W.InputTextCustom(
-                      hintText: 'Ingrese su nombre',
-                      labelText: S.current.nameRegister,
-                      controller: name,
-                      prefixIcon: Icons.person_2_rounded,
-                      isRequired: true,
-                      keyboardType: TextInputType.text,
-                    ),
-                    const SizedBox(height: 16),
-                    W.InputTextCustom(
-                      hintText: 'Ingrese sus apellidos',
-                      labelText:  S.current.lastNameRegister,
-                      controller: lastName,
-                      isRequired: true,
-                      keyboardType: TextInputType.text,
-                    ),
-                    const SizedBox(height: 16),
-                    W.InputTextCustom(
-                      hintText: 'Ingrese un correo electrónico',
-                      labelText:  S.current.emailRegister,
-                      controller: email,
-                      prefixIcon: Icons.email,
-                      isRequired: true,
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                    const SizedBox(height: 16),
-                    DropdownButtonFormField<String>(
-                      value: selectedCountry,
-                      items: countries.map((country) {
-                        return DropdownMenuItem<String>(
-                          value: country['name'],
-                          child: Text(
-                            "${country['flag']} ${country['name']}",
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        selectedCountry = value!;
-                      },
-                      hint: const Text("Seleccione su país de origen"), // Placeholder
-
-                      decoration:  InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: AppSizes.marginLarge),
+                  const W.AppBarCustom(textTitle: "Registrarte", botonVolver: true,),
+                  SizedBox(height: AppSizes.marginSmall),
+                  const Text(
+                    "Por favor rellenar todos los campos",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(height: AppSizes.marginSmall),
+                  SocialAuthSection(
+                      googleAuthTitle: S.current.regGoogle
+                  ),
+                  SizedBox(height: AppSizes.marginLarge),
+                  const LoginOrBar(stock: 0.8),
+                  SizedBox(height: AppSizes.marginMedium),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        W.InputTextCustom(
+                          hintText: 'Ingrese su nombre',
+                          labelText: S.current.nameRegister,
+                          controller: name,
+                          prefixIcon: Icons.person_2_rounded,
+                          isRequired: true,
+                          keyboardType: TextInputType.text,
                         ),
+                        const SizedBox(height: 16),
+                        W.InputTextCustom(
+                          hintText: 'Ingrese sus apellidos',
+                          labelText:  S.current.lastNameRegister,
+                          controller: lastName,
+                          isRequired: true,
+                          keyboardType: TextInputType.text,
+                        ),
+                        const SizedBox(height: 16),
+                        W.InputTextCustom(
+                          hintText: 'Ingrese un correo electrónico',
+                          labelText:  S.current.emailRegister,
+                          controller: email,
+                          prefixIcon: Icons.email,
+                          isRequired: true,
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                        const SizedBox(height: 16),
+                        DropdownButtonFormField<String>(
+                          value: selectedCountry,
+                          items: countries.map((country) {
+                            return DropdownMenuItem<String>(
+                              value: country['name'],
+                              child: Text(
+                                "${country['flag']} ${country['name']}",
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            selectedCountry = value!;
+                          },
+                          hint: const Text("Seleccione su país de origen"), // Placeholder
 
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Por favor seleccione un país';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 16),
-
-                    W.InputTextCustom(
-                      hintText: 'Contraseña',
-                      labelText: S.current.passwordRegister,
-                      prefixIcon: Icons.lock,
-                      suffixIcon: Icons.visibility_off,
-                      controller: password,
-                      isPassword: true,
-                      isRequired: true,
-                      maxLines: 3,
-                      keyboardType: TextInputType.visiblePassword,
-                    ),
-                    const SizedBox(height: 16),
-
-                    W.InputTextCustom(
-                      hintText: S.current.confirmPasswordRegister,
-                      labelText: S.current.confirmPasswordRegister,
-                      prefixIcon: Icons.lock,
-                      suffixIcon: Icons.visibility_off,
-                      controller: passwordConfirm,
-                      isPassword: true,
-                      isRequired: true,
-                      maxLines: 3,
-                      keyboardType: TextInputType.visiblePassword,
-                    ),
-                    const SizedBox(height: 16),
-                    PasswordValidatorWidget(controller: password),
-                    const SizedBox(height: 16),
-                    InkWell(
-
-                      onTap: (){
-                        openWebPage(Uri.parse("https://www.gooway.co/politica-de-privacidad-de-la-aplicacion-gooway/"), true);
-                      },
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text:  TextSpan(
-
-                          style: const TextStyle(
-                            fontSize: 24.0,
-                            color: Colors.black,
+                          decoration:  InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
 
                           ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: S.current.messagePolityOne,
-                              style: const TextStyle(
-                                  fontSize: 16
-                              ),
-                            ),
-                            TextSpan(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Por favor seleccione un país';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 16),
 
-                              text: " " + S.current.messagePolityTow,
+                        W.InputTextCustom(
+                          hintText: 'Contraseña',
+                          labelText: S.current.passwordRegister,
+                          prefixIcon: Icons.lock,
+                          suffixIcon: Icons.visibility_off,
+                          controller: password,
+                          isPassword: true,
+                          isRequired: true,
+                          maxLines: 3,
+                          keyboardType: TextInputType.visiblePassword,
+                        ),
+                        const SizedBox(height: 16),
+
+                        W.InputTextCustom(
+                          hintText: S.current.confirmPasswordRegister,
+                          labelText: S.current.confirmPasswordRegister,
+                          prefixIcon: Icons.lock,
+                          suffixIcon: Icons.visibility_off,
+                          controller: passwordConfirm,
+                          isPassword: true,
+                          isRequired: true,
+                          maxLines: 3,
+                          keyboardType: TextInputType.visiblePassword,
+                        ),
+                        const SizedBox(height: 16),
+                        PasswordValidatorWidget(controller: password),
+                        const SizedBox(height: 16),
+                        InkWell(
+
+                          onTap: (){
+                            openWebPage(Uri.parse("https://www.gooway.co/politica-de-privacidad-de-la-aplicacion-gooway/"), true);
+                          },
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text:  TextSpan(
+
                               style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.blue
+                                fontSize: 24.0,
+                                color: Colors.black,
+
                               ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: S.current.messagePolityOne,
+                                  style: const TextStyle(
+                                      fontSize: 16
+                                  ),
+                                ),
+                                TextSpan(
+
+                                  text: " " + S.current.messagePolityTow,
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.blue
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+
+                          ),
                         ),
 
-                      ),
+                        const SizedBox(height: 16),
+                        W.ButtonPrimaryCustom(
+                          color: const Color(0xFF009C47),
+                          text: 'Registrarse',
+                          onPressed: () => _submitForm(context),
+                        ),
+                        const SizedBox(height: 16),
+                      ],
                     ),
-
-                    const SizedBox(height: 16),
-                    W.ButtonPrimaryCustom(
-                      color: const Color(0xFF009C47),
-                      text: 'Registrarse',
-                      onPressed: () => _submitForm(context),
-                    ),
-                    const SizedBox(height: 16),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:turismo_cartagena/core/di/article_injection.dart';
 import 'package:turismo_cartagena/domain/models/partner.model.dart';
 import 'package:turismo_cartagena/presentation/bloc/partner/partner_bloc.dart';
 import 'package:turismo_cartagena/presentation/modules/map/maps.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/widgets/card-partner.dart';
+import 'package:turismo_cartagena/core/utils/all.dart' as UTILS;
 
 class PartnerView extends StatefulWidget {
   final String categoryId;
-  const PartnerView({super.key, required this.categoryId});
+  final Position? originLatLng;
+  const PartnerView({super.key, required this.categoryId, required this.originLatLng});
 
   @override
   State<PartnerView> createState() => _PartnerViewState();
@@ -17,6 +20,25 @@ class PartnerView extends StatefulWidget {
 class _PartnerViewState extends State<PartnerView> {
 
    bool modeView = false;
+   List<PartnersModel> _getNearbyPartner(List<PartnersModel> event) {
+     return event
+       ..sort((a, b) {
+         double distanceA = UTILS.Utils.haversineDistanceKilometers(
+           widget.originLatLng?.latitude ?? 0,
+           widget.originLatLng?.longitude ?? 0,
+           a.latitud,
+           a.longitud,
+         );
+         double distanceB = UTILS.Utils.haversineDistanceKilometers(
+           widget.originLatLng?.latitude ?? 0,
+           widget.originLatLng?.longitude ?? 0,
+           b.latitud,
+           b.longitud,
+         );
+         return distanceA.compareTo(distanceB);
+       }
+       );
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +57,7 @@ class _PartnerViewState extends State<PartnerView> {
 
               if (state is SuccessGetPartnerByCategory) {
                 List<PartnersModel> partners = state.partnerModel;
+                partners = _getNearbyPartner(partners);
 
                 return modeView ?  MapView(
                   showAppBar: false,

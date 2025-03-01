@@ -12,6 +12,11 @@ class AuthCaseUse {
     return await _authRepository.login(username, password);
   }
 
+
+  Future signInWithGoogle() async{
+    return await _authRepository.signInWithGoogle();
+  }
+
   Future register(UserModel user) async{
     return await _authRepository.register(user);
   }

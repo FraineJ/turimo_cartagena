@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:turismo_cartagena/core/theme/sizes.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
-import 'package:turismo_cartagena/presentation/modules/places/widgets/card-services.dart';
 
 import '../../../domain/models/place.model.dart';
 
@@ -26,15 +26,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(S.current.placeDetails),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,6 +37,9 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                   options: CarouselOptions(
                     height: 300,
                     viewportFraction: 1.0,
+                    enlargeCenterPage: false,
+                    autoPlayInterval: const Duration(seconds: 3),
+                    autoPlay: place.imagesUrl!.length > 1 ? true : false,
                     onPageChanged: (index, reason) {
                       setState(() {
                         _currentIndex = index;
@@ -74,7 +69,6 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                       },
                     ),
                   ],
-
                 ),
                 Positioned(
                   bottom: 10,
@@ -97,7 +91,27 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     ),
                   ),
                 ),
-              ],
+                Positioned(
+                  top: 45,
+                  left: 10,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.7),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        size: 24,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  )
+                )
+        ],
             ),
              Padding(
               padding: const EdgeInsets.all(16.0),
@@ -120,8 +134,8 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text("${place.address}",
-                    style: const TextStyle(
-                      fontSize: 16,
+                    style:  TextStyle(
+                      fontSize: AppSizes.textMedium,
                     ),
                   ),
                   //const SizedBox(height: 8),
@@ -146,44 +160,13 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                       ),
                     ],
                   ),*/
-                  const Divider(height: 32),
-                  const Row(
-                    children: [
-                      const CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/no-image.png'),
-                        radius: 30,
-                      ),
-                      SizedBox(width: 12),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Anfitrión: Gooway',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Diseñador',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const Divider(height: 32),
-
-                  const SizedBox(height: 8),
+                  SizedBox(height: AppSizes.marginSmall),
                   Text("${place.description}",
-                    style: const TextStyle(
-                      fontSize: 16,
+                    style:  TextStyle(
+                      fontSize: AppSizes.textMedium,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: AppSizes.marginMedium),
                   /*const Text("Servicios",
                     style:  TextStyle(
                       fontSize: 20,

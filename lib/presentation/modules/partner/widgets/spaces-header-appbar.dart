@@ -62,6 +62,8 @@ class _SpacesHeaderAppBarState extends State<SpacesHeaderAppBar> {
                   CarouselSlider(
                     options: CarouselOptions(
                       height: 300,
+                      autoPlay: widget.partners.imagesUrl.length > 1 ? true : false,
+                      autoPlayInterval: const Duration(seconds: 3),
                       viewportFraction: 1.0,
                       onPageChanged: (index, reason) {
                         setState(() {
@@ -94,6 +96,27 @@ class _SpacesHeaderAppBarState extends State<SpacesHeaderAppBar> {
                             ),
                           ],
                   ),
+                  Positioned(
+                    bottom: 10,
+                    right: 10,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 4.0,
+                        horizontal: 8.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.7),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        '${_currentIndex + 1} / ${widget.partners.imagesUrl!.length}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
                   _buttonBackPage(context),
                   _buildFavoriteButton(context, isAuth)
                 ],
@@ -107,7 +130,7 @@ class _SpacesHeaderAppBarState extends State<SpacesHeaderAppBar> {
 
   Widget _buildFavoriteButton(BuildContext context, bool isAuth) {
     return Positioned(
-      top: 30,
+      top: 40,
       right: 10,
       child: Container(
           decoration: BoxDecoration(
@@ -127,7 +150,7 @@ class _SpacesHeaderAppBarState extends State<SpacesHeaderAppBar> {
 
   Widget _buttonBackPage(BuildContext context) {
     return Positioned(
-        top: 30,
+        top: 40,
         left: 10,
         child: Container(
           decoration: BoxDecoration(

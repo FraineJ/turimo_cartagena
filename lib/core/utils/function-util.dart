@@ -297,4 +297,28 @@ class Utils {
     }
   }
 
+
+  static double haversineDistanceKilometers(double lat1, double lon1, double lat2, double lon2) {
+    const double R = 6371000; // Radio de la Tierra en metros
+
+    // Convertir grados a radianes
+    double phi1 = lat1 * pi / 180;
+    double phi2 = lat2 * pi / 180;
+    double deltaPhi = (lat2 - lat1) * pi / 180;
+    double deltaLambda = (lon2 - lon1) * pi / 180;
+
+    // Aplicar la fórmula de Haversine
+    double a = sin(deltaPhi / 2) * sin(deltaPhi / 2) +
+        cos(phi1) * cos(phi2) *
+            sin(deltaLambda / 2) * sin(deltaLambda / 2);
+    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+
+    // Distancia en metros
+    double distanceInMeters = R * c;
+
+    // Convertir a kilómetros y redondear a 3 decimales
+    double distanceInKilometers = distanceInMeters / 1000;
+    return double.parse(distanceInKilometers.toStringAsFixed(3));
+  }
+
 }

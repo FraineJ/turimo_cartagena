@@ -6,7 +6,9 @@ import 'package:latlong2/latlong.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turismo_cartagena/core/di/article_injection.dart';
+import 'package:turismo_cartagena/core/theme/sizes.dart';
 import 'package:turismo_cartagena/domain/models/category.model.dart';
+import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/category/category_bloc.dart';
 import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as WIDGET;
 import 'package:turismo_cartagena/presentation/modules/home/pages/tab-view-one.dart';
@@ -124,14 +126,28 @@ class _HomeViewState extends State<Home>
             }
 
             if (state is ErrorGetCategory) {
-              return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: const WIDGET.NoDataWidget(
-                  svgPath: "assets/images/danger.svg",
-                  title: "Error del Servidor",
-                  description:
-                      "Ocurrió un problema al conectarse con el servidor. Por favor, inténtelo nuevamente más tarde.",
-                ),
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:  WIDGET.NoDataWidget(
+                      svgPath: "assets/images/danger.svg",
+                      title: "Error del Servidor",
+                      description: "Ocurrió un problema al conectarse con el servidor. Por favor, inténtelo nuevamente más tarde.",
+                    ),
+                  ),
+                  SizedBox(height: AppSizes.marginMedium),
+                  WIDGET.RegistrationButton(
+                    color: Colors.green,
+                    width: 190,
+                    text: S.current.retry,
+                    onPressed: () {
+                      context.read<CategoryBloc>().add(GetCategoryEvent());
+                    },
+                  ),
+                ],
               );
             }
 
@@ -187,6 +203,8 @@ class _HomeViewState extends State<Home>
                             });
                             _scrollToIndex(index);
                           },
+
+
                           child: Container(
                             margin: const EdgeInsets.symmetric(horizontal: 8.0),
                             padding: const EdgeInsets.symmetric(
@@ -200,7 +218,7 @@ class _HomeViewState extends State<Home>
                                 color: _selectedIndex == index
                                     ? Colors.transparent
                                     : Colors.grey[400]!,
-                                width: 1.0, // Ancho del borde
+                                width: 1.0,
                               ),
                             ),
                             child: Row(
@@ -233,12 +251,13 @@ class _HomeViewState extends State<Home>
                   ),
                   Expanded(
                     child: _selectedIndex == 0
-                        ? const TabViewOneHome()
+                        ? TabViewOneHome(originLatLng: originLatLng)
                         : _selectedIndex == 1
-                        ? const  TabViewTwoHome()
+                        ? TabViewTwoHome(originLatLng: originLatLng)
                         : PartnerView(
-                            key: ValueKey(category[_selectedIndex].id),
-                            categoryId: category[_selectedIndex].id
+                          key: ValueKey(category[_selectedIndex].id),
+                          categoryId: category[_selectedIndex].id,
+                          originLatLng: originLatLng
                         ),
                   ),
                 ],

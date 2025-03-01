@@ -61,9 +61,8 @@ class _PlaceCardState extends State<PlaceCardView> {
                   options: CarouselOptions(
                     height: MediaQuery.of(context).size.height / 4,
                     autoPlay: autoPlay,
-                    autoPlayInterval: Duration(seconds: 2),
+                    autoPlayInterval: Duration(seconds: 3),
                     enlargeCenterPage: true,
-                    aspectRatio: 16 / 9,
                     viewportFraction: 1.0,
                     onPageChanged: (index, reason) {
                       setState(() {

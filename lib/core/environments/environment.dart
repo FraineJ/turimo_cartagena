@@ -8,7 +8,7 @@ class Environment {
   Environment({required this.baseUrl});
 
   static Future<Environment> forEnvironment(String env) async {
-    final contents = await rootBundle.loadString('lib/presentation/global/environments/$env.json');
+    final contents = await rootBundle.loadString('lib/core/environments/$env.json');
     final json = jsonDecode(contents);
 
     return Environment(

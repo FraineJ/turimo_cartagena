@@ -1,4 +1,5 @@
-import 'package:ovorideuser/data/model/global/user/global_user_model.dart';
+
+import 'package:turismo_cartagena/domain/models/authorization/global_user_model.dart';
 
 class LoginResponseModel {
   LoginResponseModel({String? status, List<String>? message, Data? data}) {

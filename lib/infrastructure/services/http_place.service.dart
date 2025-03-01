@@ -22,7 +22,7 @@ class HttpPlaceService extends PlaceRepository {
         headers: {
           'Content-Type': 'application/json',
         },
-      ).timeout(Duration(seconds: 10));
+      ).timeout(Duration(seconds: 15));
 
       final body = jsonDecode(utf8.decode(response.bodyBytes));
       ResponsePages responsePages = ResponsePages.fromJson(body);

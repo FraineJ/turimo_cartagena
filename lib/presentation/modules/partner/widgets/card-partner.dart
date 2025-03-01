@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:turismo_cartagena/core/di/article_injection.dart';
+import 'package:turismo_cartagena/core/theme/sizes.dart';
 import 'package:turismo_cartagena/domain/models/partner.model.dart';
 import 'package:turismo_cartagena/presentation/bloc/initial-bloc/initial_bloc.dart';
 import 'package:turismo_cartagena/presentation/bloc/partner/partner_bloc.dart';
@@ -45,7 +48,6 @@ class _PropertyCardStateState extends State<PropertyCardState> {
   }
 
   void _toggleFavorite(BuildContext context, bool isAuth) {
-    print("is auteh $isAuth");
     if (!isAuth) {
       SHARED.Utils.showSnackBar(
         context,
@@ -63,6 +65,8 @@ class _PropertyCardStateState extends State<PropertyCardState> {
     context.read<PartnerBloc>().add(event);
   }
 
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<PartnerBloc, PartnersState>(
@@ -78,30 +82,35 @@ class _PropertyCardStateState extends State<PropertyCardState> {
       child: BlocBuilder<InitialBloc, InitialState>(
         builder: (context, state) {
           final isAuth = state.isLoginApp;
-          print("estado del auth $isAuth");
           return GestureDetector(
             onTap: () {
-
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => BlocProvider(
                   create: (context) => PartnerBloc(sl()),
                     child: PartnerDetailScreen(partners: widget.partner)
                 ),
               ));
-
             },
             child: Container(
-              height: widget.height ?? 300,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Stack(
+              child: Column(
                 children: [
-                  _buildImageContainer(),
-                  _buildRecommendedTag(),
-                  _buildFavoriteButton(context, isAuth),
-                  _buildPartnerInfo(context),
+                  Stack(children: [
+                    _buildImageContainer(context),
+                    _buildFavoriteButton(context, isAuth),
+                    _indicatorCarrousel(context)
+                    ]
+
+                  ),
+                  SizedBox(height: AppSizes.marginMedium),
+                  _buildPartnerInfo(context)
+                  //_buildRecommendedTag(),
+
+
+
                 ],
               ),
             ),
@@ -111,25 +120,51 @@ class _PropertyCardStateState extends State<PropertyCardState> {
     );
   }
 
-  Widget _buildImageContainer() {
+  Widget _buildImageContainer(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: Colors.grey.withOpacity(0.2),
-          width: 1.0,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius:  BorderRadius.circular(16),
+            child: CarouselSlider(
+                options: CarouselOptions(
+                  height: 300,
+                  viewportFraction: 1.0,
+                  enlargeCenterPage: false,
+                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlay: false,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+                  },
+                ),
+                items: () {
+
+                  List<Widget> listImage = widget.partner.imagesUrl.map((toElement) {
+                    return CachedNetworkImage(
+                      imageUrl: toElement,
+                      height: 180,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                      const Center(
+                          child: CircularProgressIndicator()
+                      ),
+                      errorWidget: (context, url, error) =>
+                          Image.asset(
+                            "assets/images/no-photo.jpg",
+                            fit: BoxFit.cover,
+                          ),
+                    );
+                  }).toList();
+
+                  return listImage;
+                }(),
+            )
           ),
         ],
-        image: DecorationImage(
-          image: NetworkImage(widget.partner.imagesUrl.first),
-          fit: BoxFit.cover,
-        ),
       ),
     );
   }
@@ -156,6 +191,39 @@ class _PropertyCardStateState extends State<PropertyCardState> {
     );
   }
 
+  Widget _indicatorCarrousel(BuildContext context) {
+    return    Positioned(
+      bottom: 10.0,
+      left: 0.0,
+      right: 0.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:
+        widget.partner.imagesUrl!.asMap().entries.map((entry) {
+          return GestureDetector(
+            onTap: () => setState(() {
+              _currentIndex = entry.key;
+            }),
+            child: Container(
+              width: 8.0,
+              height: 8.0,
+              margin: const EdgeInsets.symmetric(
+                  vertical: 8.0, horizontal: 4.0),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: (Colors.white).withOpacity(
+                    _currentIndex == entry.key ? 0.9 : 0.4
+                ),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+
+
   Widget _buildFavoriteButton(BuildContext context, bool isAuth) {
     return Positioned(
       top: 10,
@@ -174,59 +242,47 @@ class _PropertyCardStateState extends State<PropertyCardState> {
   }
 
   Widget _buildPartnerInfo(BuildContext context) {
-    return Positioned(
-      bottom: 10,
-      left: 0,
-      right: 0,
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        padding: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: Colors.white,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.partner.name,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.partner.name,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
             ),
-            const SizedBox(height: 5),
-            Text(
-              SHARED.Utils.truncateText(widget.partner.address, 40),
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
-              ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            SHARED.Utils.truncateText(widget.partner.address ?? "", 40),
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey[600],
             ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Row(
-                  children: [
-                    Icon(Icons.star, color: Colors.orange, size: 16),
-                    SizedBox(width: 8),
-                    Text(
-                      '4.5 Rating',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Row(
+                children: [
+                  Icon(Icons.star, color: Colors.orange, size: 16),
+                  SizedBox(width: 8),
+                  Text(
+                    '4.5 Rating',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
-                _buildDistanceInfo(),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+                  ),
+                ],
+              ),
+              _buildDistanceInfo(),
+            ],
+          ),
+        ],
+      );
   }
 
   Widget _buildDistanceInfo() {

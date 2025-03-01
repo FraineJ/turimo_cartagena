@@ -22,14 +22,9 @@ class PlacesBloc extends Bloc<PlacesEvent, PlacesState> {
     try {
       final ResponsePages response = await placeCaseUse.getAllPlaceByCategory();
 
-      print("response ${response.status}");
-      print("response ${response.data}");
-
-      if (response.status == 200) {
+      if (response.data.isNotEmpty) {
         List<PlaceModel> place = response.data.map((jsonData) => PlaceModel.fromJson(jsonData))
         .toList();
-
-        print("response status ${place}");
 
         emit(SuccessGetPlaceByCategory(placeModel: place));
       } else {

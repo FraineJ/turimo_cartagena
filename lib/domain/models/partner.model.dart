@@ -16,11 +16,11 @@ class PartnersModel {
   List<String> imagesUrl;
   String description;
   String status;
-  int whatsapp;
+  int? whatsapp;
   int phone;
   String email;
-  String link;
-  String address;
+  String? link;
+  String? address;
   String categoryId;
   bool favorite;
 
@@ -32,11 +32,11 @@ class PartnersModel {
     required this.imagesUrl,
     required this.description,
     required this.status,
-    required this.whatsapp,
+    this.whatsapp,
     required this.phone,
     required this.email,
-    required this.link,
-    required this.address,
+    this.link,
+    this.address,
     required this.categoryId,
     required this.favorite
   });
@@ -49,11 +49,11 @@ class PartnersModel {
     imagesUrl: List<String>.from(json["imagesUrl"].map((x) => x)),
     description: json["description"],
     status: json["status"],
-    whatsapp: json["whatsapp"],
+    whatsapp: json["whatsapp"] ?? 0,
     phone: json["phone"],
     email: json["email"],
-    link: json["link"],
-    address: json["address"],
+    link: json["link"] ?? "",
+    address: json["address"] ?? "",
     categoryId: json["categoryId"],
     favorite: json["favorite"] ?? true
   );

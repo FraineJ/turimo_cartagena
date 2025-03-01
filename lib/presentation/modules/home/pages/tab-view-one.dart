@@ -2,12 +2,15 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:turismo_cartagena/core/di/article_injection.dart';
+import 'package:turismo_cartagena/core/theme/colors.dart';
+import 'package:turismo_cartagena/core/theme/sizes.dart';
 import 'package:turismo_cartagena/domain/models/event.model.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/bloc/event/event_bloc.dart';
 
-import 'package:turismo_cartagena/presentation/modules/events/widgets/card-events.dart';
+import 'package:turismo_cartagena/presentation/modules/events/pages/event-view.dart';
 import 'package:turismo_cartagena/core/utils/all.dart' as UTILS;
 import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as GLOBAL;
 import 'package:cached_network_image/cached_network_image.dart';
@@ -16,7 +19,9 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:io';
 
 class TabViewOneHome extends StatefulWidget {
-  const TabViewOneHome({super.key});
+
+  Position? originLatLng;
+  TabViewOneHome({super.key, required this.originLatLng });
 
   @override
   State<TabViewOneHome> createState() => _TabViewOneHomeState();
@@ -24,6 +29,7 @@ class TabViewOneHome extends StatefulWidget {
 
 class _TabViewOneHomeState extends State<TabViewOneHome> {
   late final WebViewController _webViewController;
+  late List<EventModel> listModel = [];
   void _reloadEvents(BuildContext context) {
     context.read<EventBloc>().add(GetEventEvent());
   }
@@ -44,6 +50,25 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
     }
   }
 
+  List<EventModel> _getNearbyEvent(List<EventModel> event) {
+    return event
+      ..sort((a, b) {
+        double distanceA = UTILS.Utils.haversineDistanceKilometers(
+          widget.originLatLng?.latitude ?? 0,
+          widget.originLatLng?.longitude ?? 0,
+          a.latitud,
+          a.longitud,
+        );
+        double distanceB = UTILS.Utils.haversineDistanceKilometers(
+          widget.originLatLng?.latitude ?? 0,
+          widget.originLatLng?.longitude ?? 0,
+          b.latitud,
+          b.longitud,
+        );
+        return distanceA.compareTo(distanceB);
+      });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +84,12 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
               autoPlayInterval: const Duration(seconds: 3),
             ),
             items: [
+              {
+                "image": 'https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/carrusel/18051736.png',
+                "isAd": true,
+                "link": "https://wa.me/573004607717?text=Hola,%20vengo%20de%20la%20App%20Gooway%20y%20quiero%20participar%20en%20el%20Sorteo%20de%20la%20Noche%20en%20el%20Chalet%20Ohanna%20Bay",
+                "navigationInternal" : false,
+              },
               {
                 "image": 'https://storaga-turismo-gooway.s3.us-east-1.amazonaws.com/carrusel/slider-two.jpeg',
                 "isAd": true,
@@ -126,7 +157,7 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 4),
                               decoration: BoxDecoration(
-                                color: Colors.green,
+                                color: AppColors.primary,
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: const Text(
@@ -161,23 +192,35 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
             child: BlocBuilder<EventBloc, EventState>(
               builder: (context, state) {
                 if (state is LoadingGetEvent) {
-                  return const Center(child: GLOBAL.SkeletonCardBuys());
+                  return  Container(
+                    height: AppSizes.screenWidth,
+                    child: const Column(
+                      children: [
+                        Expanded(child: GLOBAL.SkeletonCardBuys()),
+                      ],
+                    ),
+                  );
                 }
+
                 if (state is SuccessGetEvent) {
-                  final List<EventModel> listModel = state.events;
+                   listModel = state.events;
                   if (listModel.isEmpty) {
                     return Center(child: Text(S.current.noFoundEvent));
+                  } else {
+                    listModel =  _getNearbyEvent(listModel);
                   }
+
                   return ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: listModel.length,
                     itemBuilder: (context, index) {
                       final EventModel event = listModel[index];
-                      return EventCard(event: event);
+                      return EventView(event: event);
                     },
                   );
                 }
+
                 if (state is ErrorGetEvent) {
                   return Center(
                     child: Padding(
@@ -201,7 +244,7 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
                           ),
                           const SizedBox(height: 16),
                           GLOBAL.RegistrationButton(
-                            color: Colors.green,
+                            color: AppColors.primary,
                             width: 190,
                             text: S.current.retry,
                             onPressed: () => _reloadEvents(context),
@@ -211,8 +254,7 @@ class _TabViewOneHomeState extends State<TabViewOneHome> {
                     ),
                   );
                 }
-                return const Center(
-                    child: Text("Error al cargar los eventos."));
+                return SizedBox.shrink();
               },
             ),
           ),

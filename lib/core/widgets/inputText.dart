@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:turismo_cartagena/core/theme/colors.dart';
+
+import '../theme/sizes.dart';
 
 class InputTextCustom extends StatefulWidget {
   final String hintText;
@@ -16,7 +19,8 @@ class InputTextCustom extends StatefulWidget {
   int? maxLines = 1;
   bool readonly;
 
-  InputTextCustom({
+
+   InputTextCustom({
     Key? key,
     required this.hintText,
     this.labelText,
@@ -24,14 +28,14 @@ class InputTextCustom extends StatefulWidget {
     this.suffixIcon,
     this.prefixIcon,
     this.isPassword = false,
-    this.isEmail = false,
+     this.isEmail = false,
     this.isRequired = false,
     this.requiredText,
     this.keyboardType = TextInputType.text,
     this.minLength,
     this.borderRadio,
     this.maxLines,
-    this.readonly = false,
+    this.readonly = false
   }) : super(key: key);
 
   @override
@@ -41,30 +45,17 @@ class InputTextCustom extends StatefulWidget {
 class _InputTextCustomState extends State<InputTextCustom> {
   bool _obscureText = true;
   String? _errorMessage;
-  late FocusNode _focusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    _focusNode = FocusNode(); // Inicializa el nodo de foco
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose(); // Libera el recurso
-    super.dispose();
-  }
 
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'El correo electrónico es obligatorio';
     }
-    final emailRegex =
-    RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+    // Expresión regular para un correo válido
+    final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
     if (!emailRegex.hasMatch(value)) {
       return 'Por favor, ingresa un correo electrónico válido';
     }
-    return null;
+    return null; // Devuelve null si no hay errores
   }
 
   @override
@@ -73,39 +64,53 @@ class _InputTextCustomState extends State<InputTextCustom> {
       obscureText: _obscureText && widget.isPassword,
       controller: widget.controller,
       autofocus: false,
-      focusNode: _focusNode, // Asigna el nodo de foco
       keyboardType: widget.keyboardType,
       readOnly: widget.readonly,
-      textInputAction: TextInputAction.next, // Permite pasar al siguiente campo
-      onFieldSubmitted: (_) {
-        FocusScope.of(context).nextFocus(); // Mueve el foco al siguiente campo
-      },
+      style: TextStyle(
+          fontFamily: 'Inter',
+          color: AppColors.primaryTextColor,
+          fontWeight: FontWeight.w400,
+          fontSize: AppSizes.textMedium
+      ),
       decoration: InputDecoration(
+
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadio ?? 8),
+          borderSide: BorderSide(
+            width: 1,
+            color: Colors.grey.withValues(alpha: 0.08),
+          ),
+          borderRadius: BorderRadius.circular(AppSizes.borderRadiusSmall),
         ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 1,
+            color: Colors.grey.withOpacity(0.5), // Color del borde cuando está inactivo
+          ),
+          borderRadius: BorderRadius.circular(AppSizes.borderRadiusSmall),
+        ),
+
         hintText: widget.hintText,
+        hintStyle:  TextStyle(
+          color: Colors.grey,
+          fontSize: AppSizes.textSmall,
+        ),
         labelText: widget.labelText,
-        prefixIcon:
-        widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
+        prefixIcon: widget.prefixIcon != null  ? Icon(widget.prefixIcon) : null,
         suffixIcon: widget.isPassword
             ? IconButton(
-          icon: Icon(
-            _obscureText ? Icons.visibility : Icons.visibility_off,
-          ),
-          onPressed: () {
-            setState(() {
-              _obscureText = !_obscureText;
-            });
-          },
-        )
-            : widget.suffixIcon != null
-            ? Icon(widget.suffixIcon)
-            : null,
+                icon: Icon(
+                  _obscureText ? Icons.visibility : Icons.visibility_off,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+              )
+            : Icon(widget.suffixIcon),
         errorText: _errorMessage,
       ),
-      validator: widget.isRequired == true
-          ? (value) {
+      validator: widget.isRequired == true ? (value) {
         if (widget.isRequired && (value == null || value.isEmpty)) {
           return widget.requiredText ?? 'Este campo es requerido';
         }
@@ -115,10 +120,11 @@ class _InputTextCustomState extends State<InputTextCustom> {
           return 'Debe tener al menos ${widget.minLength} caracteres';
         }
         return null;
-      }
-          : widget.isEmail == true
-          ? _validateEmail
-          : null,
+      } : widget.isEmail == true ?  _validateEmail : null,
+      onChanged: (value) {
+
+
+      },
     );
   }
 }

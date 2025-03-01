@@ -62,3 +62,5 @@ class ChangePasswordEvent extends AuthEvent {
   final String password;
   const ChangePasswordEvent({required this.password});
 }
+
+class SignInWithGoogleEvent extends AuthEvent {}

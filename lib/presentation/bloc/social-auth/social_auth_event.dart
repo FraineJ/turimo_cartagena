@@ -1,4 +1,8 @@
 part of 'social_auth_bloc.dart';
 
-@immutable
-sealed class SocialAuthEvent {}
+abstract class SocialAuthEvent extends Equatable {
+  @override
+  List<Object?> get props => [];
+}
+
+class SignInWithGoogleEvent extends SocialAuthEvent {}

@@ -18,17 +18,20 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +44,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -62,62 +67,32 @@ class S {
 
   /// `Lugares`
   String get places {
-    return Intl.message(
-      'Lugares',
-      name: 'places',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Lugares', name: 'places', desc: '', args: []);
   }
 
   /// `Explorar`
   String get Explore {
-    return Intl.message(
-      'Explorar',
-      name: 'Explore',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Explorar', name: 'Explore', desc: '', args: []);
   }
 
   /// `Inicio`
   String get Home {
-    return Intl.message(
-      'Inicio',
-      name: 'Home',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Inicio', name: 'Home', desc: '', args: []);
   }
 
   /// `Favoritos`
   String get Favorites {
-    return Intl.message(
-      'Favoritos',
-      name: 'Favorites',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Favoritos', name: 'Favorites', desc: '', args: []);
   }
 
   /// `Viajes`
   String get Trips {
-    return Intl.message(
-      'Viajes',
-      name: 'Trips',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Viajes', name: 'Trips', desc: '', args: []);
   }
 
   /// `Perfil`
   String get Profile {
-    return Intl.message(
-      'Perfil',
-      name: 'Profile',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Perfil', name: 'Profile', desc: '', args: []);
   }
 
   /// `Inicia sesión para ver tus favoritos`
@@ -152,22 +127,12 @@ class S {
 
   /// `Cerrar sesión`
   String get log_out {
-    return Intl.message(
-      'Cerrar sesión',
-      name: 'log_out',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Cerrar sesión', name: 'log_out', desc: '', args: []);
   }
 
   /// `Idiomas`
   String get languages {
-    return Intl.message(
-      'Idiomas',
-      name: 'languages',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Idiomas', name: 'languages', desc: '', args: []);
   }
 
   /// `Seleccionar idioma`
@@ -192,22 +157,12 @@ class S {
 
   /// `Configuración`
   String get settings {
-    return Intl.message(
-      'Configuración',
-      name: 'settings',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Configuración', name: 'settings', desc: '', args: []);
   }
 
   /// `Eventos`
   String get event {
-    return Intl.message(
-      'Eventos',
-      name: 'event',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Eventos', name: 'event', desc: '', args: []);
   }
 
   /// `Inicia sesión para ver tu perfil`
@@ -232,12 +187,7 @@ class S {
 
   /// `Nombre`
   String get nameRegister {
-    return Intl.message(
-      'Nombre',
-      name: 'nameRegister',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Nombre', name: 'nameRegister', desc: '', args: []);
   }
 
   /// `Apellidos`
@@ -342,22 +292,12 @@ class S {
 
   /// `Descripción`
   String get description {
-    return Intl.message(
-      'Descripción',
-      name: 'description',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Descripción', name: 'description', desc: '', args: []);
   }
 
   /// `Contacto`
   String get contact {
-    return Intl.message(
-      'Contacto',
-      name: 'contact',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Contacto', name: 'contact', desc: '', args: []);
   }
 
   /// `Pulsa en cualquiera de los iconos para comunicarse.`
@@ -382,12 +322,7 @@ class S {
 
   /// `Reintentar`
   String get retry {
-    return Intl.message(
-      'Reintentar',
-      name: 'retry',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Reintentar', name: 'retry', desc: '', args: []);
   }
 
   /// `Eliminar cuenta`
@@ -412,12 +347,7 @@ class S {
 
   /// `Continuar`
   String get textContinue {
-    return Intl.message(
-      'Continuar',
-      name: 'textContinue',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Continuar', name: 'textContinue', desc: '', args: []);
   }
 
   /// `Ha ocurrido un error. Por favor, inténtalo más tarde.`
@@ -532,22 +462,12 @@ class S {
 
   /// `Regresar`
   String get back {
-    return Intl.message(
-      'Regresar',
-      name: 'back',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Regresar', name: 'back', desc: '', args: []);
   }
 
   /// `Cancelar`
   String get cancel {
-    return Intl.message(
-      'Cancelar',
-      name: 'cancel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Cancelar', name: 'cancel', desc: '', args: []);
   }
 
   /// `Contraseña Actualizada`
@@ -572,12 +492,7 @@ class S {
 
   /// `Ana`
   String get chatAna {
-    return Intl.message(
-      'Ana',
-      name: 'chatAna',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Ana', name: 'chatAna', desc: '', args: []);
   }
 
   /// `Detalles del Lugar`
@@ -592,12 +507,7 @@ class S {
 
   /// `Publicidad`
   String get advertising {
-    return Intl.message(
-      'Publicidad',
-      name: 'advertising',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Publicidad', name: 'advertising', desc: '', args: []);
   }
 
   /// `Iniciar sesión`
@@ -622,12 +532,7 @@ class S {
 
   /// `Registrate`
   String get signUp {
-    return Intl.message(
-      'Registrate',
-      name: 'signUp',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Registrate', name: 'signUp', desc: '', args: []);
   }
 
   /// `¿No tienes una cuenta? `
@@ -658,6 +563,91 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Emergencia`
+  String get emergency {
+    return Intl.message('Emergencia', name: 'emergency', desc: '', args: []);
+  }
+
+  /// `Acerca de`
+  String get about {
+    return Intl.message('Acerca de', name: 'about', desc: '', args: []);
+  }
+
+  /// `Menu`
+  String get menu {
+    return Intl.message('Menu', name: 'menu', desc: '', args: []);
+  }
+
+  /// `O`
+  String get or {
+    return Intl.message('O', name: 'or', desc: '', args: []);
+  }
+
+  /// `Continuar con Google`
+  String get regGoogle {
+    return Intl.message(
+      'Continuar con Google',
+      name: 'regGoogle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Algo salió mal`
+  String get somethingWentWrong {
+    return Intl.message(
+      'Algo salió mal',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error de servidor`
+  String get serverError {
+    return Intl.message(
+      'Error de servidor',
+      name: 'serverError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `¡Mal formato de respuesta!`
+  String get badResponseMsg {
+    return Intl.message(
+      '¡Mal formato de respuesta!',
+      name: 'badResponseMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error al iniciar sesión, inténtelo nuevamente`
+  String get loginFailedTryAgain {
+    return Intl.message(
+      'Error al iniciar sesión, inténtelo nuevamente',
+      name: 'loginFailedTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sin conexión a Internet`
+  String get noInternet {
+    return Intl.message(
+      'Sin conexión a Internet',
+      name: 'noInternet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `éxito`
+  String get success {
+    return Intl.message('éxito', name: 'success', desc: '', args: []);
   }
 }
 

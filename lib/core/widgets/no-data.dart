@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:turismo_cartagena/core/theme/sizes.dart';
+
+import '../theme/colors.dart';
 
 class NoDataWidget extends StatelessWidget {
   final String svgPath; // Dirección de la imagen SVG
   final String title;
   final String description;
+  bool network;
 
-  const NoDataWidget({
+  NoDataWidget({
     super.key,
     required this.svgPath,
     required this.title,
     required this.description,
+    this.network = false,
   });
 
   @override
@@ -19,7 +24,12 @@ class NoDataWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset(
+        network ? SvgPicture.network(
+          svgPath,
+          width: 75,
+          height: 75,
+        )
+        : SvgPicture.asset(
           svgPath,
           width: 75,
           height: 75,
@@ -36,6 +46,10 @@ class NoDataWidget extends StatelessWidget {
         Text(
           description,
           textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: AppSizes.textMedium,
+            color: AppColors.textSecondary
+          ),
         ),
       ],
     );

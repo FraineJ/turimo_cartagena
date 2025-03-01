@@ -4,6 +4,8 @@ abstract class AbstractAuthRepository {
 
   Future login(String username, String password);
 
+  Future signInWithGoogle();
+
   Future register(UserModel user);
 
   Future<bool> logout();

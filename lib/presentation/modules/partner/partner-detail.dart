@@ -8,8 +8,13 @@ import 'package:turismo_cartagena/domain/models/service.model.dart';
 import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/modules/partner/widgets/spaces-header-appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../core/theme/colors.dart';
+import '../../../core/theme/sizes.dart';
 import '../../../domain/models/partner.model.dart';
 import 'package:turismo_cartagena/core/utils/all.dart' as SHARED;
+import 'package:turismo_cartagena/core/widgets/all-widgets.dart' as WIDGETS;
+
+import 'widgets/review-dialog.dart';
 
 class PartnerDetailScreen extends StatefulWidget {
   final PartnersModel partners;
@@ -135,7 +140,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
         future: _getCurrentLocation(),
         builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
               return const Center(
                 child: Text("Error al obtener la ubicación"),
@@ -152,13 +157,13 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                   ),
                   SliverToBoxAdapter(
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 16,),
                           Text(
-                            partners.address,
+                            partners.address ?? "",
                             style: const TextStyle(
                                 color: Colors.black87
                             ),
@@ -172,13 +177,13 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
 
                           ),
                           Text(partners.description,
-                            style: const TextStyle(
-                              fontSize: 16,
+                            style:  TextStyle(
+                                fontSize: AppSizes.textMedium,
 
                             ),
 
                           ),
-                          const SizedBox(height: 16,),
+                          SizedBox(height: AppSizes.marginMedium),
                           /*const Text("Reseñas",
                             style: TextStyle(
                                 fontSize: 22,
@@ -187,16 +192,31 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
 
                           ),
                           const SizedBox(height: 16,),
-                          const ReviewCard(
+                         const ReviewCard(
                               userName: "Frainer Simarra",
                               userRole: "Cartagena, Colombia",
                               reviewText: "Eclente lugar cuenta con un luhar muy hermoso estoy segura que volveria a visitarlo",
                               userImageUrl: "https://fotografias.antena3.com/clipping/cmsimages01/2021/05/02/26E03450-C5FB-4D16-BC9B-B282AE784352/57.jpg",
                               rating: 2
 
-                          )
+                          ),*/
+                          WIDGETS.NoDataWidget(
+                            svgPath: "assets/images/menu-icon-10.svg",
+                            title: "Aún no hay reseñas",
+                            description: "Sé el primero en compartir tu opinión sobre este aliado.",
+                          ),
+
+                          SizedBox(height: AppSizes.marginMedium),
+                          WIDGETS.RegistrationButton(
+                            text: 'Escribir una reseña',
+                            color: AppColors.primary,
+                            width: AppSizes.screenWidth,
+                            onPressed: (){
+                              showDialog(context: context, builder: (_) => ReviewDialog(partner: partners));
+                            },
+                          ),
                           const SizedBox(height: 16,),
-                          const Text("Servicios",
+                          /*const Text("Servicios",
                             style: TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold
@@ -250,8 +270,8 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                             child: Row(
                               children: [
                                 partners!.phone != 0 ? Container(
-                                  width: 60,
-                                  height: 60,
+                                  width: 55,
+                                  height: 55,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(32.0),
                                     color: Colors.blueAccent,
@@ -272,17 +292,17 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                                 ) : const SizedBox.shrink(),
                                 const SizedBox(width: 16,),
                                 partners!.whatsapp != 0 ? Container(
-                                  width: 60,
-                                  height: 60,
+                                  width: 55,
+                                  height: 55,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(32.0),
-                                    color: Colors.blueAccent,
+                                    color: Colors.green,
 
                                   ),
                                   child: Center(
                                     child: IconButton(
                                       onPressed: () {
-                                        _launchURL(Uri.parse('whatsapp://send?phone=+${partners.whatsapp}&text=hola como estas'), false);
+                                        _launchURL(Uri.parse('whatsapp://send?phone=+${partners.whatsapp}&text=Hola! 💚 Vengo de la app Gooway y quiero saber más sobre tus servicios. ¿Me puedes contar más detalles? 😊'), false);
                                       },
                                       icon: const  FaIcon(
                                           FontAwesomeIcons.whatsapp,
@@ -326,9 +346,7 @@ class _PartnerDetailScreenState extends State<PartnerDetailScreen> {
                   ),
                 ],
               );
-
             }
-
         }
       ),
     );

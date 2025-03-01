@@ -1,4 +1,4 @@
 {
-  "baseUrl": "https://api.gooway.co/api/",
+  "baseUrl": "http://192.168.1.3:3000/api",
   "apiKey": "prod_api_key"
 }

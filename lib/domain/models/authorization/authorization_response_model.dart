@@ -1,4 +1,5 @@
-import 'package:ovorideuser/data/model/global/user/global_user_model.dart';
+
+import 'global_user_model.dart';
 
 class AuthorizationResponseModel {
   AuthorizationResponseModel({

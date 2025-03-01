@@ -59,9 +59,17 @@
   "signUp" : "Sign Up",
   "notAccount": "Don't have an account? ",
   "registrationIsFree" : "Registration is free!",
-  "loginOrRegister" : "Log in or register"
-
-
-
+  "loginOrRegister" : "Log in or register",
+  "emergency" : "Emergency",
+  "about": "About",
+  "menu": "Menu",
+  "or": "Or",
+  "regGoogle": "Continue with Google",
+  "somethingWentWrong" : "Something went wrong",
+  "serverError": "Server error",
+  "badResponseMsg": "Bad response format!",
+  "loginFailedTryAgain": "Login failed,please try again",
+  "noInternet": "No internet connection",
+  "success": "Success"
 
 }

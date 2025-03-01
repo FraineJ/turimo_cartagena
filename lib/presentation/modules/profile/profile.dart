@@ -70,7 +70,7 @@ class _ProfileViewState extends State<ProfileView> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Widgets.AppBarCustom(
                         textTitle: S.current.Profile,
-                        botonVolver: false,
+                        botonVolver: true,
                       ),
                     ),
                     Padding(
@@ -280,7 +280,7 @@ class _ProfileViewState extends State<ProfileView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Widgets.AppBarCustom(
-                          textTitle: S.current.Profile, botonVolver: false),
+                          textTitle: S.current.Profile, botonVolver: true),
                       Widgets.RequestLogin(
                         title: S.current.login_view_favorites,
                         description: S.current.login_view_detail_profile,

@@ -59,6 +59,18 @@
   "signUp" : "Registrate",
   "notAccount": "¿No tienes una cuenta? ",
   "registrationIsFree" : "Registrarse es gratis.!",
-  "loginOrRegister" : "Inicia sesión o regístrate"
+  "loginOrRegister" : "Inicia sesión o regístrate",
+  "emergency" : "Emergencia",
+  "about": "Acerca de",
+  "menu": "Menu",
+  "or": "O",
+  "regGoogle": "Continuar con Google",
+  "somethingWentWrong" : "Algo salió mal",
+  "serverError": "Error de servidor",
+  "badResponseMsg": "¡Mal formato de respuesta!",
+  "loginFailedTryAgain": "Error al iniciar sesión, inténtelo nuevamente",
+  "noInternet": "Sin conexión a Internet",
+  "success": "éxito"
+
 
 }

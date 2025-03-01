@@ -98,3 +98,23 @@ class ErrorChangePasswordState extends AuthBlocState {
   @override
   List<Object> get props => [responsePages];
 }
+
+
+
+class SocialAuthLoading extends AuthBlocState {}
+
+class SocialAuthSuccess extends AuthBlocState {
+  final dynamic user; // Puedes cambiar el tipo según el modelo de usuario
+  const SocialAuthSuccess(this.user);
+
+  @override
+  List<Object> get props => [user];
+}
+
+class SocialAuthFailure extends AuthBlocState {
+  final String error;
+  const SocialAuthFailure({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}

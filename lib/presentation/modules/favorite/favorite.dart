@@ -286,7 +286,7 @@ class CardPartner extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    SHARED.Utils.truncateText(partner.address, 40),
+                    SHARED.Utils.truncateText(partner!.address ?? "", 40),
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey[600],
@@ -297,8 +297,8 @@ class CardPartner extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // Rating
-                      Row(
-                        children: const [
+                      const Row(
+                        children:  [
                           Icon(Icons.star, color: Colors.orange, size: 16),
                           SizedBox(width: 8),
                           Text(

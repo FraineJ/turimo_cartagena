@@ -22,6 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
     on<RecoverPasswordEvent>(_recoverPassword);
     on<VerifyCodeOtpEvent>(_verifyCodeOtp);
     on<ChangePasswordEvent>(_changePassword);
+    on<SignInWithGoogleEvent>(_onSignInWithGoogle);
   }
 
   Future _login(LoginEvent event, Emitter<AuthBlocState> emit) async {
@@ -38,17 +39,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
 
       if (userDta.isNotEmpty) {
 
-
         String userJson = jsonEncode({
           "tokenAcces": response["data"][0]['token'],
           "name": response["data"][0]['name'],
           "email": response["data"][0]['email'],
           "id": response["data"][0]['id'],
         });
-
-
-        prefs.setString('user_login', userJson);
-
 
         emit(SuccessAuthenticationState());
       } else{
@@ -111,8 +107,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
           "email": response.data[0]['email'],
         });
 
-        prefs.setString('local_info', userJson);
-
         emit(SuccessRecoverPasswordState(responsePages: response ));
       } else {
         emit(ErrorRecoverPasswordState(responsePages: response ));
@@ -156,6 +150,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthBlocState> {
     } catch (error) {
       ResponsePages response = ResponsePages(data: [], menssage: "Ha ocurrido un error inesperado", status: 400);
       emit(ErrorChangePasswordState(responsePages: response));
+    }
+  }
+
+  Future<void> _onSignInWithGoogle(
+      SignInWithGoogleEvent event, Emitter<AuthBlocState> emit) async {
+    emit(SocialAuthLoading());
+    try {
+      final user = await authCaseUse.signInWithGoogle();
+      emit(SocialAuthSuccess(user));
+    } catch (e) {
+      emit(SocialAuthFailure(error: e.toString()));
     }
   }
 

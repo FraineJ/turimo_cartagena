@@ -1,9 +1,11 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:ovorideuser/core/helper/shared_preference_helper.dart';
-import 'package:ovorideuser/core/utils/method.dart';
-import 'package:ovorideuser/core/utils/url_container.dart';
-import 'package:ovorideuser/data/model/global/response_model/response_model.dart';
-import 'package:ovorideuser/data/services/api_service.dart';
+import 'package:turismo_cartagena/core/environments/environment.dart';
+import 'package:turismo_cartagena/core/utils/helper/shared_preference_helper.dart';
+import 'package:turismo_cartagena/core/utils/method.dart';
+import 'package:turismo_cartagena/infrastructure/services/auth/api_service.dart';
+
+import '../models/response_model.dart';
+
 
 class SocialAuthRepo {
   ApiClient apiClient;
@@ -28,9 +30,12 @@ class SocialAuthRepo {
       map = {'token': accessToken, 'provider': "facebook"};
     }
 
-    String url = '${UrlContainer.baseUrl}${UrlContainer.socialLoginEndPoint}';
+    final environment = await Environment.forEnvironment('environment-dev');
+    String apiUrl  = "${environment.baseUrl}/auth/register-social";
+
+
     ResponseModel model =
-        await apiClient.request(url, Method.postMethod, map, passHeader: false);
+        await apiClient.request(apiUrl, Method.postMethod, map, passHeader: false);
     return model;
   }
 
@@ -65,9 +70,12 @@ class SocialAuthRepo {
   }
 
   Future<bool> sendUpdatedToken(String deviceToken) async {
-    String url = '${UrlContainer.baseUrl}${UrlContainer.deviceTokenEndPoint}';
+
+    final environment = await Environment.forEnvironment('environment-dev');
+    String apiUrl  = "${environment.baseUrl}/auth/register-social";
+
     Map<String, String> map = deviceTokenMap(deviceToken);
-    await apiClient.request(url, Method.postMethod, map, passHeader: true);
+    await apiClient.request(apiUrl, Method.postMethod, map, passHeader: true);
     return true;
   }
 

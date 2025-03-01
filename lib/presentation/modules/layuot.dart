@@ -6,11 +6,9 @@ import 'package:turismo_cartagena/generated/l10n.dart';
 import 'package:turismo_cartagena/presentation/modules/chat/chat-ana-ia.dart';
 import 'package:turismo_cartagena/presentation/modules/favorite/favorite.dart';
 import 'package:turismo_cartagena/presentation/modules/home/home.dart';
-import 'package:turismo_cartagena/presentation/modules/map/maps-google.dart';
 import 'package:turismo_cartagena/presentation/modules/map/maps-view.dart';
-import 'package:turismo_cartagena/presentation/modules/map/maps.dart';
-import 'package:turismo_cartagena/presentation/modules/profile/profile.dart';
-
+import '../../core/theme/colors.dart';
+import 'menu/menu.dart';
 
 class Layout extends StatefulWidget {
   int? currentItemPages;
@@ -21,21 +19,30 @@ class Layout extends StatefulWidget {
 }
 
 class LayoutState extends State<Layout> {
-  LayoutState({required currentItemPages});
+  LayoutState({required this.currentItemPages});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   Set<Marker> markers = {};
-  BitmapDescriptor? customIcon; // Define the custom icon variable
+  BitmapDescriptor? customIcon;
   Position? originLatLng;
   CustomInfoWindowController? _controllerCustomInfoWindow;
+  int? currentItemPages;
+  bool typeView = true;
+
+  void _onItemSelected(int index) {
+    setState(() {
+      currentItemPages = index;
+    });
+    Navigator.pop(context);
+  }
 
   void initMarker() async {
     Position currentPosition = await _getCurrentLocation();
-
-    // Crear el marcador
     markers.add(
       Marker(
-        markerId: MarkerId('current_location'), // Identificador único para el marcador
-        icon: customIcon ?? BitmapDescriptor.defaultMarker, // Icono personalizado o predeterminado
-        position: LatLng(currentPosition.latitude, currentPosition.longitude), // Posición actual
+        markerId: MarkerId('current_location'),
+        icon: customIcon ?? BitmapDescriptor.defaultMarker,
+        position: LatLng(currentPosition.latitude, currentPosition.longitude),
         onTap: () {
           print('Marcador tocado: ${currentPosition.latitude}, ${currentPosition.longitude}');
         },
@@ -67,25 +74,36 @@ class LayoutState extends State<Layout> {
     return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   }
 
-
   List<Widget> get pages => [
     HomeView(),
     const FavoriteView(),
     const ChatAna(),
     MapViewComponent(),
-    const ProfileView(),
+    const SizedBox(), // Espacio reservado para la opción del menú
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[widget.currentItemPages ?? 0],
+      key: _scaffoldKey,
+      body: pages[
+      (widget.currentItemPages != null && widget.currentItemPages! < pages.length)
+          ? widget.currentItemPages!
+          : 0], // Evita el error de rango
+      drawer: MenuBarApp(
+        currentIndex: currentItemPages,
+        onItemSelected: _onItemSelected,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: widget.currentItemPages ?? 0,
         onTap: (int newPage) {
-          setState(() {
-            widget.currentItemPages = newPage;
-          });
+          if (newPage == 4) {
+            _scaffoldKey.currentState?.openDrawer(); // Usa la clave para abrir el drawer
+          } else {
+            setState(() {
+              widget.currentItemPages = newPage;
+            });
+          }
         },
         type: BottomNavigationBarType.fixed,
         items: [
@@ -93,18 +111,14 @@ class LayoutState extends State<Layout> {
             icon: const Icon(Icons.home),
             label: S.current.Home,
           ),
-          /*BottomNavigationBarItem(
-            icon: const Icon(Icons.search),
-            label: S.current.Explore,
-          ),*/
           BottomNavigationBarItem(
             icon: const Icon(Icons.favorite_border_rounded),
             label: S.current.Favorites,
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
-              'assets/images/ana.gif', // Ruta de la imagen
-              width: 40, // Ajusta el tamaño según sea necesario
+              'assets/images/ana.gif',
+              width: 40,
               height: 40,
             ),
             label: S.current.chatAna,
@@ -114,11 +128,11 @@ class LayoutState extends State<Layout> {
             label: S.current.Explore,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.person),
-            label: S.current.Profile,
+            icon: const Icon(Icons.menu),
+            label: S.current.menu,
           ),
         ],
-        selectedItemColor: const Color(0xFF009C47),
+        selectedItemColor: AppColors.primary,
         unselectedItemColor: Colors.black54,
         selectedLabelStyle: const TextStyle(
           fontWeight: FontWeight.bold,
@@ -127,7 +141,7 @@ class LayoutState extends State<Layout> {
           fontWeight: FontWeight.normal,
         ),
         selectedIconTheme: const IconThemeData(
-          color: Color(0xFF009C47),
+          color: AppColors.primary,
           size: 30.0,
         ),
         unselectedIconTheme: const IconThemeData(

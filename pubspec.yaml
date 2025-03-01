@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.1+12
+version: 1.0.2+13
 
 environment:
   sdk: ^3.5.0
@@ -64,6 +64,11 @@ dependencies:
   google_maps_flutter: ^2.9.0
   cached_network_image: ^3.4.0
   webview_flutter: ^4.10.0
+  video_player: ^2.9.2
+  get: ^4.6.6
+  another_flushbar: ^1.12.30
+  google_sign_in: ^6.2.2
+  firebase_auth: ^5.2.0
 
 flutter_icons:
   android: 'launcher_icon'
@@ -92,21 +97,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/no-photo.jpg
-    - assets/images/logo-app.png
-    - assets/images/icon-location.png
-    - assets/images/icon-location-ios.png
-    - assets/images/default-user.jpeg
-    - assets/images/menu-icon-04.svg
-    - assets/images/icon-gooway.png
-    - assets/images/icon-person.png
-    - assets/images/icon-person-ios.png
-    - assets/images/danger.svg
-    - assets/images/heart.svg
+    - assets/images/
+    - assets/images/social/
+    - assets/images/logos-entidades/
     - lib/core/environments/environment-dev.json
     - lib/core/environments/environment-prod.json
-    - assets/images/Flag_of_Cartagena.svg
-    - assets/images/ana.gif
+
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
